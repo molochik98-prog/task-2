@@ -1,0 +1,44 @@
+name: Deploy Backend
+
+
+on:
+  push:
+    branches: ["main"]
+
+jobs:
+  build-and-deploy:
+    runs-on: [self-hosted]
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Build image
+        run: docker build -t backend:${{ github.sha }} ./backend
+
+      - name: Stop old container
+        run: docker stop backend || true
+
+      - name: Remove old container
+        run: docker rm backend || true
+
+      - name: Run new container
+        env:
+          DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
+        run: |
+          docker run -d --name backend --network app-net \
+            -e DATABASE_URL="postgresql://appuser:${DB_PASSWORD}@172.19.0.1:5432/appdb \
+            backend:${{ github.sha }}
+
+      - name: Health check with retries
+        run: |
+          IP=$(docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' backend)
+          for i in {1..10}; do
+            if curl -f http://$IP:8000/health; then
+              echo "Backend healthy"
+              exit 0
+            fi
+            echo "Попытка $i не удалась, жду..."
+            sleep 3
+          done
+          echo "Healthy check не прошел после 10 попыток"
+          exit 1
