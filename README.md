@@ -5,7 +5,7 @@
 
 ## Архитектура
 
-```
+
 ```
 Внешний клиент
        |
@@ -27,6 +27,7 @@
 |  слушает:127.0.0.1,172.19.0.1(не внешний интерфейс) |
 |                                                     |
 +-----------------------------------------------------+
+```
 
 
 |Компонент   |Порт    |Кому виден                                                              |
@@ -52,7 +53,7 @@
 `nginx:alpine`, а не собирается в отдельный образ. Если меняешь `nginx/nginx.conf`- нужно вручную:
 ```bash
 docker stop nginx && docker rm nginx
-docker run -d --name nginx network app-net -p 80:80 \
+docker run -d --name nginx --network app-net -p 80:80 \
     -v ~/devops-backend/nginx/nginx.conf:/etc/nginx/nginx.conf:ro \
     nginx:alpine
 ```
@@ -60,7 +61,7 @@ docker run -d --name nginx network app-net -p 80:80 \
 ### Первоначальная настройка (уже сделана, для справки)
 - PostgreSQL: пользоватеть `appuser`, база `appdb`, `listen_addresses` включает `172.19.0.1`,
                            `pg_hba.conf` разрешает подсеть 172.19.0.0/16
-- Docker-сеть: `docker network creat app-net`
+- Docker-сеть: `docker network create app-net`
 - Секрет `DB_PASSWORD` - в Settings -> Secrets and variables -> Actions
 - Self-hosted runner - зарегестрирован отдельно для этого репозитория (Settings -> Actions -> Runners)
 
