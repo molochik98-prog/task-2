@@ -26,7 +26,7 @@ jobs:
           DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
         run: |
           docker run -d --name backend --network app-net \
-            -e DATABASE_URL="postgresql://appuser:${DB_PASSWORD}@172.19.0.1:5432/appdb \
+            -e DATABASE_URL="postgresql://appuser:${DB_PASSWORD}@172.19.0.1:5432/appdb" \
             backend:${{ github.sha }}
 
       - name: Health check with retries
