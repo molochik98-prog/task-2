@@ -86,3 +86,42 @@ DATABASE_URL — это адрес назначения (куда стучимс
           
           sudo systemctl restart postgresql
 
+
+## Проблема 6: 2 workflows упали с failure
+
+**Симптом:** No event triggers defined in `on`
+
+**Как искал:** Смотрел на заполнение файлов, активен ли self-hosted runner
+
+**Причина:** `This workflow graph cannot be shown` YAML-файла внутри workflow не было
+
+**Фикс:** заполнил `deploy.yml`, далее сделал `git commit -m "Update deploy"`, затем `git push`
+
+
+## Проблема 7: Падение Update deploy
+
+**Симптом:** `Run docker run -d --name backend --network app-net \`
+`/home/jahongir/devops-backend/actions-runner-task2/_work/_temp/95a1f797-e216-4e77-8926-1c9f7e15e3af.sh: line 2: unexpected EOF while looking for matching "'`
+`Error: Process completed with exit code 2.`
+
+**Как искал:** Открыл deploy.yml и ствл осматривать код на наличие опечатки, лишней кавычки
+
+**Причина:** 29 строка `-e DATABASE_URL="postgresql://appuser:${DB_PASSWORD}@172.19.0.1:5432/appdb \` 
+
+**Фикс:** Добавляю кавычки после appdb `-e DATABASE_URL="postgresql://appuser:${DB_PASSWORD}@172.19.0.1:5432/appdb" \`
+
+
+## Проблема 8: Connection refused от 172.19.0.1:5432 — TCP-уровень, не авторизация, не код приложения
+
+**Симптом:** Ошибки внутри workflow: `curl: (7) Failed to connect to 172.19.0.2 port 8000 after 0 ms: Could not connect to server`
+                                      curl: (22) The requested URL returned error: 500
+
+**Как искал:** `sudo systemctl status postgresql`
+                sudo ss -tulpn | grep 5432
+                docker logs backend
+
+**Приична:** Судя по времени в статусе postgresql.service — active (exited) since ... 9min ago, и раннер поднялся почти в ту же секунду 
+(7min ago) — оба события произошли почти одновременно, это похоже на перезагрузку VM.
+
+**Фикс:** `sudo systemctl restart postgresql`
+           sudo ss -tulpn | grep 5432
