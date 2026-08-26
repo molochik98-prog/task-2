@@ -27,7 +27,8 @@ jobs:
         run: |
           docker run -d --name backend --network app-net \
             --add-host db:192.168.64.5 \
-            -e DATABASE_URL="postgresql://appuser:${DB_PASSWORD}@db:5432/appdb" \
+            -v /home/jahongir/certs/ca.crt:/certs/ca.crt:ro \
+            -e DATABASE_URL="postgresql://appuser:${DB_PASSWORD}@db:5432/appdb?sslmode=verify-full&sslrootcert=/certs/ca.crt" \
             backend:${{ github.sha }}
 
       - name: Health check with retries
