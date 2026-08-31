@@ -26,6 +26,8 @@ jobs:
           DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
         run: |
           docker run -d --name backend --network app-net \
+            --read-only \
+            --cap-drop ALL \
             --add-host db:192.168.64.5 \
             -v /home/jahongir/certs/ca.crt:/certs/ca.crt:ro \
             -e DATABASE_URL="postgresql://appuser:${DB_PASSWORD}@db:5432/appdb?sslmode=verify-full&sslrootcert=/certs/ca.crt" \
