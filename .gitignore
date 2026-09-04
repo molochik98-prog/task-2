@@ -1,8 +1,6 @@
 venv/
 __pycache__/
 *.pyc
-EOF
-actions-runner-task2/
 
 # Секреты — никогда не коммитить
 *.env
@@ -16,7 +14,10 @@ telegram-alert.env
 *.key
 *.pem
 
+# Self-hosted GitHub Actions runner — .credentials/.runner внутри содержат
+# реальные учётные данные раннера. Никогда не должны попасть в git,
+# особенно в публичный репозиторий.
+actions-runner*/
+
 # Прочее
 .DS_Store
-__pycache__/
-*.pyc
