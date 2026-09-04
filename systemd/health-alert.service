@@ -1,0 +1,9 @@
+[Unit]
+Description=Проверка /health и диска -> алерт в Telegram
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+EnvironmentFile=/etc/telegram-alert.env
+ExecStart=/usr/local/bin/health-alert.sh

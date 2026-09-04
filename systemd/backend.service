@@ -1,0 +1,17 @@
+[Unit]
+Description=Backend container (активный blue/green-цвет, определяется из nginx.conf)
+After=docker.service network-online.target
+Requires=docker.service
+Wants=network-online.target
+
+[Service]
+Type=simple
+ExecStartPre=/home/jahongir/devops-backend/current-color.sh --write /run/backend-active-color
+ExecStart=/bin/bash -c 'exec docker start -a backend-$(cat /run/backend-active-color)'
+ExecStop=/bin/bash -c 'docker stop backend-$(cat /run/backend-active-color)'
+Restart=on-failure
+RestartSec=5
+TimeoutStopSec=15
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,16 @@
+[Unit]
+Description=nginx (TLS-терминация, blue/green маршрутизация через dynamic resolver)
+After=docker.service backend.service network-online.target
+Requires=docker.service
+Wants=backend.service network-online.target
+
+[Service]
+Type=simple
+ExecStart=/bin/bash -c 'exec docker start -a nginx'
+ExecStop=/usr/bin/docker stop nginx
+Restart=on-failure
+RestartSec=5
+TimeoutStopSec=15
+
+[Install]
+WantedBy=multi-user.target
