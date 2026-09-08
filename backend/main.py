@@ -1,8 +1,11 @@
 import os
 import psycopg2
 from fastapi import FastAPI
+from prometheus_fastapi_instrumentator import Instrumentator
 
 app = FastAPI()
+Instrumentator().instrument(app).expose(app)
+
 DATABASE_URL = os.environ["DATABASE_URL"]
 
 @app.get("/health")
