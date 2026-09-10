@@ -33,6 +33,9 @@ jobs:
             -e DATABASE_URL="postgresql://appuser:${DB_PASSWORD}@db:5432/appdb?sslmode=verify-full&sslrootcert=/certs/ca.crt" \
             backend:${{ github.sha }}
 
+      - name: Connect backend to monitoring network
+        run: docker network connect monitoring-stack_monitoring-net backend
+
       - name: Health check with retries
         run: |
           IP=$(docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' backend)
