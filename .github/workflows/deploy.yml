@@ -1,6 +1,5 @@
 name: Deploy Backend
 
-
 on:
   push:
     branches: ["main"]
@@ -9,43 +8,12 @@ jobs:
   build-and-deploy:
     runs-on: [self-hosted]
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Build image
-        run: docker build -t backend:${{ github.sha }} ./backend
-
-      - name: Stop old container
-        run: docker stop backend || true
-
-      - name: Remove old container
-        run: docker rm backend || true
-
-      - name: Run new container
-        env:
-          DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
+      - name: Pull latest code
         run: |
-          docker run -d --name backend --network app-net \
-            --read-only \
-            --cap-drop ALL \
-            --add-host db:192.168.64.5 \
-            -v /home/jahongir/certs/ca.crt:/certs/ca.crt:ro \
-            -e DATABASE_URL="postgresql://appuser:${DB_PASSWORD}@db:5432/appdb?sslmode=verify-full&sslrootcert=/certs/ca.crt" \
-            backend:${{ github.sha }}
+          cd /home/jahongir/devops-backend
+          git pull origin main
 
-      - name: Connect backend to monitoring network
-        run: docker network connect monitoring-stack_monitoring-net backend
-
-      - name: Health check with retries
+      - name: Run deploy.sh
         run: |
-          IP=$(docker inspect -f '{{(index .NetworkSettings.Networks "app-net").IPAddress}}' backend)
-          for i in {1..10}; do
-            if curl -f http://$IP:8000/health; then
-              echo "Backend healthy"
-              exit 0
-            fi
-            echo "Попытка $i не удалась, жду..."
-            sleep 3
-          done
-          echo "Healthy check не прошел после 10 попыток"
-          exit 1
+          cd /home/jahongir/devops-backend
+          ./deploy.sh
