@@ -1,0 +1,51 @@
+#container_name у каждого сервиса зафиксирован НАМЕРЕННО и совпадает с именами, которые уже используют sysytemd-юниты(backend.service, nginx.service) и 
+#current-color.sh. Эти файлы менять не нужно - им все равно, кто создал контейнер, compose или голый dokcer run.
+#
+#app-net - external: true; Сеть уже существует(создана вручную), compose не должен создавать свою собственную - иначе получим вторую версию 
+#devops-app_default (см. TROUBLESHOOTING.md)
+
+x-backend-common: &backend-common
+  build:
+    context: ./backend
+  env_file:
+    - .env.backend
+  extra_hosts:
+    - "db:192.168.64.5"
+  cap_drop:
+    - ALL
+  read_only: true
+#RestartPolicy=no намеренно: перезаруском контейнеров управляет sysytemd (Restart=on-failure в backend.service), не сам Docker.
+#Два супервизора над одним контейнером - плохая идея, конфликтуют друг с другом.
+  restart: "no"
+  networks:
+    - app-net
+  volumes:
+    - /home/jahongir/certs/ca.crt:/certs/ca.crt:ro
+
+services:
+  backend-blue:
+    <<: *backend-common
+    image: backend:blue
+    container_name: backend-blue
+
+  backend-green:
+    <<: *backend-common
+    image: backend:green
+    container_name: backend-green
+
+  nginx:
+    image: nginx:alpine
+    container_name: nginx
+    restart: "no"
+    networks:
+      - app-net
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - /home/jahongir/certs:/etc/nginx/certs:ro
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+
+networks:
+  app-net:
+    external: true

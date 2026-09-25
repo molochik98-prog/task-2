@@ -5,8 +5,9 @@ set -euo pipefail
 # -o pipefail: если в пайплайне (a | b) упадёт a, весь пайплайн считается упавшим, не только b
 
 NGINX_CONF="/home/jahongir/devops-backend/nginx/nginx.conf"
-BACKEND_DIR="/home/jahongir/devops-backend/backend"
 CERT="/home/jahongir/certs/ca.crt"
+TARGETS_DIR="/home/jahongir/monitoring-stack/targets"
+COMPOSE_DIR="/home/jahongir/devops-backend"
 
 # --- 1. Кто активен сейчас (источник правды — сам nginx.conf, не память/переменные) ---
 CURRENT=$(grep -oP '(?<=backend-)[a-z]+(?=:8000)' "$NGINX_CONF" || true)
@@ -28,16 +29,12 @@ fi
 echo "Деплоим новый цвет: $COLOR"
 
 # --- 2. Собрать новый образ ---
-docker build -t backend:$COLOR "$BACKEND_DIR"
+docker compose -f "$COMPOSE_DIR/docker-compose.yml" build backend-$COLOR
 
 # --- 3. Поднять новый контейнер РЯДОМ со старым (старый не трогаем вообще) ---
-docker run -d --name backend-$COLOR --network app-net \
-  --read-only \
-  --cap-drop ALL \
-  --add-host db:192.168.64.5 \
-  -v "$CERT":/certs/ca.crt:ro \
-  -e DATABASE_URL="postgresql://appuser:${DB_PASSWORD}@db:5432/appdb?sslmode=verify-full&sslrootcert=/certs/ca.crt" \
-  backend:$COLOR
+# read-only/cap-drop/add-host/сертификат/DATABASE_URL заданы один раз в docker-compose.yml
+# (x-backend-common) - здесь больше не дублируются
+docker compose -f "$COMPOSE_DIR/docker-compose.yml" up -d --no-deps backend-$COLOR
 
 # --- 4. Health-check с ретраями ---
 IP=$(docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' backend-$COLOR)
@@ -55,10 +52,21 @@ done
 # --- 5. Если health-check не прошёл — откат нового, старый не тронут, скрипт падает с ошибкой для CI ---
 if [ "$HEALTHY" -ne 1 ]; then
     echo "Health check не прошёл после 10 попыток — откатываю новый контейнер"
-    docker stop backend-$COLOR
-    docker rm backend-$COLOR
+    docker compose -f "$COMPOSE_DIR/docker-compose.yml" stop backend-$COLOR
+    docker compose -f "$COMPOSE_DIR/docker-compose.yml" rm -f backend-$COLOR
     exit 1
 fi
+
+docker network connect monitoring-stack_monitoring-net backend-$COLOR
+
+cat > "$TARGETS_DIR/backend.json" <<EOF
+[
+  {
+    "targets": ["backend-$COLOR:8000"],
+    "labels": {}
+  }
+]
+EOF
 
 # --- 6. Переключение nginx: перезапись СУЩЕСТВУЮЩЕГО inode (не sed -i!) ---
 # sed -i делает temp-file + rename → новый inode → bind-mount контейнера "слепнет".
@@ -87,7 +95,16 @@ done
 
 # --- 7. Только теперь, после подтверждённого переключения И слива старых
 #        соединений — убираем старый ---
+
 docker stop backend-$CURRENT
 docker rm backend-$CURRENT
+
+# ---8. Досинхронизировать systemd-супервизию с новым активным цветом. ---
+# backend.service фиксирует, какой контейнер супервизировать, только в момент своего ЗАПУСКА
+# (ExecStartPre читает nginx.conf один раз) - сам свап цвета он не отслеживает. Без этого шага
+# юнит останется присоеденен к старому контейнеру и либо замрет без супервизии, либо уйдет в
+#crash-loop, как только этот конрейнер будет удален.
+
+sudo systemctl restart backend.service
 
 echo "Деплой завершён успешно: активен backend-$COLOR"

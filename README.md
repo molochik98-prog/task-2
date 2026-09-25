@@ -1,91 +1,3 @@
-# Task 2 - Backend + PostgreSQL + nginx
-
-Бэкенд на FastAPI, читает данные из PostgreSQL (установлен на хосте, не в Docker),
-за nginx-прокси. Деплой - через GitHub Actions на self-hosted runner.
-
-## Архитектура
-
-
-```
-Внешний клиент
-       |
-       |:80(единственный порт открытый наружу)
-       v
-+---------------------Host (VM)-----------------------+
-|                                                     |
-|+-----------------app-net (docker)------------------+|
-||                                                   ||
-||nginx:80---DNS:backend:8000--->backend:8000        ||
-||(публикует -p 80:80) (без -p, не наружу)           ||
-||                                                   ||
-|+---------------------------------------------------+|
-|                       |                             |
-|                       |172.19.0.1:5432              |
-|                       v                             |
-|                   PosctgreSQL                       |
-|        (apt-пакет на хосте, не в Docker)            |
-|  слушает:127.0.0.1,172.19.0.1(не внешний интерфейс) |
-|                                                     |
-+-----------------------------------------------------+
-```
-
-
-|Компонент   |Порт    |Кому виден                                                              |
-|------------|--------|------------------------------------------------------------------------|
-|nginx       |80      |снаружи (весь мир)                                                      |
-|backend     |8000    |только внутри 'app-net', наружу не публикуется                          |
-|PostgreSQL  |5432    |только '127.0.0.1' и '172.19.0.1' (docker мост), наружу не публикуется  |
-|SSH         |22      |снаружи - администротивный доступ, не относится к приоржению            |
-
-
-## Как задеплоить
-
-Автоматически: push в 'main' -> GitHub Actions на self-hosted runner сам:
-1. Собирает образ бэкенда с тегом `backend:<commit-sha>`
-2. Останавливает и удаляет старый контейнер `backend`
-3. Запускает новый в сети `app-net`, без публикации порта
-4. Проверяет `/health' с ретраями (10 попыток по 3 сек) - если не поднялся, workflow падает
-
-Пороль базы передается через `DATABASE_URL`, знаение приходит через GitHub Secrets `DB_PASSWORD`-
-нигде в коде или истории коммитов не хранится.
-
-**nginx в автодеплой не входит** - это осознанное решение: конфиг монтируется, как volume в обычный
-`nginx:alpine`, а не собирается в отдельный образ. Если меняешь `nginx/nginx.conf`- нужно вручную:
-```bash
-docker stop nginx && docker rm nginx
-docker run -d --name nginx --network app-net -p 80:80 \
-    -v ~/devops-backend/nginx/nginx.conf:/etc/nginx/nginx.conf:ro \
-    nginx:alpine
-```
-
-### Первоначальная настройка (уже сделана, для справки)
-- PostgreSQL: пользоватеть `appuser`, база `appdb`, `listen_addresses` включает `172.19.0.1`,
-                           `pg_hba.conf` разрешает подсеть 172.19.0.0/16
-- Docker-сеть: `docker network create app-net`
-- Секрет `DB_PASSWORD` - в Settings -> Secrets and variables -> Actions
-- Self-hosted runner - зарегестрирован отдельно для этого репозитория (Settings -> Actions -> Runners)
-
-
-## Как откатить
-
-Образы тегированы SHA коммита, а не `latest` - именно для этого. Прошлые версии остаются на на ВМ и
-никуда не пропадают при новом деплое.
-
-Посмотреть, какие версии есть локально:
-```bash
-docker image | grep backend
-```
-Откатиться на конкретную версию:
-```bash
-docker stop backend && docker rm backend
-docker run -d --name backend --network app-net \
-    -e DATABASE_URL="postgresql://appuser:${DB_PASSWORD}@172.19.0.1:5432/appdb" \
-    backend:<нужный sha>
-```
-
-Это быстрее чем откатывать сам код и ждать новую сборку - тот самый смысл SHA-тегов, а не `latest`.
-
-
 # DevOps Backend Stack — README
 
 ## Что это
@@ -118,6 +30,20 @@ Docker network app-net (172.19.0.0/16)                  PostgreSQL 18
 TLS построен на кастомном CA (`ca.crt`) с корректными SAN-полями
 (`DNS:app.local`, `DNS:db`). CN сознательно не используется — современные
 клиенты его игнорируют (RFC 6125), проверка идёт по SAN.
+
+Все три сервиса (`backend-blue`, `backend-green`, `nginx`) описаны в одном
+`docker-compose.yml` — общие для обоих цветов настройки (`read_only`,
+`cap_drop`, `env_file`, монтирование сертификата) заданы один раз через
+YAML-якорь `x-backend-common`, а не дублируются. Секрет (`DATABASE_URL`)
+живёт в `.env.backend` (вне git), читается через `env_file`.
+
+**Принцип, нарушение которого уже дважды роняло сервис на практике:**
+у всех трёх сервисов в compose стоит `restart: "no"` — перезапуском при
+падении занимается не Docker, а systemd (`backend.service`/`nginx.service`).
+Поэтому любое управление жизненным циклом контейнеров под systemd-
+супервизией — **только через `systemctl`**, никогда напрямую
+`docker restart`/`stop`/`kill` в обход юнита: см. инцидент в
+`TROUBLESHOOTING.md`.
 
 ## Docker-хардненинг
 
@@ -153,6 +79,38 @@ nginx резолвит DNS каждого апстрима динамическ�
 
 Единственный источник правды о текущем активном цвете — сам `nginx.conf`
 (не отдельный state-файл): `deploy.sh` каждый раз вычисляет его через `grep -oP`.
+
+### deploy.sh и docker-compose
+
+Новый цвет собирается и поднимается через compose:
+```bash
+docker compose build backend-$COLOR
+docker compose up -d --no-deps backend-$COLOR
+```
+Старый цвет убирается напрямую через `docker stop`/`docker rm`, не через
+`docker compose stop`/`rm` — сознательное решение: compose управляет только
+контейнерами со своими лейблами (`com.docker.compose.*`), а гарантии, что
+удаляемый контейнер был создан именно через compose, нет (на практике
+несколько раз оказывалось не так). Голый `docker stop`/`rm` по имени
+работает одинаково независимо от происхождения контейнера.
+
+**Финальный, обязательный шаг** после переключения и уборки старого цвета:
+```bash
+sudo systemctl restart backend.service
+```
+`backend.service` фиксирует, какой контейнер супервизировать, только в
+момент собственного запуска (`ExecStartPre` читает `nginx.conf` один раз) —
+сам свап цвета он не отслеживает. Без этого шага юнит остаётся присоединён
+к только что удалённому контейнеру.
+
+### nginx тоже под compose
+
+`nginx` мигрирован на compose так же, как backend. Правка `nginx.conf` для
+переключения активного цвета по-прежнему идёт через безопасный
+`sed ... > tmp && cat tmp > nginx.conf` (не `sed -i`, не `docker restart` —
+см. `TROUBLESHOOTING.md`), затем `nginx -t` + `nginx -s reload` внутри уже
+работающего контейнера — сам контейнер не пересоздаётся при обычном
+деплое.
 
 ### Результат нагрузочного теста
 
@@ -219,6 +177,13 @@ Telegram-бот:
 дедупликации состояния (нет отдельного алерта только "на переход
 ok→плохо" — повторяется каждые 5 минут, пока проблема не устранена).
 
+## Доступ
+
+SSH на VM-2 — только по ключу, вход по паролю отключён
+(`PasswordAuthentication no` в `/etc/ssh/sshd_config.d/50-cloud-init.conf` —
+именно там, не в основном `sshd_config`, см. `TROUBLESHOOTING.md`). UFW на
+VM-2 сужен: порт 22 открыт только из подсети `192.168.64.0/24`, не отовсюду.
+
 ## Известное ограничение (не блокер, задокументировано)
 
 `main.py` открывает новое соединение к Postgres на каждый запрос
@@ -227,6 +192,13 @@ ok→плохо" — повторяется каждые 5 минут, пока 
 Не влияет на результат пункта 5, но следующий шаг для продакшн-качества —
 connection pool (`psycopg2.pool` или переход на `asyncpg`/SQLAlchemy с пулом).
 
+### Мониторинг-стек не под systemd-супервизией
+
+`prometheus`/`grafana`/`cadvisor`/`node-exporter` не переживают падение
+и не поднимаются сами при ребуте VM — в отличие от backend/nginx.
+Обнаружено: весь стек лежал `Exited` шесть дней подряд незамеченным.
+Не исправлено, задокументировано как техдолг.
+
 Дополнительные известные артефакты/техдолг — см. `TROUBLESHOOTING.md`.
 
 ## Структура репозитория
@@ -234,7 +206,7 @@ connection pool (`psycopg2.pool` или переход на `asyncpg`/SQLAlchemy
 ```
 ~/devops-backend/
 ├── nginx/nginx.conf         # single-file bind-mount в контейнер nginx
-├── deploy.sh                # blue/green деплой
+├── deploy.sh                # blue/green деплой через docker compose
 ├── run_deploy_test.sh       # оркестратор нагрузочного теста
 ├── current-color.sh         # определение активного цвета (используется systemd)
 ├── systemd/                 # копии unit-файлов для версионирования
@@ -252,6 +224,8 @@ connection pool (`psycopg2.pool` или переход на `asyncpg`/SQLAlchemy
 ├── README.md
 ├── RUNBOOK.md
 ├── TROUBLESHOOTING.md
+├── docker-compose.yml       # описывает backend-blue/backend-green/nginx
+├── .env.backend              # DATABASE_URL, вне git
 └── NETNS-LAB.md             # пункт 4: netns/bridge/veth/MASQUERADE/DNAT
 ```
 
