@@ -262,18 +262,42 @@ Debian/Ubuntu-пакет Postgres регистрирует верхнеуров�
 
 ## Известные артефакты и технический долг
 
-### `.github/workflows/deploy.yml` конфликтует с blue/green-именованием
+### `.github/workflows/deploy.yml` — выполнился при пуше, несмотря на «отключён»
 
-Файл лежит в `~/devops-backend/.github/workflows/` — это GitHub Actions
-CI/CD пайплайн (не docker-compose, несмотря на похожее имя), с более
-раннего этапа проекта, до появления blue/green. Он создаёт/удаляет
-контейнер с именем `backend`, которого в текущей схеме
-(`backend-blue`/`backend-green`) не существует.
+Ранее считалось закрытым техдолгом: workflow конфликтует с blue/green-
+именованием, отключён через GitHub UI, self-hosted runner не запущен —
+не блокирует. Оказалось неверно на практике: тот же день, обычный
+`git push` в `main` реально запустил `build-and-deploy`, создав контейнер
+`backend` (без цвета, старый однoцветный путь из Задания 2) с паролем из
+GitHub Secret `DB_PASSWORD` — который не совпадал с актуальным (менялся
+сегодня только в `.env.backend`, секрет не трогали). Health check упал
+после 10 попыток (500 на `/health`), workflow завершился с ошибкой,
+контейнер остался висеть `unhealthy` — тот же паттерн, что уже ловили
+у `backend-green` и у более раннего забытого CI-артефакта.
 
-Проверено (`ps aux | grep -i runner`): self-hosted runner сейчас не
-запущен, файл не активен. Оставлен как задокументированный техдолг —
-решение (обновить под blue/green или удалить) сознательно отложено, не
-блокирует сдачу.
+**Причина:** отключение через GitHub UI не останавливает и не удаляет
+сам self-hosted runner — раннер (`actions.runner.molochik98-prog-task-2.
+task2-runner.service`) оставался живым systemd-юнитом, `enabled`,
+пережившим сегодняшний ребут VM, и продолжал слушать события репозитория
+независимо от состояния переключателя в UI.
+
+**Фикс, на этот раз на уровне systemd, не UI:**
+```bash
+sudo systemctl stop actions.runner.molochik98-prog-task-2.task2-runner.service
+sudo systemctl disable actions.runner.molochik98-prog-task-2.task2-runner.service
+```
+`disable` обязателен, не только `stop` — иначе юнит поднимется снова при
+следующем ребуте, ровно как сегодня.
+
+**Профилактика:** «отключено в UI» и «раннер не запущен» — два разных,
+независимо проверяемых факта. Перед тем как полагаться на первое,
+проверять второе напрямую: `systemctl list-units --all | grep -i runner`,
+не полагаться на память о состоянии из прошлой сессии.
+
+Отдельно обнаружен второй, не связанный с этим инцидентом раннер
+(`actions.runner.molochik98-prog-devops-app.production-system-runner`,
+привязан к репозиторию Задания 1) — тоже `active`/`enabled`, тоже пережил
+ребут. Не тронут, решение по нему отложено отдельно.
 
 ### Осиротевшая docker-сеть `devops-app_default`
 
