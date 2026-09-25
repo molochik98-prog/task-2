@@ -233,3 +233,4 @@ connection pool (`psycopg2.pool` или переход на `asyncpg`/SQLAlchemy
 физически лежит вне репозитория, так и должно оставаться),
 `/etc/telegram-alert.env` (секреты Telegram-бота), файлы `*.dump`
 (дампы БД).
+# CI verified 2026-09-25T12:33:15Z
