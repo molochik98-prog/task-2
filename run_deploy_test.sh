@@ -47,7 +47,6 @@ WRK_PID=$!
 # скрипта, синхронно с уже запущенным wrk.
 sleep 15
 echo "=== Запускаю deploy.sh на 15-й секунде теста: $(date) ==="
-export DB_PASSWORD="${DB_PASSWORD:?переменная DB_PASSWORD не установлена}"
 "$DEPLOY_SCRIPT"
 
 # "wait PID" — дожидается завершения конкретного фонового процесса по его
