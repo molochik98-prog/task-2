@@ -6,7 +6,7 @@ set -euo pipefail
 
 NGINX_CONF="/home/jahongir/devops-backend/nginx/nginx.conf"
 CERT="/home/jahongir/certs/ca.crt"
-TARGETS_DIR="/home/jahongir/monitoring-stack/targets"
+TARGETS_DIR="/home/jahongir/devops-backend/monitoring-stack/targets"
 COMPOSE_DIR="/home/jahongir/devops-backend"
 
 # --- 1. Кто активен сейчас (источник правды — сам nginx.conf, не память/переменные) ---
