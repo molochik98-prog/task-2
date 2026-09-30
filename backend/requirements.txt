@@ -1,4 +1,4 @@
-fastapi
-uvicorn
-psycopg2-binary
-prometheus-fastapi-instrumentator
+fastapi==0.141.1
+uvicorn==0.54.0
+psycopg2-binary==2.9.13
+prometheus-fastapi-instrumentator==8.1.0
