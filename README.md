@@ -2,28 +2,42 @@
 
 ## Что это
 
-Учебный проект (Задание 3, стажировка DevOps): backend + nginx на одном хосте,
-PostgreSQL — на втором, полная TLS-цепочка между всеми компонентами,
-zero-downtime деплой через blue/green, контейнеры с минимальными привилегиями,
-весь стек под systemd-управлением с бэкапом БД и алертингом.
+Учебный проект (стажировка DevOps, Задание 3 закрыто, Этап 0 Задания 4
+закрыт): backend + nginx на одном хосте, PostgreSQL — на втором, полная
+TLS-цепочка между всеми компонентами, zero-downtime деплой через
+blue/green, контейнеры с минимальными привилегиями, бэкап БД, алертинг,
+полный стек метрик (Prometheus + Grafana).
+
+Единственный владелец жизненного цикла контейнеров на VM-1 — сам Docker
+(`dockerd`), не systemd. Исключение — Grafana на VM-2: она живёт как
+обычный apt-пакет под systemd, потому что там нет и не планируется Docker.
 
 ## Архитектура
 
 ```
 VM-1 (192.168.64.3)                                    VM-2 (192.168.64.5, task3test)
 --------------------                                    ------------------------------
-Docker network app-net (172.19.0.0/16)                  PostgreSQL 18
-                                                          - привязан к private IP
-  nginx  --TLS :443, 80->443--                           - hostssl-only
-    |                                                     - UFW: разрешён только VM-1
+Docker, сеть app-net (172.19.0.0/16)                     PostgreSQL 18
+                                                          - hostssl-only, приватный IP
+  nginx :443, 80->443 (TLS)                               - UFW: разрешён только VM-1
+    |
     | resolver 127.0.0.11 valid=10s
     | proxy_pass http://$backend_upstream
-    | $backend_upstream = backend-<color>:8000
     v
-  backend-blue   ИЛИ   backend-green    ---- TLS (sslmode=verify-full) ---->  Postgres
+  backend-blue  ИЛИ  backend-green  --TLS verify-full-->  Postgres
   (активен только один из двух)
 
-  Весь стек (обе VM) под systemd: crash-recovery + переживает реальный ребут,
+  Docker, сеть monitoring-net                             Grafana 13.2.1 (apt-пакет, systemd)
+    Prometheus :9090 (DOCKER-USER:                         - только Prometheus-плагин,
+      доступен только с VM-2)                                остальные отключены (память)
+    cAdvisor :8080, node-exporter :9100                    - порт 3000: UFW, только оператор
+       |                                                      v
+       +------------------- scrape ------------------>  читает Prometheus на VM-1
+
+  Единственный владелец жизненного цикла контейнеров
+  на VM-1 — dockerd (restart: unless-stopped), и для
+  backend/nginx, и для Prometheus/cAdvisor/node-exporter.
+  Переживает падение и перезапуск самого демона —
   подтверждено на практике, не только в теории.
 ```
 
@@ -37,32 +51,24 @@ TLS построен на кастомном CA (`ca.crt`) с корректны
 YAML-якорь `x-backend-common`, а не дублируются. Секрет (`DATABASE_URL`)
 живёт в `.env.backend` (вне git), читается через `env_file`.
 
-**Принцип, нарушение которого уже дважды роняло сервис на практике:**
-у всех трёх сервисов в compose стоит `restart: "no"` — перезапуском при
-падении занимается не Docker, а systemd (`backend.service`/`nginx.service`).
-Поэтому любое управление жизненным циклом контейнеров под systemd-
-супервизией — **только через `systemctl`**, никогда напрямую
-`docker restart`/`stop`/`kill` в обход юнита: см. инцидент в
-`TROUBLESHOOTING.md`.
-
 ## Docker-хардненинг
 
 | | До | После |
 |---|---|---|
 | Сборка образа | обычная | multi-stage build |
 | Пользователь в контейнере | root | non-root `appuser` |
-| Размер образа | 260 MB | 247 MB |
 | Рантайм-флаги (backend) | — | `--read-only --cap-drop ALL` |
-
-> TODO(Jahongir): вписать одной строкой, за счёт какого именно шага multi-stage
-> ужалось 260 → 247 MB.
+| Базовый образ | плавающий тег | `python:3.12-slim` закреплён по дайджесту |
+| Зависимости (`requirements.txt`) | без версий | версии зафиксированы (`pip freeze`, проверено идентичным пересборкой) |
 
 Хардненинг проверен не в теории, а прогоном реального стека с
 `--read-only --cap-drop ALL`, отдельно подтверждено поведение при OOM.
 
-**Известная асимметрия (см. TROUBLESHOOTING):** у `nginx`-контейнера сейчас
-нет `--read-only`/`--cap-drop ALL` — в отличие от backend. Осознанно не
-исправлено к моменту сдачи, задокументировано как техдолг.
+**Известная асимметрия, всё ещё открыта:** у `nginx`-контейнера нет
+`--read-only`/`--cap-drop ALL` — в отличие от backend. nginx слушает порт
+443 (<1024) — для `--cap-drop ALL` потребуется явно вернуть
+`--cap-add NET_BIND_SERVICE`, иначе не забиндится порт. Осознанно не
+исправлено, задокументировано как техдолг — см. `TROUBLESHOOTING.md`.
 
 ## Zero-downtime деплой (blue/green)
 
@@ -78,7 +84,14 @@ nginx резолвит DNS каждого апстрима динамическ�
 без пересоздания nginx-контейнера.
 
 Единственный источник правды о текущем активном цвете — сам `nginx.conf`
-(не отдельный state-файл): `deploy.sh` каждый раз вычисляет его через `grep -oP`.
+(не отдельный state-файл): `deploy.sh` каждый раз вычисляет его через
+`grep -oP '(?<=backend-)[a-z]+(?=:8000)'`.
+
+`nginx.conf` и `monitoring-stack/targets/backend.json` отслеживаются в git
+как шаблоны, но помечены `git update-index --skip-worktree` — `deploy.sh`
+переписывает их на каждом свапе, и без этого флага репозиторий никогда не
+был бы «чистым» после обычной работы. На свежем `git clone` оба файла всё
+равно приходят с рабочим содержимым, а не пустые.
 
 ### deploy.sh и docker-compose
 
@@ -90,25 +103,22 @@ docker compose up -d --no-deps backend-$COLOR
 Старый цвет убирается напрямую через `docker stop`/`docker rm`, не через
 `docker compose stop`/`rm` — сознательное решение: compose управляет только
 контейнерами со своими лейблами (`com.docker.compose.*`), а гарантии, что
-удаляемый контейнер был создан именно через compose, нет (на практике
-несколько раз оказывалось не так). Голый `docker stop`/`rm` по имени
-работает одинаково независимо от происхождения контейнера.
+удаляемый контейнер был создан именно через compose, нет. Голый
+`docker stop`/`rm` по имени работает одинаково независимо от происхождения
+контейнера.
 
-**Финальный, обязательный шаг** после переключения и уборки старого цвета:
-```bash
-sudo systemctl restart backend.service
-```
-`backend.service` фиксирует, какой контейнер супервизировать, только в
-момент собственного запуска (`ExecStartPre` читает `nginx.conf` один раз) —
-сам свап цвета он не отслеживает. Без этого шага юнит остаётся присоединён
-к только что удалённому контейнеру.
+Деплой больше не заканчивается синхронизацией с systemd — этот шаг был
+нужен только пока `backend.service` супервизировал контейнер отдельно от
+Docker. После перехода на единого владельца (см. ниже) синхронизировать
+стало нечего: dockerd сам знает, какой контейнер жив, по факту его
+собственного состояния.
 
 ### nginx тоже под compose
 
-`nginx` мигрирован на compose так же, как backend. Правка `nginx.conf` для
-переключения активного цвета по-прежнему идёт через безопасный
-`sed ... > tmp && cat tmp > nginx.conf` (не `sed -i`, не `docker restart` —
-см. `TROUBLESHOOTING.md`), затем `nginx -t` + `nginx -s reload` внутри уже
+Правка `nginx.conf` для переключения активного цвета идёт через безопасную
+запись на месте: `sed ... > /tmp/x && cat /tmp/x > nginx.conf` (не `sed -i`,
+не `docker restart` — оба меняют inode или рвут супервизию, см.
+`TROUBLESHOOTING.md`), затем `nginx -t` + `nginx -s reload` внутри уже
 работающего контейнера — сам контейнер не пересоздаётся при обычном
 деплое.
 
@@ -129,29 +139,72 @@ Non-2xx/3xx: 0
 
 **Ноль 502/504 при деплое посреди нагрузки — воспроизведено дважды подряд.**
 
-## Эксплуатационная устойчивость (пункт 6)
+## Владение жизненным циклом контейнеров
 
-### systemd-управление стеком
+Единственный владелец — `dockerd`. Все сервисы (`backend-blue`,
+`backend-green`, `nginx`, `prometheus`, `cadvisor`, `node-exporter`) стоят
+на `restart: unless-stopped`, `stop_grace_period: 15s`. Никакого systemd
+поверх контейнеров на VM-1 больше нет.
 
-`backend.service` и `nginx.service` (VM-1) держат весь стек живым:
+**Почему `unless-stopped`, а не `always` или ручной рестарт.** Docker
+хранит отдельный, не связанный с кодом выхода флаг — был ли контейнер явно
+остановлен командой `docker stop`. `unless-stopped` при перезапуске демона
+проверяет именно его: контейнер, который `deploy.sh` явно остановил при
+свапе цвета, остаётся выключенным; контейнер, который был жив и погас
+вместе с демоном, поднимается сам. Политика применяется к каждому
+контейнеру независимо — ей не нужно знать, активен ли сейчас
+`backend-blue` или `backend-green`.
 
-- **crash-recovery** — `Type=simple` + `docker start -a <container>`:
-  если контейнер падает, systemd видит ненулевой код выхода и перезапускает
-  (`Restart=on-failure`). Проверено вручную (`docker kill backend-blue`) —
-  контейнер поднялся сам за ~5 секунд.
-- **переживает реальный ребут VM** — не гипотеза, проверено `sudo reboot`
-  на обеих VM: после перезагрузки весь стек поднимается без единой ручной
-  команды, `curl --cacert ca.crt https://app.local/health` отвечает сразу
-  после переподключения по SSH.
-- `backend.service` не хранит активный цвет сам — определяет его тем же
-  способом, что и `deploy.sh` (чтение из `nginx.conf`), чтобы не заводить
-  второй источник правды.
-- `nginx.service` зависит от `backend.service` через `Wants=`, не
-  `Requires=` — мягкая зависимость, потому что nginx с динамическим
-  resolver'ом переживает временное отсутствие backend'а и сам
-  перерезолвит DNS.
+**Подтверждено дважды, не только по документации:**
+- на одноразовых тестовых контейнерах (`test-active`, явно остановленный
+  `test-standby`) — после `systemctl restart docker` активный поднялся
+  сам, остановленный остался выключен;
+- на проде — через реальный `systemctl restart docker`: backend и nginx
+  поднялись сами, без единой ручной команды.
 
-### Backup БД
+Эта схема заменила связку `backend.service`/`nginx.service` +
+`current-color.sh` (оба файла удалены) — три независимых механизма
+управляли одним контейнером на разных этапах его жизни, что дважды роняло
+сервис на практике. Полная история инцидента, который доказал
+необходимость перехода — в `TROUBLESHOOTING.md`.
+
+**Диск под будущий рост.** Корневой том VM-1 расширен с 18.5 до 28 ГБ,
+выделен отдельный 6-гигабайтный том `minio-data` под `/srv/minio` (fstab по
+UUID, `nofail`, иммутабельная точка монтирования до монтирования) —
+переживает `docker rm`, заполнение не заденет корень диска. Подготовлено
+для Задания 4, пока не используется.
+
+## Мониторинг
+
+**Prometheus, cAdvisor, node-exporter — на VM-1**, рядом со своими целями,
+под dockerd с `unless-stopped`. Все три образа закреплены тегом и
+дайджестом. Prometheus скрейпит backend через `file_sd_configs`
+(`monitoring-stack/targets/backend.json`, переписывается `deploy.sh` на
+каждом свапе цвета), себя, cAdvisor, node-exporter.
+
+Порт `9090` опубликован Docker-ом на `0.0.0.0`, но закрыт для всех, кроме
+VM-2, правилом в цепочке `DOCKER-USER` — она пересоздаётся пустой при
+каждом старте демона, поэтому правило переустанавливается автоматически
+через `systemd` drop-in (`docker.service.d/dockeruser-fw.conf` →
+`ExecStartPost`, идемпотентный скрипт). `ufw` тут бессилен: Docker пишет
+правила в цепочку `FORWARD`, минуя `INPUT`, где живут правила `ufw`.
+
+**Grafana — на VM-2**, установлена из `apt.grafana.com`, версия `13.2.1`
+зафиксирована (`apt-mark hold`). Из полутора десятков plugin-datasource,
+которые Grafana ставит по умолчанию, оставлен только Prometheus
+(`disable_plugins` в `grafana.ini`) — экономия около 300 МиБ на VM с
+1.6 ГБ RAM. Источник данных задан как код
+(`/etc/grafana/provisioning/datasources/prometheus.yml`, `editable: false`,
+указывает на `http://192.168.64.3:9090`). Порт `3000` закрыт `ufw` для
+всех, кроме рабочей машины оператора.
+
+Три дашборда (`Backend request rate`, `Docker monitoring`,
+`Node Exporter Full`) экспортированы в формате **Classic JSON** (не V2
+Resource — он не годится для повторного импорта через «Upload JSON file»)
+и лежат в `monitoring-stack/dashboards/` — переносимы на любой новый
+инстанс Grafana без ручной настройки панелей.
+
+## Backup БД
 
 `pg-backup.timer` (VM-2, ежедневно в 03:00) → `pg-backup.sh`:
 
@@ -162,7 +215,7 @@ Non-2xx/3xx: 0
   накатывает свежий дамп в одноразовую scratch-БД (`pg_restore`) и удаляет
   её; непроверенный бэкап не считается успешным
 
-### Алертинг
+## Алертинг
 
 `health-alert.timer` (VM-1, каждые 5 минут) → `health-alert.sh` →
 Telegram-бот:
@@ -173,9 +226,14 @@ Telegram-бот:
   `/etc/telegram-alert.env` (права `600`, **не в git**, читается только
   самим systemd до понижения привилегий)
 
-Известное упрощение: алерт шлётся при каждом срабатывающем запуске, без
-дедупликации состояния (нет отдельного алерта только "на переход
-ok→плохо" — повторяется каждые 5 минут, пока проблема не устранена).
+**Известное упрощение, остаётся открытым:** алерт шлётся при каждом
+срабатывающем запуске таймера, без дедупликации состояния — повторяется
+каждые 5 минут, пока проблема не устранена, вместо одного уведомления на
+переход «было хорошо → стало плохо». Отдельно: `alert_rules.yml` у
+Prometheus содержит правило `TargetDown` (`for: 1m`), но Alertmanager не
+развёрнут — правило срабатывает только в веб-интерфейсе Prometheus,
+уведомлять некого. Оба пункта возвращаются в Задании 4, где алертинг по
+симптому длительностью N минут — явное требование.
 
 ## Доступ
 
@@ -184,20 +242,25 @@ SSH на VM-2 — только по ключу, вход по паролю от�
 именно там, не в основном `sshd_config`, см. `TROUBLESHOOTING.md`). UFW на
 VM-2 сужен: порт 22 открыт только из подсети `192.168.64.0/24`, не отовсюду.
 
-## Известное ограничение (не блокер, задокументировано)
+## Известные ограничения (не блокеры, задокументированы)
 
-`main.py` открывает новое соединение к Postgres на каждый запрос
-(`psycopg2.connect(DATABASE_URL)`, без пула) — источник стабильных ~145ms
-задержки на каждый запрос (полный TCP+TLS+auth хендшейк каждый раз).
-Не влияет на результат пункта 5, но следующий шаг для продакшн-качества —
-connection pool (`psycopg2.pool` или переход на `asyncpg`/SQLAlchemy с пулом).
+**Нет пула соединений к Postgres.** `main.py` открывает новое соединение
+(`psycopg2.connect(DATABASE_URL)`) на каждый запрос — источник стабильных
+~145ms задержки (полный TCP+TLS+auth хендшейк каждый раз). Следующий шаг —
+`psycopg2.pool` или переход на `asyncpg`/SQLAlchemy с пулом; разбирается
+предметно в Задании 4.
 
-### Мониторинг-стек не под systemd-супервизией
+**Асимметрия хардненинга nginx** — см. раздел «Docker-хардненинг» выше.
 
-`prometheus`/`grafana`/`cadvisor`/`node-exporter` не переживают падение
-и не поднимаются сами при ребуте VM — в отличие от backend/nginx.
-Обнаружено: весь стек лежал `Exited` шесть дней подряд незамеченным.
-Не исправлено, задокументировано как техдолг.
+**Алертинг без дедупликации и без Alertmanager** — см. раздел «Алертинг»
+выше.
+
+**Рассинхрон часов self-hosted раннера при возобновлении VM из паузы
+UTM** — привёл к потере регистрации раннера на GitHub (раннер
+переаутентифицировался с разрывом в десятки минут между «токен истёк» и
+временем сервера). Раннер восстановлен, точная причина рассинхрона не
+устранена — риск повторения остаётся при следующем возобновлении VM из
+паузы. Подробности в `TROUBLESHOOTING.md`.
 
 Дополнительные известные артефакты/техдолг — см. `TROUBLESHOOTING.md`.
 
@@ -205,32 +268,35 @@ connection pool (`psycopg2.pool` или переход на `asyncpg`/SQLAlchemy
 
 ```
 ~/devops-backend/
-├── nginx/nginx.conf         # single-file bind-mount в контейнер nginx
-├── deploy.sh                # blue/green деплой через docker compose
-├── run_deploy_test.sh       # оркестратор нагрузочного теста
-├── current-color.sh         # определение активного цвета (используется systemd)
-├── systemd/                 # копии unit-файлов для версионирования
-│   ├── backend.service      # деплоится в /etc/systemd/system/ на VM-1
-│   ├── nginx.service        # деплоится в /etc/systemd/system/ на VM-1
-│   ├── health-alert.service # деплоится в /etc/systemd/system/ на VM-1
-│   └── health-alert.timer   # деплоится в /etc/systemd/system/ на VM-1
+├── nginx/nginx.conf           # bind-mount в nginx; в git как шаблон (--skip-worktree)
+├── deploy.sh                  # blue/green деплой; dockerd — единственный владелец контейнеров
+├── run_deploy_test.sh         # оркестратор нагрузочного теста
 ├── scripts/
-│   └── health-alert.sh      # деплоится в /usr/local/bin/ на VM-1
-├── db-backup/                # относится к VM-2, хранится здесь для единой истории
-│   ├── pg-backup.sh          # деплоится в /usr/local/bin/ на VM-2
-│   ├── pg-backup.service     # деплоится в /etc/systemd/system/ на VM-2
-│   └── pg-backup.timer       # деплоится в /etc/systemd/system/ на VM-2
-├── .github/workflows/deploy.yml  # устаревший CI-артефакт, см. TROUBLESHOOTING
+│   └── health-alert.sh        # деплоится в /usr/local/bin/ на VM-1
+├── systemd/
+│   ├── health-alert.service   # деплоится в /etc/systemd/system/ на VM-1
+│   └── health-alert.timer     # деплоится в /etc/systemd/system/ на VM-1
+├── db-backup/                  # относится к VM-2, хранится здесь для единой истории
+│   ├── pg-backup.sh            # деплоится в /usr/local/bin/ на VM-2
+│   ├── pg-backup.service       # деплоится в /etc/systemd/system/ на VM-2
+│   └── pg-backup.timer         # деплоится в /etc/systemd/system/ на VM-2
+├── monitoring-stack/            # Prometheus/cAdvisor/node-exporter (VM-1) + конфиг для Grafana
+│   ├── docker-compose.yml       # name: monitoring-stack зафиксировано явно
+│   ├── prometheus.yml
+│   ├── alert_rules.yml
+│   ├── targets/backend.json     # в git как шаблон (--skip-worktree), переписывается deploy.sh
+│   └── dashboards/              # три дашборда Grafana, Classic JSON, для переимпорта
+├── backend/
+│   ├── Dockerfile               # python:3.12-slim закреплён по дайджесту
+│   └── requirements.txt         # версии зафиксированы
+├── .github/workflows/deploy.yml
 ├── README.md
-├── RUNBOOK.md
 ├── TROUBLESHOOTING.md
-├── docker-compose.yml       # описывает backend-blue/backend-green/nginx
-├── .env.backend              # DATABASE_URL, вне git
-└── NETNS-LAB.md             # пункт 4: netns/bridge/veth/MASQUERADE/DNAT
+├── docker-compose.yml            # backend-blue/backend-green/nginx, restart: unless-stopped
+└── .env.backend                  # DATABASE_URL, вне git
 ```
 
 **Не в репозитории (и не должно быть):** `~/certs/` (приватные ключи TLS —
 физически лежит вне репозитория, так и должно оставаться),
 `/etc/telegram-alert.env` (секреты Telegram-бота), файлы `*.dump`
 (дампы БД).
-# CI verified 2026-09-25T12:33:15Z
