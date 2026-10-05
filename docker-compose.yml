@@ -73,6 +73,38 @@ services:
     volumes:
       - redis-data:/data
 
+  minio:
+    image: pgsty/minio:RELEASE.2026-08-04T00-00-00Z@sha256:b6bfe7239bfc83fb90d31612d9704d86039dd714f7904b3f1ad68f211e602372
+    container_name: minio
+# Порты 9000/9001 не публикуются: S3 API доступен только из app-net по адресу minio:9000.
+    user: "10001:10001"
+    command: ["minio", "server", "/data"]
+    environment:
+      MINIO_ROOT_USER: "${MINIO_ROOT_USER:?задай MINIO_ROOT_USER в файле .env}"
+      MINIO_ROOT_PASSWORD: "${MINIO_ROOT_PASSWORD:?задай MINIO_ROOT_PASSWORD в файле .env}"
+    mem_limit: 384m
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges:true
+    read_only: true
+    tmpfs:
+      - /tmp
+    stop_grace_period: 15s
+    restart: unless-stopped
+    networks:
+      - app-net
+    volumes:
+      - type: bind
+        source: /srv/minio/data
+        target: /data
+        bind:
+          create_host_path: false
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9000/minio/health/live"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
 
 networks:
   app-net:
