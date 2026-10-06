@@ -40,7 +40,7 @@ docker compose -f "$COMPOSE_DIR/docker-compose.yml" up -d --no-deps backend-$COL
 IP=$(docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' backend-$COLOR)
 HEALTHY=0
 for i in $(seq 1 10); do
-    if curl -f "http://$IP:8000/health"; then
+    if curl -f -m 5 "http://$IP:8000/health"; then
         echo "backend-$COLOR healthy"
         HEALTHY=1
         break
