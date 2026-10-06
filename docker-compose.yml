@@ -13,6 +13,15 @@ x-backend-common: &backend-common
   cap_drop:
     - ALL
   read_only: true
+  mem_limit: 256m
+  memswap_limit: 256m
+  environment:
+    S3_ENDPOINT: "minio:9000"
+    S3_BUCKET: "uploads"
+    S3_ACCESS_KEY: "${S3_ACCESS_KEY:?задай S3_ACCESS_KEY в файле .env}"
+    S3_SECRET_KEY: "${S3_SECRET_KEY:?задай S3_SECRET_KEY в файле .env}"
+    REDIS_HOST: "redis"
+    REDIS_PASSWORD: "${REDIS_PASSWORD:?задай REDIS_PASSWORD в файле .env}"
   stop_grace_period: 15s
   restart: unless-stopped
   networks:
