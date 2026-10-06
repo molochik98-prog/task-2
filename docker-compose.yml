@@ -18,6 +18,7 @@ x-backend-common: &backend-common
   environment:
     S3_ENDPOINT: "minio:9000"
     S3_BUCKET: "uploads"
+    TMPDIR: "/var/uploads-tmp"
     S3_ACCESS_KEY: "${S3_ACCESS_KEY:?задай S3_ACCESS_KEY в файле .env}"
     S3_SECRET_KEY: "${S3_SECRET_KEY:?задай S3_SECRET_KEY в файле .env}"
     REDIS_HOST: "redis"
@@ -28,6 +29,7 @@ x-backend-common: &backend-common
     - app-net
   volumes:
     - /home/jahongir/certs/ca.crt:/certs/ca.crt:ro
+    - backend-tmp:/var/uploads-tmp
 
 services:
   backend-blue:
@@ -122,3 +124,5 @@ networks:
 volumes:
   redis-data:
     name: redis-data
+  backend-tmp:
+    name: backend-tmp
