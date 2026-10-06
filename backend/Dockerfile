@@ -8,7 +8,7 @@ FROM python:3.12-slim@sha256:78387bc3881b8273120a12ebe6c1ab22b018ccc2c9adf565ae1
 RUN useradd --create-home --shell /usr/sbin/nologin appuser
 WORKDIR /app
 COPY --from=builder --chown=appuser:appuser /root/.local /home/appuser/.local
-COPY --chown=appuser:appuser main.py .
+COPY --chown=appuser:appuser main.py db.py storage.py ./
 ENV HOME=/home/appuser
 ENV PATH=/home/appuser/.local/bin:$PATH
 USER appuser
