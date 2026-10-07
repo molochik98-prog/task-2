@@ -1,4 +1,6 @@
 import os
+from datetime import timedelta
+from urllib.parse import urlsplit, urlunsplit
 
 from minio import Minio
 
@@ -27,3 +29,24 @@ def put(key, stream, size, content_type):
 
 def remove(key):
     _client.remove_object(BUCKET, key)
+
+
+PUBLIC_ENDPOINT = os.environ.get("S3_PUBLIC_ENDPOINT", "app.local")
+LINK_TTL = timedelta(minutes=5)
+
+# Клиент только для подписи ссылок: регион задан, поэтому сетевых запросов он
+# не делает. Подписываем для публичного хоста, а не для minio:9000.
+_signer = Minio(
+    PUBLIC_ENDPOINT,
+    access_key=os.environ["S3_ACCESS_KEY"],
+    secret_key=os.environ["S3_SECRET_KEY"],
+    secure=True,
+    region=os.environ.get("S3_REGION", "us-east-1"),
+)
+
+
+def presigned_get_url(key):
+    url = _signer.presigned_get_object(BUCKET, key, expires=LINK_TTL)
+    parts = urlsplit(url)
+    # /s3 дописываем после подписи: nginx отрежет его, MinIO увидит подписанный путь
+    return urlunsplit(parts._replace(path="/s3" + parts.path))

@@ -324,3 +324,38 @@ UTM** — привёл к потере регистрации раннера н�
 `remove_object` клиент всё равно получает 204). Фактическое состояние проверяется
 списком объектов в бакете. Место на томе MinIO освобождается с задержкой: объект
 сначала уходит в `.minio.sys/tmp/.trash`.
+
+### Presigned URL и хост (ловушка 1.1)
+
+Подпись presigned URL считается в том числе по заголовку `Host`. Ссылка
+создаётся локально, без обращения к MinIO: backend подписывает строку запроса
+секретным ключом, а MinIO при скачивании строит такую же строку из того, что
+увидел сам, и сравнивает.
+
+Где ломалась подпись (опыт A): ссылка была подписана для `app.local`, но nginx
+без `proxy_set_header Host` передал MinIO `Host: minio:9000`. Ответ:
+
+    HTTP/1.1 403 Forbidden
+    <Error><Code>SignatureDoesNotMatch</Code><Message>The request signature we
+    calculated does not match the signature you provided. Check your key and
+    signing method.</Message>...<Resource>/uploads/files/<id></Resource>...
+
+В `Resource` путь пришёл без `/s3`, то есть `rewrite` сработал, расходился хост.
+
+Решение:
+1. Backend подписывает так, будто MinIO находится на `https://app.local`
+   (второй клиент `minio` только для подписи, регион задан, в сеть он не ходит).
+   Имя `minio:9000` в ссылку не попадает: оно существует только во внутренней
+   сети Docker.
+2. Префикс `/s3` дописывается после подписи.
+3. nginx: `rewrite ^/s3/(.*)$ /$1 break;` отрезает префикс (при `proxy_pass` с
+   переменной он сам URI не меняет) и `proxy_set_header Host $http_host;`
+   передаёт Host таким, каким он пришёл.
+4. Backend ходит в MinIO по `minio:9000` (внутренняя сеть), наружу открыт только
+   путь `/s3/` и только для GET (`limit_except GET`).
+
+Имя `minio` разрешается в момент запроса (`resolver` + переменная в `proxy_pass`),
+поэтому остановленный MinIO не мешает `nginx -t` при деплое.
+
+Проверено: ссылка скачивает файл (SHA совпадает); тот же URL с другим `Host`,
+с изменённой подписью и методом PUT получает 403.

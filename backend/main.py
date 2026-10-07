@@ -67,3 +67,20 @@ def delete_file(file_id: uuid.UUID):
     except Exception:
         log.exception("orphan object after row delete: %s", object_key)
     return Response(status_code=204)
+
+
+DOWNLOADABLE = {"uploaded", "processing", "done"}
+
+
+@app.get("/api/files/{file_id}/link")
+def file_link(file_id: uuid.UUID):
+    row = db.get_file(file_id)
+    if row is None:
+        raise HTTPException(status_code=404, detail="file not found")
+    # pending/failed: загрузка не завершена, объекта может не быть. Ссылку не даём.
+    if row["status"] not in DOWNLOADABLE:
+        raise HTTPException(status_code=409, detail="file is not ready")
+    return {
+        "url": storage.presigned_get_url(row["object_key"]),
+        "expires_in": int(storage.LINK_TTL.total_seconds()),
+    }

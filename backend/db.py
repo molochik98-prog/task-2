@@ -1,6 +1,7 @@
 import os
 from contextlib import contextmanager
 
+from psycopg2.extras import RealDictCursor
 from psycopg2.pool import ThreadedConnectionPool
 
 _pool = None
@@ -53,3 +54,13 @@ def delete_row(file_id):
         )
         row = cur.fetchone()
     return row[0] if row else None
+
+
+def get_file(file_id):
+    with get_conn() as conn, conn.cursor(cursor_factory=RealDictCursor) as cur:
+        cur.execute(
+            "SELECT id, object_key, original_name, size_bytes, sha256, content_type, "
+            "status, created_at, updated_at FROM files WHERE id = %s",
+            (str(file_id),),
+        )
+        return cur.fetchone()
