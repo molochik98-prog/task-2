@@ -1,18 +1,25 @@
 #!/usr/bin/env bash
 # Измеряет память backend при загрузке файла заданного размера через nginx.
 # Использование: scripts/upload-mem-test.sh <размер_в_МиБ>
-# Нужен алиас "app" в mc внутри контейнера minio.
+# Ключи сервис-аккаунта берутся из .env, алиас в mc не нужен.
 set -euo pipefail
 
 SIZE_MB=${1:?использование: $0 <размер_в_МиБ>}
 CA=/home/jahongir/certs/ca.crt
 URL=https://app.local/api/files
 B=$(docker ps --format '{{.Names}}' | grep '^backend-' | head -1)
-FILE=/tmp/upload-test-${SIZE_MB}mb.bin
+FILE=/var/tmp/upload-test-${SIZE_MB}mb.bin
 SAMPLES=/tmp/mem-samples-${SIZE_MB}mb.txt
-MC="docker exec -i -e MC_CONFIG_DIR=/tmp/.mc minio mc"
+urlenc() { python3 -c 'import sys,urllib.parse as u; print(u.quote(sys.stdin.read().rstrip("\n"), safe=""))'; }
+ENVF="$(dirname "$0")/../.env"
+S3_AK=$(grep -m1 '^S3_ACCESS_KEY=' "$ENVF" | cut -d= -f2- | urlenc)
+S3_SK=$(grep -m1 '^S3_SECRET_KEY=' "$ENVF" | cut -d= -f2- | urlenc)
+export MC_HOST_app="http://${S3_AK}:${S3_SK}@localhost:9000"
+MC="docker exec -i -e MC_CONFIG_DIR=/tmp/.mc -e MC_HOST_app minio mc"
+cleanup() { rm -f "$FILE"; if [ -n "${SAMPLER:-}" ]; then kill "$SAMPLER" 2>/dev/null || true; fi; }
+trap cleanup EXIT
 
-$MC ls app/uploads/ > /dev/null || { echo "алиас app в mc не создан"; exit 1; }
+$MC ls app/uploads/ > /dev/null || { echo "mc не открыл бакет uploads (проверь S3_* в .env и что контейнер minio запущен)"; exit 1; }
 
 sample() {
   docker exec "$B" sh -c "grep -E '^(anon|file) ' /sys/fs/cgroup/memory.stat" | tr '\n' ' '
@@ -25,7 +32,6 @@ echo "до загрузки: $(sample)"
 : > "$SAMPLES"
 ( while true; do echo "$(date +%T) $(sample)" >> "$SAMPLES"; sleep 0.2; done ) &
 SAMPLER=$!
-trap 'kill "$SAMPLER" 2>/dev/null || true' EXIT
 
 START=$(date +%s)
 RESP=$(curl -s -m 900 --cacert "$CA" --resolve app.local:443:127.0.0.1 \
@@ -50,4 +56,3 @@ if [ -n "$ID" ]; then
   H=$($MC cat "app/uploads/files/$ID" | sha256sum | cut -d' ' -f1)
   if [ "$A" = "$H" ]; then echo "sha256: СОВПАДАЕТ ($ID)"; else echo "sha256: НЕ СОВПАДАЕТ ($ID)"; fi
 fi
-rm -f "$FILE"
