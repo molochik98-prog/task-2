@@ -9,13 +9,12 @@ services:
       - ./targets:/etc/prometheus/targets:ro
       - ./alert_rules.yml:/etc/prometheus/alert_rules.yml:ro
       - prometheus-data:/prometheus
+    restart: unless-stopped
     networks:
       - monitoring-net
 
   node-exporter:
     image: prom/node-exporter:v1.12.1@sha256:1b4e4438faca4dd7e001dd445d161a4a2091b0fededa84093b3a8dfeae1f1be0
-    ports:
-      - "9100:9100"
     volumes:
       - /proc:/host/proc:ro
       - /sys:/host/sys:ro
@@ -24,6 +23,7 @@ services:
       - '--path.procfs=/host/proc'
       - '--path.sysfs=/host/sys'
       - '--path.rootfs=/host'
+    restart: unless-stopped
     networks:
       - monitoring-net
 
@@ -32,13 +32,12 @@ services:
     privileged: true
     devices:
       - /dev/kmsg
-    ports:
-      - "8080:8080"
     volumes:
       - /:/rootfs:ro
       - /var/run:/var/run:rw
       - /sys:/sys:ro
       - /var/lib/docker:/var/lib/docker:ro
+    restart: unless-stopped
     networks:
       - monitoring-net
 
