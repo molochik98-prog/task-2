@@ -49,7 +49,12 @@ def upload_file(file: UploadFile = File(...)):
     name = (file.filename or "unnamed")[:255]
 
     db.insert_pending(file_id, object_key, name, file.content_type)
-    storage.put(object_key, file.file, file.size, file.content_type)
+    try:
+        storage.put(object_key, file.file, file.size, file.content_type)
+    except Exception:
+        log.exception("upload to storage failed: %s", object_key)
+        db.set_status(file_id, "failed")
+        raise HTTPException(status_code=503, detail="storage unavailable, try again later")
     db.set_status(file_id, "uploaded")
 
     return {"id": str(file_id), "status": "uploaded"}
