@@ -43,3 +43,13 @@ def set_status(file_id, status):
             "UPDATE files SET status = %s, updated_at = now() WHERE id = %s",
             (status, str(file_id)),
         )
+
+
+def delete_row(file_id):
+    with get_conn() as conn, conn.cursor() as cur:
+        cur.execute(
+            "DELETE FROM files WHERE id = %s RETURNING object_key",
+            (str(file_id),),
+        )
+        row = cur.fetchone()
+    return row[0] if row else None

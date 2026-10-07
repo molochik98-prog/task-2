@@ -1,15 +1,17 @@
+import logging
 import os
 import uuid
 from contextlib import asynccontextmanager
 
 import psycopg2
-from fastapi import FastAPI, File, UploadFile
+from fastapi import FastAPI, File, HTTPException, Response, UploadFile
 from prometheus_fastapi_instrumentator import Instrumentator
 
 import db
 import storage
 
 DATABASE_URL = os.environ["DATABASE_URL"]
+log = logging.getLogger("uvicorn.error")
 
 
 @asynccontextmanager
@@ -51,3 +53,17 @@ def upload_file(file: UploadFile = File(...)):
     db.set_status(file_id, "uploaded")
 
     return {"id": str(file_id), "status": "uploaded"}
+
+
+@app.delete("/api/files/{file_id}", status_code=204)
+def delete_file(file_id: uuid.UUID):
+    # Порядок: сначала строка в БД, потом объект. Падение между шагами
+    # оставляет потерянный объект (безопасно), а не битую ссылку.
+    object_key = db.delete_row(file_id)
+    if object_key is None:
+        raise HTTPException(status_code=404, detail="file not found")
+    try:
+        storage.remove(object_key)
+    except Exception:
+        log.exception("orphan object after row delete: %s", object_key)
+    return Response(status_code=204)

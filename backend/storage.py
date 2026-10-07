@@ -23,3 +23,7 @@ def put(key, stream, size, content_type):
         part_size=PART_SIZE,
         content_type=content_type or "application/octet-stream",
     )
+
+
+def remove(key):
+    _client.remove_object(BUCKET, key)
