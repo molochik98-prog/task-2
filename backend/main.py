@@ -12,6 +12,7 @@ from prometheus_fastapi_instrumentator import Instrumentator
 
 import cache
 import db
+import queue_metrics
 import storage
 import tasks
 from metrics import FILE_DB_LOADS
@@ -37,6 +38,7 @@ def _test_delay():
 @asynccontextmanager
 async def lifespan(app):
     db.init_pool()
+    queue_metrics.start()
     yield
 
 

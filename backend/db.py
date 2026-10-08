@@ -2,10 +2,11 @@ import os
 import threading
 from contextlib import contextmanager
 
+import psycopg2
 from psycopg2.extras import RealDictCursor
 from psycopg2.pool import ThreadedConnectionPool
 
-from metrics import DB_POOL_IN_USE, DB_POOL_TIMEOUTS
+from metrics import DB_POOL_IN_USE, DB_POOL_SIZE, DB_POOL_TIMEOUTS
 
 
 class PoolTimeout(Exception):
@@ -25,10 +26,26 @@ def init_pool():
     minconn = int(os.environ.get("DB_POOL_MIN", str(maxconn)))
     _pool = ThreadedConnectionPool(minconn, maxconn, os.environ["DATABASE_URL"])
     _sem = threading.BoundedSemaphore(maxconn)
+    DB_POOL_SIZE.set(maxconn)
+
+
+NO_POOL_FLAG = os.environ.get("NO_POOL_FLAG", "/var/uploads-tmp/NO_POOL")
 
 
 @contextmanager
 def get_conn():
+    if os.path.exists(NO_POOL_FLAG):
+        # Тестовый режим для замеров (scripts/bench.sh): соединение на каждый запрос
+        conn = psycopg2.connect(os.environ["DATABASE_URL"])
+        try:
+            yield conn
+            conn.commit()
+        except Exception:
+            conn.rollback()
+            raise
+        finally:
+            conn.close()
+        return
     # Семафор даёт ожидание с таймаутом: сам getconn при исчерпании пула падает сразу.
     if not _sem.acquire(timeout=_wait):
         DB_POOL_TIMEOUTS.inc()

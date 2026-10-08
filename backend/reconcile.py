@@ -1,11 +1,14 @@
 """Сверка Postgres и MinIO. Коды выхода: 0 - всё сходится, 10 - найден рассинхрон, 2 - не смогли проверить."""
+import json
 import os
 import sys
+import time
 from datetime import datetime, timedelta, timezone
 
 import psycopg2
 
 import storage
+import tasks
 
 # Свежие объекты и строки пропускаем: загрузка или удаление могут быть в полёте.
 GRACE = timedelta(minutes=int(os.environ.get("RECONCILE_GRACE_MIN", "10")))
@@ -18,6 +21,14 @@ def show(label, items):
         print(f"{label} {line}")
     if len(items) > MAX_LINES:
         print(f"{label} ... и ещё {len(items) - MAX_LINES}")
+
+
+def publish(total):
+    """Результат последней успешной сверки в Redis: оттуда его читают метрики. Упала сверка, метка не обновилась."""
+    try:
+        tasks.make_client(2).set("reconcile:last", json.dumps({"ts": time.time(), "mismatches": total}))
+    except Exception as exc:
+        print(f"WARN: не удалось записать результат в Redis: {exc}")
 
 
 def main():
@@ -72,6 +83,7 @@ def main():
         f"RESULT orphan_objects={len(orphan_objects)} missing_objects={len(missing_objects)} "
         f"stale_pending={len(stale_pending)} stuck_pending={len(stuck_pending)}"
     )
+    publish(total)
     return 10 if total else 0
 
 

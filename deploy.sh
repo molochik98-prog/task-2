@@ -29,7 +29,7 @@ fi
 echo "Деплоим новый цвет: $COLOR"
 
 # --- 2. Собрать новый образ ---
-docker compose -f "$COMPOSE_DIR/docker-compose.yml" build backend-$COLOR
+docker compose -f "$COMPOSE_DIR/docker-compose.yml" build backend-$COLOR worker
 
 # --- 3. Поднять новый контейнер РЯДОМ со старым (старый не трогаем вообще) ---
 # read-only/cap-drop/add-host/сертификат/DATABASE_URL заданы один раз в docker-compose.yml
@@ -98,5 +98,9 @@ done
 
 docker stop backend-$CURRENT
 docker rm backend-$CURRENT
+
+# worker собирается из того же backend/ и обновляется вместе с backend. SIGTERM: он дорабатывает
+# текущую задачу; если не успел, задача вернётся по idle (Redis Streams).
+docker compose -f "$COMPOSE_DIR/docker-compose.yml" up -d --no-deps worker
 
 echo "Деплой завершён успешно: активен backend-$COLOR"

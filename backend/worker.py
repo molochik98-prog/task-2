@@ -206,6 +206,7 @@ def run_streams():
 def main():
     signal.signal(signal.SIGTERM, _stop)
     signal.signal(signal.SIGINT, _stop)
+    os.environ.setdefault("DB_POOL_MAX", "2")  # worker берёт одну задачу за раз
     db.init_pool()
     if MODE == "naive":
         run_naive()

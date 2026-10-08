@@ -51,6 +51,10 @@ services:
     image: backend:worker
     container_name: worker
     entrypoint: ["python", "worker.py"]
+    # HEALTHCHECK из образа стучится в :8000, у worker там никого нет: проверку отключаем.
+    # Живость worker видна по queue_oldest_task_age_seconds.
+    healthcheck:
+      disable: true
     mem_limit: 128m
     memswap_limit: 128m
 

@@ -14,6 +14,7 @@ log = logging.getLogger("uvicorn.error")
 TTL_BASE = int(os.environ.get("CACHE_TTL", "60"))
 TTL_JITTER = float(os.environ.get("CACHE_TTL_JITTER", "0.3"))
 BREAKER_SECONDS = float(os.environ.get("CACHE_BREAKER_SECONDS", "5"))
+NO_CACHE_FLAG = os.environ.get("NO_CACHE_FLAG", "/var/uploads-tmp/NO_CACHE")  # только для замеров
 # Выключатель single-flight: существование файла отключает коалесцирование.
 # Нужен для опыта со stampede (до/после) без перезапуска контейнера.
 FLAG = os.environ.get("CACHE_NO_SINGLEFLIGHT_FLAG", "/var/uploads-tmp/NO_SINGLEFLIGHT")
@@ -97,6 +98,8 @@ def ping():
 
 def get_or_load(key, loader):
     """Кеш -> при промахе одна загрузка из БД на ключ (single-flight) -> кеш."""
+    if os.path.exists(NO_CACHE_FLAG):
+        return loader()
     value = get(key)
     if value is not None:
         return value
