@@ -7,4 +7,78 @@ groups:
         labels:
           severity: critical
         annotations:
-          summary: "Target {{ $labels.job }} is down"
+          summary: "Цель {{ $labels.job }} недоступна"
+
+  - name: files-service
+    rules:
+      - alert: QueueNotDraining
+        expr: queue_oldest_task_age_seconds > 300
+        for: 2m
+        labels:
+          severity: critical
+        annotations:
+          summary: "Очередь не разгребается: самой старой задаче {{ $value | humanizeDuration }}"
+
+      - alert: DeadLetterNotEmpty
+        expr: queue_dead_tasks > 0
+        for: 1m
+        labels:
+          severity: warning
+        annotations:
+          summary: "В мёртвой очереди задач: {{ $value }}"
+
+      - alert: RedisUnavailable
+        expr: queue_stats_up == 0
+        for: 1m
+        labels:
+          severity: warning
+        annotations:
+          summary: "Redis недоступен: кеш обходится, очередь не читается"
+
+      - alert: CacheBypassed
+        expr: increase(cache_errors_total[2m]) > 0
+        for: 1m
+        labels:
+          severity: warning
+        annotations:
+          summary: "Кеш недоступен: запросы идут напрямую в Postgres"
+
+      - alert: ApiErrorRateHigh
+        expr: sum(rate(http_requests_total{status=~"5.."}[5m])) / sum(rate(http_requests_total[5m])) > 0.05
+        for: 5m
+        labels:
+          severity: critical
+        annotations:
+          summary: "Доля 5xx выше 5%: {{ $value | humanizePercentage }}"
+
+      - alert: ApiLatencyHigh
+        expr: histogram_quantile(0.95, sum by (le) (rate(http_request_duration_highr_seconds_bucket[5m]))) > 1
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: "p95 латентности API выше 1 с: {{ $value | humanizeDuration }}"
+
+      - alert: DbPoolExhausted
+        expr: increase(db_pool_timeouts_total[5m]) > 0
+        for: 1m
+        labels:
+          severity: critical
+        annotations:
+          summary: "Запросы отказывают из-за исчерпания пула Postgres"
+
+      - alert: ReconcileMismatch
+        expr: reconcile_last_mismatches > 0
+        for: 1m
+        labels:
+          severity: warning
+        annotations:
+          summary: "Сверка Postgres и MinIO нашла рассинхрон: {{ $value }}"
+
+      - alert: ReconcileStale
+        expr: time() - reconcile_last_run_timestamp_seconds > 7200
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: "Сверка не отрабатывала успешно больше двух часов"

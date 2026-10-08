@@ -1,0 +1,10 @@
+[Unit]
+Description=Prometheus alerts -> Telegram (one message per state change)
+After=docker.service
+OnFailure=backup-failure@%n.service
+
+[Service]
+Type=oneshot
+EnvironmentFile=/etc/telegram-alert.env
+StateDirectory=alert-notifier
+ExecStart=/usr/local/bin/alert-notifier.py

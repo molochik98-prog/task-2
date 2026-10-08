@@ -1,0 +1,461 @@
+{
+ "title": "Files service (Postgres + Redis + MinIO)",
+ "uid": "files-service",
+ "schemaVersion": 39,
+ "version": 1,
+ "refresh": "30s",
+ "time": {
+  "from": "now-1h",
+  "to": "now"
+ },
+ "tags": [
+  "task4"
+ ],
+ "templating": {
+  "list": [
+   {
+    "name": "DS",
+    "label": "Prometheus",
+    "type": "datasource",
+    "query": "prometheus",
+    "current": {},
+    "hide": 0
+   }
+  ]
+ },
+ "panels": [
+  {
+   "id": 1,
+   "title": "Кеш: hit rate",
+   "type": "timeseries",
+   "datasource": {
+    "type": "prometheus",
+    "uid": "${DS}"
+   },
+   "gridPos": {
+    "x": 0,
+    "y": 0,
+    "w": 8,
+    "h": 7
+   },
+   "fieldConfig": {
+    "defaults": {
+     "unit": "percentunit"
+    },
+    "overrides": []
+   },
+   "targets": [
+    {
+     "refId": "A",
+     "expr": "sum(rate(cache_hits_total[5m])) / (sum(rate(cache_hits_total[5m])) + sum(rate(cache_misses_total[5m])))",
+     "legendFormat": "hit rate",
+     "datasource": {
+      "type": "prometheus",
+      "uid": "${DS}"
+     }
+    }
+   ]
+  },
+  {
+   "id": 2,
+   "title": "Кеш: попадания и промахи в секунду",
+   "type": "timeseries",
+   "datasource": {
+    "type": "prometheus",
+    "uid": "${DS}"
+   },
+   "gridPos": {
+    "x": 8,
+    "y": 0,
+    "w": 8,
+    "h": 7
+   },
+   "fieldConfig": {
+    "defaults": {
+     "unit": "short"
+    },
+    "overrides": []
+   },
+   "targets": [
+    {
+     "refId": "A",
+     "expr": "sum(rate(cache_hits_total[5m]))",
+     "legendFormat": "попадания",
+     "datasource": {
+      "type": "prometheus",
+      "uid": "${DS}"
+     }
+    },
+    {
+     "refId": "B",
+     "expr": "sum(rate(cache_misses_total[5m]))",
+     "legendFormat": "промахи",
+     "datasource": {
+      "type": "prometheus",
+      "uid": "${DS}"
+     }
+    },
+    {
+     "refId": "C",
+     "expr": "sum(rate(cache_errors_total[5m]))",
+     "legendFormat": "ошибки Redis",
+     "datasource": {
+      "type": "prometheus",
+      "uid": "${DS}"
+     }
+    }
+   ]
+  },
+  {
+   "id": 3,
+   "title": "Очередь: ожидают и в работе",
+   "type": "timeseries",
+   "datasource": {
+    "type": "prometheus",
+    "uid": "${DS}"
+   },
+   "gridPos": {
+    "x": 16,
+    "y": 0,
+    "w": 8,
+    "h": 7
+   },
+   "fieldConfig": {
+    "defaults": {
+     "unit": "short"
+    },
+    "overrides": []
+   },
+   "targets": [
+    {
+     "refId": "A",
+     "expr": "queue_waiting_tasks",
+     "legendFormat": "ожидают",
+     "datasource": {
+      "type": "prometheus",
+      "uid": "${DS}"
+     }
+    },
+    {
+     "refId": "B",
+     "expr": "queue_inflight_tasks",
+     "legendFormat": "в работе",
+     "datasource": {
+      "type": "prometheus",
+      "uid": "${DS}"
+     }
+    }
+   ]
+  },
+  {
+   "id": 4,
+   "title": "Очередь: возраст самой старой задачи",
+   "type": "timeseries",
+   "datasource": {
+    "type": "prometheus",
+    "uid": "${DS}"
+   },
+   "gridPos": {
+    "x": 0,
+    "y": 7,
+    "w": 8,
+    "h": 7
+   },
+   "fieldConfig": {
+    "defaults": {
+     "unit": "s"
+    },
+    "overrides": []
+   },
+   "targets": [
+    {
+     "refId": "A",
+     "expr": "queue_oldest_task_age_seconds",
+     "legendFormat": "возраст",
+     "datasource": {
+      "type": "prometheus",
+      "uid": "${DS}"
+     }
+    }
+   ]
+  },
+  {
+   "id": 5,
+   "title": "Мёртвая очередь",
+   "type": "stat",
+   "datasource": {
+    "type": "prometheus",
+    "uid": "${DS}"
+   },
+   "gridPos": {
+    "x": 8,
+    "y": 7,
+    "w": 8,
+    "h": 7
+   },
+   "fieldConfig": {
+    "defaults": {
+     "unit": "short"
+    },
+    "overrides": []
+   },
+   "targets": [
+    {
+     "refId": "A",
+     "expr": "queue_dead_tasks",
+     "legendFormat": "задач",
+     "datasource": {
+      "type": "prometheus",
+      "uid": "${DS}"
+     }
+    }
+   ]
+  },
+  {
+   "id": 6,
+   "title": "Пул Postgres: занято и размер",
+   "type": "timeseries",
+   "datasource": {
+    "type": "prometheus",
+    "uid": "${DS}"
+   },
+   "gridPos": {
+    "x": 16,
+    "y": 7,
+    "w": 8,
+    "h": 7
+   },
+   "fieldConfig": {
+    "defaults": {
+     "unit": "short"
+    },
+    "overrides": []
+   },
+   "targets": [
+    {
+     "refId": "A",
+     "expr": "db_pool_in_use",
+     "legendFormat": "занято",
+     "datasource": {
+      "type": "prometheus",
+      "uid": "${DS}"
+     }
+    },
+    {
+     "refId": "B",
+     "expr": "db_pool_size",
+     "legendFormat": "размер",
+     "datasource": {
+      "type": "prometheus",
+      "uid": "${DS}"
+     }
+    },
+    {
+     "refId": "C",
+     "expr": "increase(db_pool_timeouts_total[5m])",
+     "legendFormat": "отказов за 5 мин",
+     "datasource": {
+      "type": "prometheus",
+      "uid": "${DS}"
+     }
+    }
+   ]
+  },
+  {
+   "id": 7,
+   "title": "Латентность API (перцентили)",
+   "type": "timeseries",
+   "datasource": {
+    "type": "prometheus",
+    "uid": "${DS}"
+   },
+   "gridPos": {
+    "x": 0,
+    "y": 14,
+    "w": 12,
+    "h": 7
+   },
+   "fieldConfig": {
+    "defaults": {
+     "unit": "s"
+    },
+    "overrides": []
+   },
+   "targets": [
+    {
+     "refId": "A",
+     "expr": "histogram_quantile(0.5, sum by (le) (rate(http_request_duration_highr_seconds_bucket[5m])))",
+     "legendFormat": "p50",
+     "datasource": {
+      "type": "prometheus",
+      "uid": "${DS}"
+     }
+    },
+    {
+     "refId": "B",
+     "expr": "histogram_quantile(0.95, sum by (le) (rate(http_request_duration_highr_seconds_bucket[5m])))",
+     "legendFormat": "p95",
+     "datasource": {
+      "type": "prometheus",
+      "uid": "${DS}"
+     }
+    },
+    {
+     "refId": "C",
+     "expr": "histogram_quantile(0.99, sum by (le) (rate(http_request_duration_highr_seconds_bucket[5m])))",
+     "legendFormat": "p99",
+     "datasource": {
+      "type": "prometheus",
+      "uid": "${DS}"
+     }
+    }
+   ]
+  },
+  {
+   "id": 8,
+   "title": "Запросы в секунду и доля ошибок",
+   "type": "timeseries",
+   "datasource": {
+    "type": "prometheus",
+    "uid": "${DS}"
+   },
+   "gridPos": {
+    "x": 12,
+    "y": 14,
+    "w": 12,
+    "h": 7
+   },
+   "fieldConfig": {
+    "defaults": {
+     "unit": "short"
+    },
+    "overrides": []
+   },
+   "targets": [
+    {
+     "refId": "A",
+     "expr": "sum by (status) (rate(http_requests_total[5m]))",
+     "legendFormat": "{{status}}",
+     "datasource": {
+      "type": "prometheus",
+      "uid": "${DS}"
+     }
+    },
+    {
+     "refId": "B",
+     "expr": "sum(rate(http_requests_total{status=~\"5..\"}[5m])) / sum(rate(http_requests_total[5m]))",
+     "legendFormat": "доля 5xx",
+     "datasource": {
+      "type": "prometheus",
+      "uid": "${DS}"
+     }
+    }
+   ]
+  },
+  {
+   "id": 9,
+   "title": "Bucket: размер",
+   "type": "timeseries",
+   "datasource": {
+    "type": "prometheus",
+    "uid": "${DS}"
+   },
+   "gridPos": {
+    "x": 0,
+    "y": 21,
+    "w": 8,
+    "h": 7
+   },
+   "fieldConfig": {
+    "defaults": {
+     "unit": "bytes"
+    },
+    "overrides": []
+   },
+   "targets": [
+    {
+     "refId": "A",
+     "expr": "bucket_bytes",
+     "legendFormat": "байт",
+     "datasource": {
+      "type": "prometheus",
+      "uid": "${DS}"
+     }
+    }
+   ]
+  },
+  {
+   "id": 10,
+   "title": "Bucket: число объектов",
+   "type": "timeseries",
+   "datasource": {
+    "type": "prometheus",
+    "uid": "${DS}"
+   },
+   "gridPos": {
+    "x": 8,
+    "y": 21,
+    "w": 8,
+    "h": 7
+   },
+   "fieldConfig": {
+    "defaults": {
+     "unit": "short"
+    },
+    "overrides": []
+   },
+   "targets": [
+    {
+     "refId": "A",
+     "expr": "bucket_objects",
+     "legendFormat": "объектов",
+     "datasource": {
+      "type": "prometheus",
+      "uid": "${DS}"
+     }
+    }
+   ]
+  },
+  {
+   "id": 11,
+   "title": "Сверка: найдено рассинхронов и возраст последнего запуска",
+   "type": "timeseries",
+   "datasource": {
+    "type": "prometheus",
+    "uid": "${DS}"
+   },
+   "gridPos": {
+    "x": 16,
+    "y": 21,
+    "w": 8,
+    "h": 7
+   },
+   "fieldConfig": {
+    "defaults": {
+     "unit": "short"
+    },
+    "overrides": []
+   },
+   "targets": [
+    {
+     "refId": "A",
+     "expr": "reconcile_last_mismatches",
+     "legendFormat": "рассинхронов",
+     "datasource": {
+      "type": "prometheus",
+      "uid": "${DS}"
+     }
+    },
+    {
+     "refId": "B",
+     "expr": "time() - reconcile_last_run_timestamp_seconds",
+     "legendFormat": "секунд с запуска",
+     "datasource": {
+      "type": "prometheus",
+      "uid": "${DS}"
+     }
+    }
+   ]
+  }
+ ]
+}

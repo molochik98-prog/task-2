@@ -14,27 +14,25 @@ blue/green, контейнеры с минимальными привилеги�
 
 ## Архитектура
 
-Клиент ──HTTPS──► VM-1 (192.168.64.3)
-┌────────────────────────────────────────────────────────────────────────────┐
-│ nginx :443 (TLS), :80 → 443 │
-│ /api/* ──────► backend-blue | backend-green (:8000, активен один) │
-│ /s3/* ──────► minio:9000 (rewrite убирает /s3; только GET по │
-│ presigned-ссылке, остальные методы режет nginx) │
-│ │
-│ backend ─► Postgres (VM-2:5432, TLS) метаданные, статусы │
-│ ─► Redis (redis:6379, пароль) кеш GET /api/files/{id} и очередь │
-│ задач (XADD) │
-│ ─► MinIO (minio:9000) PUT и DELETE объектов │
-│ worker ─► Redis Streams (XREADGROUP, XACK) │
-│ ─► MinIO (чтение) ─► SHA-256, размер, тип ─► Postgres (результат) │
-│ systemd: сверка Postgres и MinIO, бэкапы Redis и MinIO, сторож бэкапов, │
-│ health-alert │
-│ Prometheus :9090 (доступен только VM-2) ◄─ backend /metrics, cAdvisor, │
-│ node-exporter (сеть monitoring-net) │
-└────────────────────────────────────────────────────────────────────────────┘
+```
+Клиент ──HTTPS──► nginx :443 (VM-1, 192.168.64.3; :80 → 443)
+                    │
+                    ├─ /api/* ──► backend-blue | backend-green :8000 (активен один)
+                    │               ├─► Postgres (VM-2:5432, TLS): метаданные, статусы
+                    │               ├─► Redis (redis:6379, пароль): кеш и очередь задач (XADD)
+                    │               └─► MinIO (minio:9000): PUT и DELETE объектов
+                    └─ /s3/* ───► MinIO :9000 (rewrite убирает /s3; только GET по presigned-ссылке)
+
+worker ──► Redis Streams (XREADGROUP, XACK)
+       ──► MinIO (чтение) ──► SHA-256, размер, тип ──► Postgres (результат)
+
+VM-1, systemd: сверка Postgres/MinIO, бэкапы Redis и MinIO, сторож бэкапов,
+               health-alert, alert-notifier
+VM-1, мониторинг: Prometheus :9090 (доступен только VM-2) ◄─ backend /metrics,
+               cAdvisor, node-exporter (сеть monitoring-net)
 VM-2 (192.168.64.5): PostgreSQL 18 (только hostssl, UFW: только VM-1),
-Grafana 13.2.1 (читает Prometheus на VM-1),
-pg-backup.timer и сторож бэкапа
+               Grafana 13.2.1 (читает Prometheus на VM-1), pg-backup.timer, сторож бэкапа
+```
 
 Единственный владелец жизненного цикла контейнеров на VM-1 — dockerd
 (`restart: unless-stopped`): backend, worker, nginx, Redis, MinIO, Prometheus,
@@ -627,8 +625,9 @@ times without ack`, файл в статусе `failed`.
 
 Что видно по очереди (`bash scripts/queue-stats.sh`):
 
+```
 queue: waiting=0 in_flight=1 oldest_age_s=31.4 dead=0 naive_list=0
-
+```
 
 `oldest_age_s` — возраст самой старой невыполненной задачи (включая выданные
 без подтверждения). Он важнее длины: очередь из одной задачи, которая стоит
