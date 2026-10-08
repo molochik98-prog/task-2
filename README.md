@@ -113,6 +113,27 @@ Docker. После перехода на единого владельца (см
 стало нечего: dockerd сам знает, какой контейнер жив, по факту его
 собственного состояния.
 
+### Как запускается деплой (GitHub Actions runner)
+
+Деплой на VM-1 запускает self-hosted runner GitHub Actions — служба
+`actions.runner.molochik98-prog-task-2.jahongir.service`. Его каталог
+`actions-runner-task2/` лежит внутри рабочей копии, но в `.gitignore`
+(`git ls-files` и `git log` его не содержат; внутри лежат `.credentials` и
+ключ регистрации). Workflow `.github/workflows/deploy.yml` срабатывает только
+на `push` в `main` (триггера `pull_request` нет) и делает два шага:
+`git pull origin main` в `/home/jahongir/devops-backend`, затем `./deploy.sh`.
+Это не второй механизм деплоя, а запуск того же `./deploy.sh`.
+Что из этого следует:
+
+- Пуш в `main` — это выкатка на VM-1. Резервная копия работы идёт в другую
+  ветку: `git push origin HEAD:task4-wip`, деплой при этом не запускается.
+- Выкатывается рабочая копия на VM-1: `deploy.sh` собирает образ из неё.
+- Миграции БД применяются на VM-2 вручную и до пуша в `main`: код,
+  ожидающий новую колонку, не должен выкатиться раньше миграции.
+- Проверено 2026-10-08: служба runner в состоянии `active` после
+  перезагрузки VM-1. Сам запуск workflow в этот день не проверялся.
+
+
 ### nginx тоже под compose
 
 Правка `nginx.conf` для переключения активного цвета идёт через безопасную
@@ -188,6 +209,15 @@ VM-2, правилом в цепочке `DOCKER-USER` — она пересоз
 через `systemd` drop-in (`docker.service.d/dockeruser-fw.conf` →
 `ExecStartPost`, идемпотентный скрипт). `ufw` тут бессилен: Docker пишет
 правила в цепочку `FORWARD`, минуя `INPUT`, где живут правила `ufw`.
+Скрипт и drop-in лежат в репозитории (`scripts/docker-user-fw.sh`,
+`systemd/docker.service.d/dockeruser-fw.conf`) и копируются в
+`/usr/local/sbin/` и `/etc/systemd/system/docker.service.d/`. Что правило
+переживает перезагрузку, проверено 2026-10-08: после `reboot` VM-1 в
+`iptables -S DOCKER-USER` оба правила на месте, с Mac на 9090 таймаут и по
+IPv4, и по IPv6 (чем именно закрыт IPv6, не выясняли). Побочный эффект
+`ExecStartPost`: если скрипт упадёт, `docker.service` не стартует (по
+семантике systemd, не проверялось). Выбрано осознанно: лучше громкий отказ,
+чем тихо открытый порт.
 
 **Grafana — на VM-2**, установлена из `apt.grafana.com`, версия `13.2.1`
 зафиксирована (`apt-mark hold`). Из полутора десятков plugin-datasource,
@@ -242,6 +272,11 @@ SSH на VM-2 — только по ключу, вход по паролю от�
 именно там, не в основном `sshd_config`, см. `TROUBLESHOOTING.md`). UFW на
 VM-2 сужен: порт 22 открыт только из подсети `192.168.64.0/24`, не отовсюду.
 
+SSH на VM-1 сужен так же: правило `22/tcp ALLOW IN 192.168.64.0/24` вместо
+`Anywhere` (проверено 2026-10-08: вход с Mac после удаления широкого правила
+проходит). Правило UFW для `5432/tcp` из `172.19.0.0/16` на VM-1 удалено:
+backend ходит в Postgres на VM-2, а не на локальный.
+
 ## Известные ограничения (не блокеры, задокументированы)
 
 **Нет пула соединений к Postgres.** `main.py` открывает новое соединение
@@ -272,14 +307,18 @@ UTM** — привёл к потере регистрации раннера н�
 ├── deploy.sh                  # blue/green деплой; dockerd — единственный владелец контейнеров
 ├── run_deploy_test.sh         # оркестратор нагрузочного теста
 ├── scripts/
-│   └── health-alert.sh        # деплоится в /usr/local/bin/ на VM-1
+│   ├── health-alert.sh        # деплоится в /usr/local/bin/ на VM-1 (вручную: install -m 755)
+│   ├── docker-user-fw.sh      # деплоится в /usr/local/sbin/ на VM-1 (правило DOCKER-USER для 9090)
+│   └── upload-mem-test.sh     # замер памяти backend при загрузке больших файлов
 ├── systemd/
 │   ├── health-alert.service   # деплоится в /etc/systemd/system/ на VM-1
-│   └── health-alert.timer     # деплоится в /etc/systemd/system/ на VM-1
+│   ├── health-alert.timer     # деплоится в /etc/systemd/system/ на VM-1
+│   └── docker.service.d/dockeruser-fw.conf  # деплоится в /etc/systemd/system/docker.service.d/ на VM-1
 ├── db-backup/                  # относится к VM-2, хранится здесь для единой истории
 │   ├── pg-backup.sh            # деплоится в /usr/local/bin/ на VM-2
 │   ├── pg-backup.service       # деплоится в /etc/systemd/system/ на VM-2
 │   └── pg-backup.timer         # деплоится в /etc/systemd/system/ на VM-2
+├── db/migrations/               # SQL-миграции, применяются на VM-2 вручную (001-004)
 ├── monitoring-stack/            # Prometheus/cAdvisor/node-exporter (VM-1) + конфиг для Grafana
 │   ├── docker-compose.yml       # name: monitoring-stack зафиксировано явно
 │   ├── prometheus.yml
@@ -288,7 +327,9 @@ UTM** — привёл к потере регистрации раннера н�
 │   └── dashboards/              # три дашборда Grafana, Classic JSON, для переимпорта
 ├── backend/
 │   ├── Dockerfile               # python:3.12-slim закреплён по дайджесту
-│   └── requirements.txt         # версии зафиксированы
+│   ├── requirements.txt         # версии зафиксированы
+│   ├── main.py, db.py           # API и доступ к Postgres
+│   └── storage.py               # весь код работы с MinIO (S3)
 ├── .github/workflows/deploy.yml
 ├── README.md
 ├── TROUBLESHOOTING.md
@@ -402,7 +443,7 @@ SHA-256 скачанного объекта и список объектов в 
 
 ## Порты и доступность
 
-Проверено 2026-10-07: `docker ps`, `ss -tuln`, `iptables -S DOCKER-USER`,
+Проверено 2026-10-07 (SSH, 9090 и кластер повторно после перезагрузки VM-1 2026-10-08): `docker ps`, `ss -tuln`, `iptables -S DOCKER-USER`,
 `ufw status` на VM-1 и запросами с Mac (хост UTM, подсеть 192.168.64.0/24).
 
 | Порт | Что | Где | Кто может подключиться | Как проверено |
@@ -412,10 +453,10 @@ SHA-256 скачанного объекта и список объектов в 
 | 8000 | backend (blue или green) | app-net | только контейнеры app-net | `docker ps`: не опубликован |
 | 9000 | MinIO S3 API | app-net | только app-net; снаружи только presigned GET через `/s3/` | `docker ps`; PUT по ссылке снаружи даёт 403 от nginx |
 | 6379 | Redis | app-net | только app-net, нужен пароль | `redis-cli ping` без пароля: `NOAUTH` |
-| 9090 | Prometheus | VM-1, публикует Docker | только VM-2 (192.168.64.5) | правило в `DOCKER-USER`; с Mac таймаут |
+| 9090 | Prometheus | VM-1, публикует Docker | только VM-2 (192.168.64.5) | правило в `DOCKER-USER`; после ребута VM-1 правило на месте, с Mac таймаут по IPv4 и IPv6 (2026-10-08) |
 | 8080, 9100 | cAdvisor, node-exporter | monitoring-net | только Prometheus внутри сети, наружу не опубликованы | с Mac таймаут (до правки отвечали 200) |
 | 5432 | PostgreSQL 18 | VM-2 | только VM-1 | `db` = 192.168.64.5; с Mac таймаут |
-| 22 | sshd | VM-1 | любой клиент (UFW: Anywhere) | `ufw status` |
+| 22 | sshd | VM-1 | только подсеть 192.168.64.0/24 (UFW) | `ufw status`; вход с Mac проходит (2026-10-08) |
 | 3000 | Grafana | VM-2 | только оператор | по README задания 3, сегодня не перепроверялось |
 
 Docker публикует порты через `DNAT`, и такие пакеты идут через `FORWARD`,
@@ -426,5 +467,6 @@ UFW не действует, единственный фильтр это цеп
 Найденное при проверке: cAdvisor и node-exporter были опубликованы на 0.0.0.0
 без фильтра (с Mac отвечали 200), публикация убрана, Prometheus ходит к ним
 по именам внутри monitoring-net. На VM-1 работал забытый Postgres из
-задания 2 (кластер 18/main, только таблица `items`), он остановлен:
+задания 2 (кластер 18/main, только таблица `items`), он остановлен и отключён (`start.conf` = `disabled`:
+при `auto` кластер оказался online, хотя был остановлен), правило UFW для 5432 удалено:
 backend использует Postgres на VM-2.
