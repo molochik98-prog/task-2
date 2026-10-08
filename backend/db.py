@@ -144,3 +144,36 @@ def list_files(limit, offset):
             (limit, offset),
         )
         return [_public(r) for r in cur.fetchall()]
+
+
+def finish(file_id, size, sha256, content_type):
+    """Результат обработки. Пишет только из uploaded/processing: повторная доставка ничего не портит."""
+    with get_conn() as conn, conn.cursor() as cur:
+        cur.execute(
+            "UPDATE files SET status = 'done', size_bytes = %s, sha256 = %s, "
+            "content_type = COALESCE(%s, content_type), updated_at = now() "
+            "WHERE id = %s AND status IN ('uploaded', 'processing')",
+            (size, sha256, content_type, str(file_id)),
+        )
+        return cur.rowcount
+
+
+def mark_failed(file_id):
+    with get_conn() as conn, conn.cursor() as cur:
+        cur.execute(
+            "UPDATE files SET status = 'failed', updated_at = now() WHERE id = %s AND status <> 'done'",
+            (str(file_id),),
+        )
+
+
+def list_stale(limit=100):
+    """uploaded дольше 2 минут или processing дольше 10 минут: задача, вероятно, не в очереди."""
+    with get_conn() as conn, conn.cursor() as cur:
+        cur.execute(
+            "SELECT id FROM files WHERE "
+            "(status = 'uploaded' AND updated_at < now() - interval '2 minutes') OR "
+            "(status = 'processing' AND updated_at < now() - interval '10 minutes') "
+            "ORDER BY updated_at LIMIT %s",
+            (limit,),
+        )
+        return [r[0] for r in cur.fetchall()]

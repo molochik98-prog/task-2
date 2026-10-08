@@ -66,3 +66,8 @@ def ping():
             return resp.status == 200
     except Exception:
         return False
+
+
+def open_object(key):
+    """Потоковое чтение: вызывающий обязан закрыть resp (close + release_conn)."""
+    return _client.get_object(BUCKET, key)

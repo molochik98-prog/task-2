@@ -23,6 +23,10 @@ x-backend-common: &backend-common
     S3_SECRET_KEY: "${S3_SECRET_KEY:?задай S3_SECRET_KEY в файле .env}"
     REDIS_HOST: "redis"
     REDIS_PASSWORD: "${REDIS_PASSWORD:?задай REDIS_PASSWORD в файле .env}"
+    # Параметры worker (backend их не читает); для опытов задаются через env оболочки
+    PROCESS_DELAY_S: "${WORKER_DELAY_S:-0}"
+    MIN_IDLE_S: "${WORKER_MIN_IDLE_S:-60}"
+    MAX_DELIVERIES: "${WORKER_MAX_DELIVERIES:-3}"
   stop_grace_period: 15s
   restart: unless-stopped
   networks:
@@ -41,6 +45,14 @@ services:
     <<: *backend-common
     image: backend:green
     container_name: backend-green
+
+  worker:
+    <<: *backend-common
+    image: backend:worker
+    container_name: worker
+    entrypoint: ["python", "worker.py"]
+    mem_limit: 128m
+    memswap_limit: 128m
 
   nginx:
     image: nginx:alpine@sha256:4a73073bd557c65b759505da037898b61f1be6cbcc3c2c3aeac22d2a470c1752

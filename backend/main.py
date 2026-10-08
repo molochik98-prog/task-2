@@ -13,6 +13,7 @@ from prometheus_fastapi_instrumentator import Instrumentator
 import cache
 import db
 import storage
+import tasks
 from metrics import FILE_DB_LOADS
 
 DATABASE_URL = os.environ["DATABASE_URL"]
@@ -133,6 +134,7 @@ def upload_file(
         raise HTTPException(status_code=503, detail="storage unavailable, try again later")
     db.set_status(file_id, "uploaded")
     cache.invalidate(f"file:{file_id}")
+    tasks.enqueue(file_id)
 
     response.status_code = 201
     return {"id": file_id, "status": "uploaded"}
