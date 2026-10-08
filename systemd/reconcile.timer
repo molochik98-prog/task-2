@@ -1,0 +1,10 @@
+[Unit]
+Description=Periodic Postgres vs MinIO reconciliation
+
+[Timer]
+OnBootSec=5min
+OnCalendar=*:0/30
+Persistent=true
+
+[Install]
+WantedBy=timers.target

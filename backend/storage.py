@@ -50,3 +50,19 @@ def presigned_get_url(key):
     parts = urlsplit(url)
     # /s3 дописываем после подписи: nginx отрежет его, MinIO увидит подписанный путь
     return urlunsplit(parts._replace(path="/s3" + parts.path))
+
+
+def list_objects(prefix="files/"):
+    return _client.list_objects(BUCKET, prefix=prefix, recursive=True)
+
+
+def ping():
+    # Лёгкая проверка с жёстким таймаутом: клиент minio при недоступном хосте долго ретраит.
+    import urllib.request
+
+    try:
+        url = "http://%s/minio/health/live" % os.environ["S3_ENDPOINT"]
+        with urllib.request.urlopen(url, timeout=1) as resp:
+            return resp.status == 200
+    except Exception:
+        return False

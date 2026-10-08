@@ -1,0 +1,9 @@
+[Unit]
+Description=Reconciliation Postgres vs MinIO (Telegram alert on mismatch)
+After=docker.service
+Requires=docker.service
+
+[Service]
+Type=oneshot
+EnvironmentFile=/etc/telegram-alert.env
+ExecStart=/usr/local/bin/reconcile.sh

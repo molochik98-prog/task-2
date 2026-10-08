@@ -9,7 +9,7 @@ RUN useradd --create-home --shell /usr/sbin/nologin appuser
 RUN mkdir /var/uploads-tmp && chown appuser:appuser /var/uploads-tmp
 WORKDIR /app
 COPY --from=builder --chown=appuser:appuser /root/.local /home/appuser/.local
-COPY --chown=appuser:appuser main.py db.py storage.py ./
+COPY --chown=appuser:appuser *.py ./
 ENV HOME=/home/appuser
 ENV PATH=/home/appuser/.local/bin:$PATH
 USER appuser
