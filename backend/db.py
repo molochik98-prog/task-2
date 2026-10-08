@@ -24,7 +24,11 @@ def init_pool():
     # minconn = maxconn: ThreadedConnectionPool закрывает возвращаемые соединения
     # сверх minconn, при min=1 под нагрузкой он работал бы как «без пула».
     minconn = int(os.environ.get("DB_POOL_MIN", str(maxconn)))
-    _pool = ThreadedConnectionPool(minconn, maxconn, os.environ["DATABASE_URL"])
+    # statement_timeout: запрос, застрявший на блокировке, не держит соединение пула вечно
+    stmt_ms = int(os.environ.get("DB_STATEMENT_TIMEOUT_MS", "8000"))
+    _pool = ThreadedConnectionPool(
+        minconn, maxconn, os.environ["DATABASE_URL"], options=f"-c statement_timeout={stmt_ms}"
+    )
     _sem = threading.BoundedSemaphore(maxconn)
     DB_POOL_SIZE.set(maxconn)
 

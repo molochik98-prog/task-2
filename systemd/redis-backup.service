@@ -1,0 +1,9 @@
+[Unit]
+Description=Backup redis (restore-checked, rotated)
+After=docker.service
+Requires=docker.service
+OnFailure=backup-failure@%n.service
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/bin/redis-backup.sh

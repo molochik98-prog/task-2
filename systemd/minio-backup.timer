@@ -1,0 +1,10 @@
+[Unit]
+Description=Daily minio backup
+
+[Timer]
+OnCalendar=*-*-* 03:40:00
+Persistent=true
+RandomizedDelaySec=120
+
+[Install]
+WantedBy=timers.target

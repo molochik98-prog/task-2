@@ -1,0 +1,7 @@
+[Unit]
+Description=Telegram alert: %i failed
+
+[Service]
+Type=oneshot
+EnvironmentFile=/etc/telegram-alert.env
+ExecStart=/usr/local/bin/backup-failure.sh %i

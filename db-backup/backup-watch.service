@@ -1,0 +1,7 @@
+[Unit]
+Description=Watchdog: свежесть бэкапа Postgres (молчание не считается успехом)
+
+[Service]
+Type=oneshot
+EnvironmentFile=/etc/telegram-alert.env
+ExecStart=/usr/local/bin/backup-watch.sh postgres:/var/backups/postgresql-appdb/.last-success:93600

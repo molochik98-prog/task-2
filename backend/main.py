@@ -5,7 +5,7 @@ import time
 import uuid
 from contextlib import asynccontextmanager
 
-import psycopg2
+from psycopg2.errors import QueryCanceled
 from fastapi import FastAPI, File, Header, HTTPException, Query, Response, UploadFile
 from fastapi.responses import JSONResponse
 from prometheus_fastapi_instrumentator import Instrumentator
@@ -55,6 +55,15 @@ async def pool_timeout_handler(request, exc):
     )
 
 
+@app.exception_handler(QueryCanceled)
+async def query_timeout_handler(request, exc):
+    return JSONResponse(
+        status_code=503,
+        content={"detail": "database timeout, try again later"},
+        headers={"Retry-After": "1"},
+    )
+
+
 @app.get("/live")
 def live():
     # Liveness: процесс жив и отвечает. Никаких зависимостей.
@@ -91,12 +100,9 @@ def health_deps():
 
 @app.get("/items")
 def get_items():
-    conn = psycopg2.connect(DATABASE_URL)
-    cur = conn.cursor()
-    cur.execute("SELECT id, name FROM items;")
-    rows = cur.fetchall()
-    cur.close()
-    conn.close()
+    with db.get_conn() as conn, conn.cursor() as cur:
+        cur.execute("SELECT id, name FROM items;")
+        rows = cur.fetchall()
     return [{"id": r[0], "name": r[1]} for r in rows]
 
 

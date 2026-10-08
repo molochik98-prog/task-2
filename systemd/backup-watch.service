@@ -1,0 +1,7 @@
+[Unit]
+Description=Watchdog: свежесть бэкапов Redis и MinIO (молчание не считается успехом)
+
+[Service]
+Type=oneshot
+EnvironmentFile=/etc/telegram-alert.env
+ExecStart=/usr/local/bin/backup-watch.sh redis:/var/backups/redis/.last-success:93600 minio:/var/backups/minio/.last-success:93600

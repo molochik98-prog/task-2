@@ -1,5 +1,6 @@
 [Unit]
-Description=Backup appdb (pg_dump -Fc) with recovery check
+Description=Backup appdb (pg_dump -Fc) + restore check + rotation
+OnFailure=backup-failure@%n.service
 
 [Service]
 Type=oneshot
