@@ -409,8 +409,10 @@ Alertmanager не развёрнут: на VM-1 мало памяти (1.6 Ги�
   «недоступен 3 минуты подряд» в 09:18 и «снова доступен» в 10:31, 2026-10-09.
 - `health-alert`: «/health не отвечает» в 11:13, 2026-10-09 (текст ещё без кода;
   причина 503 при перезапуске Postgres, см. «Перезапуск Postgres и мёртвые соединения
-  пула»); после правки сообщения «вернул HTTP 404» и «не отвечает, curl rc=…» пришли
-  на тестовых адресах.
+  пула»); после правки на тестовом адресе пришло сообщение «вернул HTTP 404». Сообщение «не
+  отвечает» пришло с `curl rc=0` (ошибка, описана выше); после исправления текст
+  проверен трассировкой `bash -x` (`rc=7`), доставка исправленного текста в Telegram
+  не проверялась.
 - Бэкапы: `OnFailure` на тестовом упавшем юните и на отвергнутой копии pull, сторож на
   отсутствующей и устаревшей метке.
 - Остальные восемь правил на деле ещё не срабатывали, их проверяет `CHAOS.md`.
@@ -468,39 +470,68 @@ UTM** — привёл к потере регистрации раннера н�
 
 ```
 ~/devops-backend/
-├── nginx/nginx.conf           # bind-mount в nginx; в git как шаблон (--skip-worktree)
-├── deploy.sh                  # blue/green деплой; dockerd — единственный владелец контейнеров
-├── run_deploy_test.sh         # оркестратор нагрузочного теста
-├── scripts/
-│   ├── health-alert.sh        # деплоится в /usr/local/bin/ на VM-1 (вручную: install -m 755)
-│   ├── docker-user-fw.sh      # деплоится в /usr/local/sbin/ на VM-1 (правило DOCKER-USER для 9090)
-│   └── upload-mem-test.sh     # замер памяти backend при загрузке больших файлов
-├── systemd/
-│   ├── health-alert.service   # деплоится в /etc/systemd/system/ на VM-1
-│   ├── health-alert.timer     # деплоится в /etc/systemd/system/ на VM-1
-│   └── docker.service.d/dockeruser-fw.conf  # деплоится в /etc/systemd/system/docker.service.d/ на VM-1
-├── db-backup/                  # относится к VM-2, хранится здесь для единой истории
-│   ├── pg-backup.sh            # деплоится в /usr/local/bin/ на VM-2
-│   ├── pg-backup.service       # деплоится в /etc/systemd/system/ на VM-2
-│   └── pg-backup.timer         # деплоится в /etc/systemd/system/ на VM-2
-├── db/migrations/               # SQL-миграции, применяются на VM-2 вручную (001-004)
-├── monitoring-stack/            # Prometheus/cAdvisor/node-exporter (VM-1) + конфиг для Grafana
-│   ├── docker-compose.yml       # name: monitoring-stack зафиксировано явно
-│   ├── prometheus.yml
-│   ├── alert_rules.yml
-│   ├── targets/backend.json     # в git как шаблон (--skip-worktree), переписывается deploy.sh
-│   └── dashboards/              # три дашборда Grafana, Classic JSON, для переимпорта
+├── deploy.sh                     # blue/green деплой (+ worker); dockerd — единственный владелец контейнеров
+├── docker-compose.yml            # backend-blue/green, worker, nginx, redis, minio; restart: unless-stopped
+├── run_deploy_test.sh            # оркестратор нагрузочного теста деплоя
+├── .env.example                  # шаблон; настоящие .env и .env.backend вне git (права 600)
+├── .github/workflows/deploy.yml  # runner на VM-1: git pull + ./deploy.sh
 ├── backend/
-│   ├── Dockerfile               # python:3.12-slim закреплён по дайджесту
-│   ├── requirements.txt         # версии зафиксированы
-│   ├── main.py, db.py           # API и доступ к Postgres
-│   └── storage.py               # весь код работы с MinIO (S3)
-├── .github/workflows/deploy.yml
+│   ├── Dockerfile                # python:3.12-slim закреплён по дайджесту
+│   ├── requirements.txt          # версии зафиксированы
+│   ├── main.py                   # API, /live, /health, /health/deps, /metrics
+│   ├── db.py                     # пул Postgres, проверка соединения при выдаче, запросы
+│   ├── cache.py                  # кеш Redis
+│   ├── storage.py                # весь код работы с MinIO (S3)
+│   ├── tasks.py, worker.py       # очередь задач и worker (Redis Streams)
+│   ├── metrics.py, queue_metrics.py, queue_stats.py   # метрики приложения и очереди
+│   ├── reconcile.py              # сверка Postgres и MinIO
+│   └── stampede_test.py          # тест cache stampede
+├── backup/                       # VM-1
+│   ├── redis-backup.sh, minio-backup.sh
+│   ├── backup-failure.sh, backup-watch.sh
+│   └── alert-notifier.py         # Prometheus -> Telegram, по одному сообщению на переход
+├── db-backup/                    # VM-2 (и юниты pull для неё)
+│   ├── pg-backup.sh, pg-backup.service, pg-backup.timer
+│   ├── vm1-pull.sh, vm1-pull.service, vm1-pull.timer
+│   └── backup-watch.service      # сторож VM-2: три метки
+├── db/migrations/                # 001-005; применяются на VM-2 вручную, до ./deploy.sh
+├── evidence/                     # сырые файлы опытов (перезапуск Postgres до/после)
+├── monitoring-stack/             # Prometheus/cAdvisor/node-exporter (VM-1)
+│   ├── docker-compose.yml, prometheus.yml, alert_rules.yml
+│   ├── targets/backend.json      # шаблон (--skip-worktree), переписывается deploy.sh
+│   └── dashboards/               # дашборды Grafana (JSON) и make_files_dashboard.py
+├── nginx/                        # Dockerfile; nginx.conf — шаблон (--skip-worktree), bind-mount
+├── scripts/                      # bench*.sh, *-proof.sh, reconcile.sh, queue-stats.sh,
+│                                 # health-alert.sh, docker-user-fw.sh, upload-mem-test.sh, wrk-percentiles.lua
+├── systemd/                      # юниты и таймеры VM-1, docker.service.d/dockeruser-fw.conf
 ├── README.md
-├── TROUBLESHOOTING.md
-├── docker-compose.yml            # backend-blue/backend-green/nginx, restart: unless-stopped
-└── .env.backend                  # DATABASE_URL, вне git
+└── TROUBLESHOOTING.md
 ```
+
+### Что где установлено
+
+Файлы в репозитории не работают сами: их ставят вручную (`sudo install -m 755` для
+скриптов, `-m 644` для юнитов, затем `sudo systemctl daemon-reload`).
+
+| Из репозитория | Куда ставится | VM |
+|---|---|---|
+| `scripts/health-alert.sh`, `scripts/reconcile.sh` | `/usr/local/bin/` | VM-1 |
+| `scripts/docker-user-fw.sh` | `/usr/local/sbin/` | VM-1 |
+| `backup/redis-backup.sh`, `minio-backup.sh`, `backup-failure.sh`, `backup-watch.sh`, `alert-notifier.py` | `/usr/local/bin/` | VM-1 |
+| `systemd/*.service`, `systemd/*.timer` | `/etc/systemd/system/` | VM-1 |
+| `systemd/docker.service.d/dockeruser-fw.conf` | `/etc/systemd/system/docker.service.d/` | VM-1 |
+| `db-backup/pg-backup.sh`, `vm1-pull.sh`, `backup/backup-failure.sh`, `backup/backup-watch.sh` | `/usr/local/bin/` | VM-2 |
+| `db-backup/pg-backup.*`, `db-backup/vm1-pull.service`, `vm1-pull.timer`, `db-backup/backup-watch.service`, `systemd/backup-failure@.service`, `systemd/backup-watch.timer` | `/etc/systemd/system/` | VM-2 |
+
+Сверка 2026-10-09: на VM-1 все 22 установленных файла побайтно совпали с репозиторием
+(`cmp`), на VM-2 совпали SHA-256 11 файлов (по первым 12 символам). Это состояние на
+момент сверки, дальше оно держится только дисциплиной «правка в репозитории, затем
+`install`».
+
+Создано вручную и в репозиторий не входит: `/etc/telegram-alert.env` (обе VM, 600, root),
+`.env` и `.env.backend` на VM-1, `/etc/sysctl.d/99-redis.conf` и правки chrony на VM-1,
+пользователи и группа `backup-pull`, `backup-read` (VM-1) и `vm1-pull` (VM-2) с ключами и
+`known_hosts`, состояние `/var/lib/alert-notifier/state.json`.
 
 **Не в репозитории (и не должно быть):** `~/certs/` (приватные ключи TLS —
 физически лежит вне репозитория, так и должно оставаться),
