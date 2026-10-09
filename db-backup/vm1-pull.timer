@@ -1,0 +1,10 @@
+[Unit]
+Description=Hourly pull of VM-1 backups (copies only when VM-1 has a new COMPLETE)
+
+[Timer]
+# 5 мин после загрузки: раньше backup-watch (10 мин), иначе он увидит старую метку, пока свежая копия уже лежит на ВМ-1
+OnBootSec=5min
+OnUnitActiveSec=1h
+
+[Install]
+WantedBy=timers.target

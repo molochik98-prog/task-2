@@ -6,7 +6,7 @@ import psycopg2
 from psycopg2.extras import RealDictCursor
 from psycopg2.pool import ThreadedConnectionPool
 
-from metrics import DB_POOL_IN_USE, DB_POOL_SIZE, DB_POOL_TIMEOUTS
+from metrics import DB_POOL_IN_USE, DB_POOL_SIZE, DB_POOL_STALE, DB_POOL_TIMEOUTS
 
 
 class PoolTimeout(Exception):
@@ -16,10 +16,11 @@ class PoolTimeout(Exception):
 _pool = None
 _sem = None
 _wait = float(os.environ.get("DB_POOL_TIMEOUT", "2"))
+_maxconn = 0
 
 
 def init_pool():
-    global _pool, _sem
+    global _pool, _sem, _maxconn
     maxconn = int(os.environ.get("DB_POOL_MAX", "5"))
     # minconn = maxconn: ThreadedConnectionPool закрывает возвращаемые соединения
     # сверх minconn, при min=1 под нагрузкой он работал бы как «без пула».
@@ -30,10 +31,37 @@ def init_pool():
         minconn, maxconn, os.environ["DATABASE_URL"], options=f"-c statement_timeout={stmt_ms}"
     )
     _sem = threading.BoundedSemaphore(maxconn)
+    _maxconn = maxconn
     DB_POOL_SIZE.set(maxconn)
 
 
 NO_POOL_FLAG = os.environ.get("NO_POOL_FLAG", "/var/uploads-tmp/NO_POOL")
+NO_PREPING_FLAG = os.environ.get("NO_PREPING_FLAG", "/var/uploads-tmp/NO_PREPING")
+
+
+def _checkout():
+    """Соединение из пула, проверенное запросом SELECT 1.
+
+    Сервер мог перезапуститься (обновление пакетов, рестарт) или оборвать сессию: пул об этом
+    не знает и отдал бы запросу мёртвое соединение. Здесь такое соединение закрывается и
+    заменяется следующим; если мертвы все, getconn откроет новое. Попыток maxconn + 1: хватает
+    на весь пул. Проверка идёт в autocommit: без BEGIN и без лишнего круга на ROLLBACK."""
+    last = None
+    for _ in range(_maxconn + 1):
+        conn = _pool.getconn()
+        try:
+            conn.autocommit = True
+            try:
+                with conn.cursor() as cur:
+                    cur.execute("SELECT 1")
+            finally:
+                conn.autocommit = False
+            return conn
+        except Exception as exc:
+            last = exc
+            DB_POOL_STALE.inc()
+            _pool.putconn(conn, close=True)
+    raise last
 
 
 @contextmanager
@@ -55,7 +83,7 @@ def get_conn():
         DB_POOL_TIMEOUTS.inc()
         raise PoolTimeout()
     try:
-        conn = _pool.getconn()
+        conn = _pool.getconn() if os.path.exists(NO_PREPING_FLAG) else _checkout()
     except Exception:
         _sem.release()
         raise

@@ -7,3 +7,4 @@ FILE_DB_LOADS = Counter("file_db_loads_total", "File metadata reads that reached
 DB_POOL_IN_USE = Gauge("db_pool_in_use", "Postgres connections currently checked out of the pool")
 DB_POOL_TIMEOUTS = Counter("db_pool_timeouts_total", "Requests that gave up waiting for a pooled connection")
 DB_POOL_SIZE = Gauge("db_pool_size", "Configured max Postgres pool connections")
+DB_POOL_STALE = Counter("db_pool_stale_total", "Dead connections found by the pre-ping check and dropped from the pool")

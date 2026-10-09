@@ -1,7 +1,7 @@
 [Unit]
-Description=Watchdog: свежесть бэкапа Postgres (молчание не считается успехом)
+Description=Watchdog: свежесть бэкапов (Postgres и копии Redis/MinIO со ВМ-1); молчание не считается успехом
 
 [Service]
 Type=oneshot
 EnvironmentFile=/etc/telegram-alert.env
-ExecStart=/usr/local/bin/backup-watch.sh postgres:/var/backups/postgresql-appdb/.last-success:93600
+ExecStart=/usr/local/bin/backup-watch.sh postgres:/var/backups/postgresql-appdb/.last-success:93600 redis-copy:/var/backups/vm1/redis/.last-success:93600 minio-copy:/var/backups/vm1/minio/.last-success:93600

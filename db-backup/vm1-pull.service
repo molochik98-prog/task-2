@@ -1,0 +1,15 @@
+[Unit]
+Description=Pull verified Redis/MinIO backups from VM-1 over SSH (read-only key)
+OnFailure=backup-failure@%n.service
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=oneshot
+User=vm1-pull
+ExecStart=/usr/local/bin/vm1-pull.sh
+TimeoutStartSec=20min
+NoNewPrivileges=true
+ProtectSystem=strict
+ReadWritePaths=/var/backups/vm1
+PrivateTmp=true

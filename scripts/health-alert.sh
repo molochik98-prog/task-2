@@ -1,7 +1,7 @@
 #!/bin/bash
 set -uo pipefail
 
-HEALTH_URL="https://app.local/health"
+HEALTH_URL="${HEALTH_URL:-https://app.local/health}"
 CACERT="/home/jahongir/certs/ca.crt"
 DISK_PATH="/"
 DISK_THRESHOLD=85
@@ -13,8 +13,12 @@ send_telegram() {
     -d "text=${message}" > /dev/null
 }
 
-if ! curl -fsS --max-time 5 --cacert "$CACERT" "$HEALTH_URL" > /dev/null; then
-  send_telegram "⚠️ $(hostname): /health не отвечает (${HEALTH_URL})"
+# Без -f: curl отдаёт код ответа, и в сообщение попадает HTTP-код (раньше он был виден только в журнале)
+if CODE=$(curl -sS --max-time 5 --cacert "$CACERT" -o /dev/null -w '%{http_code}' "$HEALTH_URL"); then
+  [[ "$CODE" == 200 ]] || send_telegram "⚠️ $(hostname): /health вернул HTTP ${CODE} (${HEALTH_URL})"
+else
+  RC=$?  # сразу: подстановка $(hostname) в тексте ниже сбросила бы $? в 0
+  send_telegram "⚠️ $(hostname): /health не отвечает, curl rc=${RC} (${HEALTH_URL})"
 fi
 
 USAGE=$(df --output=pcent "$DISK_PATH" | tail -1 | tr -dc '0-9')
