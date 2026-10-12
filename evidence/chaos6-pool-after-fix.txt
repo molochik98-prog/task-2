@@ -1,0 +1,1312 @@
+E 10:49:20 старт RUN=1791802160 backend=backend-blue, длительность 420 с; запусти блокировку на VM-2 (30-120 с после старта)
+L 10:49:20 200/0.028493 ra=- {"items":[{"id":"2b7b5d1a-e39b-4e51-a086-aa8dab03904f","object_key":"files/2b7b5d1a-e39b-4
+U 10:49:20 201/0.058642 {"id":"2b7b5d1a-e39b-4e51-a086-aa8dab03904f","status":"uploaded"}
+H 10:49:20 health=200/0.035266 file=200/0.015054
+M 10:49:20 db_pool_in_use=0.0 db_pool_timeouts_total=0.0 db_pool_size=5.0 
+A 10:49:20 none
+L 10:49:21 200/0.013975 ra=- {"items":[{"id":"2b7b5d1a-e39b-4e51-a086-aa8dab03904f","object_key":"files/2b7b5d1a-e39b-4
+L 10:49:21 200/0.016284 ra=- {"items":[{"id":"2b7b5d1a-e39b-4e51-a086-aa8dab03904f","object_key":"files/2b7b5d1a-e39b-4
+H 10:49:21 health=200/0.021917 file=200/0.007620
+L 10:49:22 200/0.017551 ra=- {"items":[{"id":"2b7b5d1a-e39b-4e51-a086-aa8dab03904f","object_key":"files/2b7b5d1a-e39b-4
+L 10:49:22 200/0.015067 ra=- {"items":[{"id":"2b7b5d1a-e39b-4e51-a086-aa8dab03904f","object_key":"files/2b7b5d1a-e39b-4
+H 10:49:22 health=200/0.015197 file=200/0.006433
+L 10:49:23 200/0.013096 ra=- {"items":[{"id":"2b7b5d1a-e39b-4e51-a086-aa8dab03904f","object_key":"files/2b7b5d1a-e39b-4
+L 10:49:23 200/0.022229 ra=- {"items":[{"id":"2b7b5d1a-e39b-4e51-a086-aa8dab03904f","object_key":"files/2b7b5d1a-e39b-4
+H 10:49:23 health=200/0.021176 file=200/0.005894
+L 10:49:24 200/0.009405 ra=- {"items":[{"id":"2b7b5d1a-e39b-4e51-a086-aa8dab03904f","object_key":"files/2b7b5d1a-e39b-4
+L 10:49:24 200/0.014356 ra=- {"items":[{"id":"2b7b5d1a-e39b-4e51-a086-aa8dab03904f","object_key":"files/2b7b5d1a-e39b-4
+H 10:49:24 health=200/0.014664 file=200/0.006997
+L 10:49:25 200/0.016213 ra=- {"items":[{"id":"2b7b5d1a-e39b-4e51-a086-aa8dab03904f","object_key":"files/2b7b5d1a-e39b-4
+L 10:49:25 200/0.012122 ra=- {"items":[{"id":"2b7b5d1a-e39b-4e51-a086-aa8dab03904f","object_key":"files/2b7b5d1a-e39b-4
+H 10:49:25 health=200/0.012128 file=200/0.007512
+M 10:49:25 db_pool_in_use=0.0 db_pool_timeouts_total=0.0 db_pool_size=5.0 
+L 10:49:26 200/0.014427 ra=- {"items":[{"id":"2b7b5d1a-e39b-4e51-a086-aa8dab03904f","object_key":"files/2b7b5d1a-e39b-4
+L 10:49:27 200/0.017771 ra=- {"items":[{"id":"2b7b5d1a-e39b-4e51-a086-aa8dab03904f","object_key":"files/2b7b5d1a-e39b-4
+H 10:49:27 health=200/0.018579 file=200/0.012873
+L 10:49:27 200/0.014525 ra=- {"items":[{"id":"2b7b5d1a-e39b-4e51-a086-aa8dab03904f","object_key":"files/2b7b5d1a-e39b-4
+L 10:49:28 200/0.017126 ra=- {"items":[{"id":"2b7b5d1a-e39b-4e51-a086-aa8dab03904f","object_key":"files/2b7b5d1a-e39b-4
+H 10:49:28 health=200/0.015715 file=200/0.007154
+L 10:49:28 200/0.015267 ra=- {"items":[{"id":"2b7b5d1a-e39b-4e51-a086-aa8dab03904f","object_key":"files/2b7b5d1a-e39b-4
+L 10:49:29 200/0.012927 ra=- {"items":[{"id":"2b7b5d1a-e39b-4e51-a086-aa8dab03904f","object_key":"files/2b7b5d1a-e39b-4
+H 10:49:29 health=200/0.012786 file=200/0.005281
+L 10:49:29 200/0.012913 ra=- {"items":[{"id":"2b7b5d1a-e39b-4e51-a086-aa8dab03904f","object_key":"files/2b7b5d1a-e39b-4
+L 10:49:30 200/0.016786 ra=- {"items":[{"id":"2b7b5d1a-e39b-4e51-a086-aa8dab03904f","object_key":"files/2b7b5d1a-e39b-4
+H 10:49:30 health=200/0.012482 file=200/0.009120
+L 10:49:30 200/0.011729 ra=- {"items":[{"id":"2b7b5d1a-e39b-4e51-a086-aa8dab03904f","object_key":"files/2b7b5d1a-e39b-4
+L 10:49:31 200/0.023021 ra=- {"items":[{"id":"2b7b5d1a-e39b-4e51-a086-aa8dab03904f","object_key":"files/2b7b5d1a-e39b-4
+U 10:49:31 201/0.044649 {"id":"9f036e21-65fb-4a8f-99d0-f2568aa7fc3d","status":"uploaded"}
+H 10:49:31 health=200/0.027511 file=200/0.018479
+M 10:49:31 db_pool_in_use=0.0 db_pool_timeouts_total=0.0 db_pool_size=5.0 
+L 10:49:32 200/0.013002 ra=- {"items":[{"id":"9f036e21-65fb-4a8f-99d0-f2568aa7fc3d","object_key":"files/9f036e21-65fb-4
+L 10:49:32 200/0.015162 ra=- {"items":[{"id":"9f036e21-65fb-4a8f-99d0-f2568aa7fc3d","object_key":"files/9f036e21-65fb-4
+H 10:49:32 health=200/0.015113 file=200/0.006867
+L 10:49:33 200/0.013821 ra=- {"items":[{"id":"9f036e21-65fb-4a8f-99d0-f2568aa7fc3d","object_key":"files/9f036e21-65fb-4
+L 10:49:33 200/0.015827 ra=- {"items":[{"id":"9f036e21-65fb-4a8f-99d0-f2568aa7fc3d","object_key":"files/9f036e21-65fb-4
+H 10:49:33 health=200/0.017106 file=200/0.007035
+L 10:49:34 200/0.014827 ra=- {"items":[{"id":"9f036e21-65fb-4a8f-99d0-f2568aa7fc3d","object_key":"files/9f036e21-65fb-4
+L 10:49:34 200/0.013642 ra=- {"items":[{"id":"9f036e21-65fb-4a8f-99d0-f2568aa7fc3d","object_key":"files/9f036e21-65fb-4
+H 10:49:34 health=200/0.012628 file=200/0.006094
+L 10:49:35 200/0.014916 ra=- {"items":[{"id":"9f036e21-65fb-4a8f-99d0-f2568aa7fc3d","object_key":"files/9f036e21-65fb-4
+L 10:49:35 200/0.009436 ra=- {"items":[{"id":"9f036e21-65fb-4a8f-99d0-f2568aa7fc3d","object_key":"files/9f036e21-65fb-4
+H 10:49:35 health=200/0.008703 file=200/0.005475
+L 10:49:36 200/0.013201 ra=- {"items":[{"id":"9f036e21-65fb-4a8f-99d0-f2568aa7fc3d","object_key":"files/9f036e21-65fb-4
+L 10:49:36 200/0.020152 ra=- {"items":[{"id":"9f036e21-65fb-4a8f-99d0-f2568aa7fc3d","object_key":"files/9f036e21-65fb-4
+H 10:49:36 health=200/0.018272 file=200/0.008612
+M 10:49:36 db_pool_in_use=0.0 db_pool_timeouts_total=0.0 db_pool_size=5.0 
+A 10:49:36 none
+L 10:49:37 200/0.013812 ra=- {"items":[{"id":"9f036e21-65fb-4a8f-99d0-f2568aa7fc3d","object_key":"files/9f036e21-65fb-4
+L 10:49:38 200/0.016789 ra=- {"items":[{"id":"9f036e21-65fb-4a8f-99d0-f2568aa7fc3d","object_key":"files/9f036e21-65fb-4
+H 10:49:38 health=200/0.017518 file=200/0.007596
+L 10:49:38 200/0.013678 ra=- {"items":[{"id":"9f036e21-65fb-4a8f-99d0-f2568aa7fc3d","object_key":"files/9f036e21-65fb-4
+L 10:49:39 200/0.015296 ra=- {"items":[{"id":"9f036e21-65fb-4a8f-99d0-f2568aa7fc3d","object_key":"files/9f036e21-65fb-4
+H 10:49:39 health=200/0.014814 file=200/0.007859
+L 10:49:39 200/0.016452 ra=- {"items":[{"id":"9f036e21-65fb-4a8f-99d0-f2568aa7fc3d","object_key":"files/9f036e21-65fb-4
+L 10:49:40 200/0.015616 ra=- {"items":[{"id":"9f036e21-65fb-4a8f-99d0-f2568aa7fc3d","object_key":"files/9f036e21-65fb-4
+H 10:49:40 health=200/0.015788 file=200/0.007053
+L 10:49:40 200/0.011515 ra=- {"items":[{"id":"9f036e21-65fb-4a8f-99d0-f2568aa7fc3d","object_key":"files/9f036e21-65fb-4
+L 10:49:41 200/0.014215 ra=- {"items":[{"id":"9f036e21-65fb-4a8f-99d0-f2568aa7fc3d","object_key":"files/9f036e21-65fb-4
+H 10:49:41 health=200/0.012968 file=200/0.006741
+L 10:49:41 200/0.011866 ra=- {"items":[{"id":"9f036e21-65fb-4a8f-99d0-f2568aa7fc3d","object_key":"files/9f036e21-65fb-4
+L 10:49:42 200/0.024854 ra=- {"items":[{"id":"9f036e21-65fb-4a8f-99d0-f2568aa7fc3d","object_key":"files/9f036e21-65fb-4
+U 10:49:42 201/0.039021 {"id":"94074c33-3e86-402f-b610-da5c3ed43abb","status":"uploaded"}
+H 10:49:42 health=200/0.024631 file=200/0.010461
+M 10:49:42 db_pool_in_use=0.0 db_pool_timeouts_total=0.0 db_pool_size=5.0 
+L 10:49:42 200/0.009142 ra=- {"items":[{"id":"94074c33-3e86-402f-b610-da5c3ed43abb","object_key":"files/94074c33-3e86-4
+L 10:49:43 200/0.013187 ra=- {"items":[{"id":"94074c33-3e86-402f-b610-da5c3ed43abb","object_key":"files/94074c33-3e86-4
+H 10:49:43 health=200/0.012444 file=200/0.006280
+L 10:49:43 200/0.014832 ra=- {"items":[{"id":"94074c33-3e86-402f-b610-da5c3ed43abb","object_key":"files/94074c33-3e86-4
+L 10:49:44 200/0.015408 ra=- {"items":[{"id":"94074c33-3e86-402f-b610-da5c3ed43abb","object_key":"files/94074c33-3e86-4
+H 10:49:44 health=200/0.014686 file=200/0.007186
+L 10:49:44 200/0.014172 ra=- {"items":[{"id":"94074c33-3e86-402f-b610-da5c3ed43abb","object_key":"files/94074c33-3e86-4
+L 10:49:45 200/0.020372 ra=- {"items":[{"id":"94074c33-3e86-402f-b610-da5c3ed43abb","object_key":"files/94074c33-3e86-4
+H 10:49:45 health=200/0.017523 file=200/0.007236
+L 10:49:45 200/0.013743 ra=- {"items":[{"id":"94074c33-3e86-402f-b610-da5c3ed43abb","object_key":"files/94074c33-3e86-4
+L 10:49:46 200/0.017036 ra=- {"items":[{"id":"94074c33-3e86-402f-b610-da5c3ed43abb","object_key":"files/94074c33-3e86-4
+H 10:49:46 health=200/0.015969 file=200/0.006570
+L 10:49:47 200/0.014878 ra=- {"items":[{"id":"94074c33-3e86-402f-b610-da5c3ed43abb","object_key":"files/94074c33-3e86-4
+L 10:49:47 200/0.017188 ra=- {"items":[{"id":"94074c33-3e86-402f-b610-da5c3ed43abb","object_key":"files/94074c33-3e86-4
+H 10:49:47 health=200/0.019559 file=200/0.008144
+M 10:49:47 db_pool_in_use=0.0 db_pool_timeouts_total=0.0 db_pool_size=5.0 
+L 10:49:48 200/0.009451 ra=- {"items":[{"id":"94074c33-3e86-402f-b610-da5c3ed43abb","object_key":"files/94074c33-3e86-4
+L 10:49:48 200/0.010825 ra=- {"items":[{"id":"94074c33-3e86-402f-b610-da5c3ed43abb","object_key":"files/94074c33-3e86-4
+H 10:49:48 health=200/0.008880 file=200/0.005166
+L 10:49:49 200/0.015536 ra=- {"items":[{"id":"94074c33-3e86-402f-b610-da5c3ed43abb","object_key":"files/94074c33-3e86-4
+L 10:49:49 200/0.021078 ra=- {"items":[{"id":"94074c33-3e86-402f-b610-da5c3ed43abb","object_key":"files/94074c33-3e86-4
+H 10:49:49 health=200/0.017475 file=200/0.008269
+L 10:49:50 200/0.013665 ra=- {"items":[{"id":"94074c33-3e86-402f-b610-da5c3ed43abb","object_key":"files/94074c33-3e86-4
+L 10:49:50 200/0.011266 ra=- {"items":[{"id":"94074c33-3e86-402f-b610-da5c3ed43abb","object_key":"files/94074c33-3e86-4
+H 10:49:50 health=200/0.011359 file=200/0.006236
+L 10:49:51 200/0.016485 ra=- {"items":[{"id":"94074c33-3e86-402f-b610-da5c3ed43abb","object_key":"files/94074c33-3e86-4
+L 10:49:51 200/0.019187 ra=- {"items":[{"id":"94074c33-3e86-402f-b610-da5c3ed43abb","object_key":"files/94074c33-3e86-4
+H 10:49:51 health=200/0.014513 file=200/0.007991
+L 10:49:52 200/0.014036 ra=- {"items":[{"id":"94074c33-3e86-402f-b610-da5c3ed43abb","object_key":"files/94074c33-3e86-4
+L 10:49:52 200/0.022229 ra=- {"items":[{"id":"94074c33-3e86-402f-b610-da5c3ed43abb","object_key":"files/94074c33-3e86-4
+H 10:49:52 health=200/0.016410 file=200/0.012954
+U 10:49:52 201/0.035216 {"id":"ca4b9b1b-3a22-4eb8-a092-18eac3d5a3aa","status":"uploaded"}
+M 10:49:52 db_pool_in_use=0.0 db_pool_timeouts_total=0.0 db_pool_size=5.0 
+A 10:49:53 none
+L 10:49:53 200/0.016051 ra=- {"items":[{"id":"ca4b9b1b-3a22-4eb8-a092-18eac3d5a3aa","object_key":"files/ca4b9b1b-3a22-4
+L 10:49:54 200/0.014388 ra=- {"items":[{"id":"ca4b9b1b-3a22-4eb8-a092-18eac3d5a3aa","object_key":"files/ca4b9b1b-3a22-4
+H 10:49:54 health=200/0.015128 file=200/0.006613
+L 10:49:54 200/0.014653 ra=- {"items":[{"id":"ca4b9b1b-3a22-4eb8-a092-18eac3d5a3aa","object_key":"files/ca4b9b1b-3a22-4
+L 10:49:55 200/0.014911 ra=- {"items":[{"id":"ca4b9b1b-3a22-4eb8-a092-18eac3d5a3aa","object_key":"files/ca4b9b1b-3a22-4
+H 10:49:55 health=200/0.016111 file=200/0.006342
+L 10:49:55 200/0.011902 ra=- {"items":[{"id":"ca4b9b1b-3a22-4eb8-a092-18eac3d5a3aa","object_key":"files/ca4b9b1b-3a22-4
+L 10:49:56 200/0.011485 ra=- {"items":[{"id":"ca4b9b1b-3a22-4eb8-a092-18eac3d5a3aa","object_key":"files/ca4b9b1b-3a22-4
+H 10:49:56 health=200/0.011690 file=200/0.010610
+L 10:49:56 200/0.017103 ra=- {"items":[{"id":"ca4b9b1b-3a22-4eb8-a092-18eac3d5a3aa","object_key":"files/ca4b9b1b-3a22-4
+L 10:49:57 200/0.023511 ra=- {"items":[{"id":"ca4b9b1b-3a22-4eb8-a092-18eac3d5a3aa","object_key":"files/ca4b9b1b-3a22-4
+H 10:49:57 health=200/0.023222 file=200/0.007269
+L 10:49:57 200/0.012971 ra=- {"items":[{"id":"ca4b9b1b-3a22-4eb8-a092-18eac3d5a3aa","object_key":"files/ca4b9b1b-3a22-4
+L 10:49:58 200/0.017351 ra=- {"items":[{"id":"ca4b9b1b-3a22-4eb8-a092-18eac3d5a3aa","object_key":"files/ca4b9b1b-3a22-4
+H 10:49:58 health=200/0.015191 file=200/0.007096
+M 10:49:58 db_pool_in_use=0.0 db_pool_timeouts_total=0.0 db_pool_size=5.0 
+L 10:49:59 200/0.013408 ra=- {"items":[{"id":"ca4b9b1b-3a22-4eb8-a092-18eac3d5a3aa","object_key":"files/ca4b9b1b-3a22-4
+L 10:49:59 200/0.014640 ra=- {"items":[{"id":"ca4b9b1b-3a22-4eb8-a092-18eac3d5a3aa","object_key":"files/ca4b9b1b-3a22-4
+H 10:49:59 health=200/0.012715 file=200/0.006719
+L 10:50:00 200/0.013336 ra=- {"items":[{"id":"ca4b9b1b-3a22-4eb8-a092-18eac3d5a3aa","object_key":"files/ca4b9b1b-3a22-4
+L 10:50:00 200/0.012413 ra=- {"items":[{"id":"ca4b9b1b-3a22-4eb8-a092-18eac3d5a3aa","object_key":"files/ca4b9b1b-3a22-4
+H 10:50:00 health=200/0.012106 file=200/0.005802
+L 10:50:01 200/0.010912 ra=- {"items":[{"id":"ca4b9b1b-3a22-4eb8-a092-18eac3d5a3aa","object_key":"files/ca4b9b1b-3a22-4
+L 10:50:01 200/0.016359 ra=- {"items":[{"id":"ca4b9b1b-3a22-4eb8-a092-18eac3d5a3aa","object_key":"files/ca4b9b1b-3a22-4
+H 10:50:01 health=200/0.015861 file=200/0.007441
+L 10:50:02 200/0.010971 ra=- {"items":[{"id":"ca4b9b1b-3a22-4eb8-a092-18eac3d5a3aa","object_key":"files/ca4b9b1b-3a22-4
+L 10:50:02 200/0.015844 ra=- {"items":[{"id":"ca4b9b1b-3a22-4eb8-a092-18eac3d5a3aa","object_key":"files/ca4b9b1b-3a22-4
+H 10:50:02 health=200/0.016380 file=200/0.008041
+L 10:50:03 200/0.014855 ra=- {"items":[{"id":"ca4b9b1b-3a22-4eb8-a092-18eac3d5a3aa","object_key":"files/ca4b9b1b-3a22-4
+L 10:50:03 200/0.023657 ra=- {"items":[{"id":"c0be3018-6567-435a-8616-cbc32d80d2f5","object_key":"files/c0be3018-6567-4
+H 10:50:03 health=200/0.019321 file=200/0.014365
+U 10:50:03 201/0.042454 {"id":"c0be3018-6567-435a-8616-cbc32d80d2f5","status":"uploaded"}
+M 10:50:03 db_pool_in_use=0.0 db_pool_timeouts_total=0.0 db_pool_size=5.0 
+L 10:50:04 200/0.014309 ra=- {"items":[{"id":"c0be3018-6567-435a-8616-cbc32d80d2f5","object_key":"files/c0be3018-6567-4
+L 10:50:05 200/0.018678 ra=- {"items":[{"id":"c0be3018-6567-435a-8616-cbc32d80d2f5","object_key":"files/c0be3018-6567-4
+H 10:50:05 health=200/0.019115 file=200/0.007919
+L 10:50:05 200/0.012790 ra=- {"items":[{"id":"c0be3018-6567-435a-8616-cbc32d80d2f5","object_key":"files/c0be3018-6567-4
+L 10:50:06 200/0.017483 ra=- {"items":[{"id":"c0be3018-6567-435a-8616-cbc32d80d2f5","object_key":"files/c0be3018-6567-4
+H 10:50:06 health=200/0.017021 file=200/0.005539
+L 10:50:06 200/0.018065 ra=- {"items":[{"id":"c0be3018-6567-435a-8616-cbc32d80d2f5","object_key":"files/c0be3018-6567-4
+L 10:50:07 200/0.016520 ra=- {"items":[{"id":"c0be3018-6567-435a-8616-cbc32d80d2f5","object_key":"files/c0be3018-6567-4
+H 10:50:07 health=200/0.014592 file=200/0.007449
+L 10:50:07 200/0.013891 ra=- {"items":[{"id":"c0be3018-6567-435a-8616-cbc32d80d2f5","object_key":"files/c0be3018-6567-4
+L 10:50:08 200/0.018429 ra=- {"items":[{"id":"c0be3018-6567-435a-8616-cbc32d80d2f5","object_key":"files/c0be3018-6567-4
+H 10:50:08 health=200/0.018276 file=200/0.006575
+L 10:50:08 200/0.013497 ra=- {"items":[{"id":"c0be3018-6567-435a-8616-cbc32d80d2f5","object_key":"files/c0be3018-6567-4
+L 10:50:09 200/0.021688 ra=- {"items":[{"id":"c0be3018-6567-435a-8616-cbc32d80d2f5","object_key":"files/c0be3018-6567-4
+H 10:50:09 health=200/0.020043 file=200/0.010484
+M 10:50:09 db_pool_in_use=0.0 db_pool_timeouts_total=0.0 db_pool_size=5.0 
+A 10:50:09 none
+L 10:50:09 200/0.015847 ra=- {"items":[{"id":"c0be3018-6567-435a-8616-cbc32d80d2f5","object_key":"files/c0be3018-6567-4
+L 10:50:10 200/0.015194 ra=- {"items":[{"id":"c0be3018-6567-435a-8616-cbc32d80d2f5","object_key":"files/c0be3018-6567-4
+H 10:50:10 health=200/0.013536 file=200/0.005677
+L 10:50:11 200/0.016573 ra=- {"items":[{"id":"c0be3018-6567-435a-8616-cbc32d80d2f5","object_key":"files/c0be3018-6567-4
+L 10:50:11 200/0.015082 ra=- {"items":[{"id":"c0be3018-6567-435a-8616-cbc32d80d2f5","object_key":"files/c0be3018-6567-4
+H 10:50:11 health=200/0.013798 file=200/0.007060
+L 10:50:12 200/0.015959 ra=- {"items":[{"id":"c0be3018-6567-435a-8616-cbc32d80d2f5","object_key":"files/c0be3018-6567-4
+L 10:50:12 200/0.015316 ra=- {"items":[{"id":"c0be3018-6567-435a-8616-cbc32d80d2f5","object_key":"files/c0be3018-6567-4
+H 10:50:12 health=200/0.023199 file=200/0.006796
+L 10:50:13 200/0.013582 ra=- {"items":[{"id":"c0be3018-6567-435a-8616-cbc32d80d2f5","object_key":"files/c0be3018-6567-4
+L 10:50:13 200/0.012973 ra=- {"items":[{"id":"c0be3018-6567-435a-8616-cbc32d80d2f5","object_key":"files/c0be3018-6567-4
+H 10:50:13 health=200/0.012310 file=200/0.006213
+L 10:50:14 200/0.013636 ra=- {"items":[{"id":"c0be3018-6567-435a-8616-cbc32d80d2f5","object_key":"files/c0be3018-6567-4
+L 10:50:14 200/0.036785 ra=- {"items":[{"id":"c0be3018-6567-435a-8616-cbc32d80d2f5","object_key":"files/c0be3018-6567-4
+H 10:50:14 health=200/0.037812 file=200/0.016161
+U 10:50:14 201/0.057125 {"id":"69f5234a-7b5c-4618-a3bc-2569f8d2c34c","status":"uploaded"}
+M 10:50:14 db_pool_in_use=0.0 db_pool_timeouts_total=0.0 db_pool_size=5.0 
+L 10:50:15 200/0.017694 ra=- {"items":[{"id":"69f5234a-7b5c-4618-a3bc-2569f8d2c34c","object_key":"files/69f5234a-7b5c-4
+L 10:50:15 200/0.013405 ra=- {"items":[{"id":"69f5234a-7b5c-4618-a3bc-2569f8d2c34c","object_key":"files/69f5234a-7b5c-4
+H 10:50:15 health=200/0.012515 file=200/0.006550
+L 10:50:16 200/0.014831 ra=- {"items":[{"id":"69f5234a-7b5c-4618-a3bc-2569f8d2c34c","object_key":"files/69f5234a-7b5c-4
+L 10:50:16 200/0.012719 ra=- {"items":[{"id":"69f5234a-7b5c-4618-a3bc-2569f8d2c34c","object_key":"files/69f5234a-7b5c-4
+H 10:50:16 health=200/0.011652 file=200/0.005625
+L 10:50:17 200/0.014867 ra=- {"items":[{"id":"69f5234a-7b5c-4618-a3bc-2569f8d2c34c","object_key":"files/69f5234a-7b5c-4
+L 10:50:18 200/0.017216 ra=- {"items":[{"id":"69f5234a-7b5c-4618-a3bc-2569f8d2c34c","object_key":"files/69f5234a-7b5c-4
+H 10:50:18 health=200/0.015227 file=200/0.007741
+L 10:50:18 200/0.011445 ra=- {"items":[{"id":"69f5234a-7b5c-4618-a3bc-2569f8d2c34c","object_key":"files/69f5234a-7b5c-4
+L 10:50:19 200/0.014570 ra=- {"items":[{"id":"69f5234a-7b5c-4618-a3bc-2569f8d2c34c","object_key":"files/69f5234a-7b5c-4
+H 10:50:19 health=200/0.013842 file=200/0.006221
+H 10:50:20 health=200/0.015289 file=200/0.008169
+M 10:50:20 db_pool_in_use=2.0 db_pool_timeouts_total=0.0 db_pool_size=5.0 
+H 10:50:21 health=200/0.014535 file=200/0.005824
+L 10:50:22 503/2.012666 ra=1 {"detail":"database busy, try again later"}
+H 10:50:22 health=503/2.016680 file=200/0.006695
+L 10:50:22 503/2.015869 ra=1 {"detail":"database busy, try again later"}
+L 10:50:23 503/2.015991 ra=1 {"detail":"database busy, try again later"}
+H 10:50:23 health=503/2.015763 file=200/0.034137
+M 10:50:25 db_pool_in_use=5.0 db_pool_timeouts_total=5.0 db_pool_size=5.0 
+A 10:50:25 none
+L 10:50:23 503/2.015004 ra=1 {"detail":"database busy, try again later"}
+L 10:50:24 503/2.006488 ra=1 {"detail":"database busy, try again later"}
+H 10:50:24 health=503/2.006314 file=200/0.007619
+L 10:50:24 503/2.009743 ra=1 {"detail":"database busy, try again later"}
+U 10:50:25 503/2.013364 {"detail":"database busy, try again later"}
+L 10:50:25 503/2.020437 ra=1 {"detail":"database busy, try again later"}
+H 10:50:25 health=503/2.011613 file=200/0.007797
+L 10:50:19 503/8.013395 ra=1 {"detail":"database timeout, try again later"}
+L 10:50:20 503/8.018466 ra=1 {"detail":"database timeout, try again later"}
+L 10:50:20 503/8.033292 ra=1 {"detail":"database timeout, try again later"}
+H 10:50:26 health=503/2.017450 file=200/0.011908
+L 10:50:21 503/8.015056 ra=1 {"detail":"database timeout, try again later"}
+H 10:50:27 health=200/1.511647 file=200/0.005522
+L 10:50:21 503/8.032256 ra=1 {"detail":"database timeout, try again later"}
+L 10:50:28 503/2.017132 ra=1 {"detail":"database busy, try again later"}
+H 10:50:28 health=503/2.020923 file=200/0.012091
+M 10:50:30 db_pool_in_use=5.0 db_pool_timeouts_total=15.0 db_pool_size=5.0 
+L 10:50:29 503/2.006192 ra=1 {"detail":"database busy, try again later"}
+L 10:50:29 503/2.009368 ra=1 {"detail":"database busy, try again later"}
+L 10:50:30 503/2.011046 ra=1 {"detail":"database busy, try again later"}
+L 10:50:30 503/2.012131 ra=1 {"detail":"database busy, try again later"}
+L 10:50:31 503/2.014983 ra=1 {"detail":"database busy, try again later"}
+H 10:50:29 health=503/2.011984 file=503/2.012799
+H 10:50:30 health=503/2.014331 file=503/0.975212
+L 10:50:32 503/2.007188 ra=1 {"detail":"database busy, try again later"}
+L 10:50:32 503/2.008634 ra=1 {"detail":"database busy, try again later"}
+L 10:50:33 503/2.012663 ra=1 {"detail":"database busy, try again later"}
+L 10:50:26 503/9.285313 ra=1 {"detail":"database timeout, try again later"}
+L 10:50:26 503/9.297963 ra=1 {"detail":"database timeout, try again later"}
+L 10:50:34 503/2.007840 ra=1 {"detail":"database busy, try again later"}
+M 10:50:36 db_pool_in_use=5.0 db_pool_timeouts_total=30.0 db_pool_size=5.0 
+L 10:50:34 503/2.011601 ra=1 {"detail":"database busy, try again later"}
+L 10:50:27 503/9.505259 ra=1 {"detail":"database timeout, try again later"}
+L 10:50:27 503/9.516659 ra=1 {"detail":"database timeout, try again later"}
+L 10:50:28 503/9.535502 ra=1 {"detail":"database timeout, try again later"}
+U 10:50:36 503/2.012769 {"detail":"database busy, try again later"}
+L 10:50:36 503/2.007929 ra=1 {"detail":"database busy, try again later"}
+L 10:50:37 503/2.010166 ra=1 {"detail":"database busy, try again later"}
+L 10:50:37 503/2.009751 ra=1 {"detail":"database busy, try again later"}
+L 10:50:38 503/2.009333 ra=1 {"detail":"database busy, try again later"}
+L 10:50:39 503/2.011681 ra=1 {"detail":"database busy, try again later"}
+L 10:50:39 503/2.009909 ra=1 {"detail":"database busy, try again later"}
+M 10:50:41 db_pool_in_use=5.0 db_pool_timeouts_total=43.0 db_pool_size=5.0 
+A 10:50:41 DbPoolExhausted=pending
+L 10:50:40 503/2.010905 ra=1 {"detail":"database busy, try again later"}
+L 10:50:40 503/2.013379 ra=1 {"detail":"database busy, try again later"}
+L 10:50:41 503/2.013386 ra=1 {"detail":"database busy, try again later"}
+L 10:50:41 503/2.010343 ra=1 {"detail":"database busy, try again later"}
+L 10:50:33 503/9.899403 ra=1 {"detail":"database timeout, try again later"}
+H 10:50:40 health=503/2.007727 file=503/1.576245
+H 10:50:32 health=503/2.008532 file=503/9.953158
+H 10:50:33 health=503/2.013094 file=503/8.914342
+H 10:50:39 health=503/2.010021 file=503/2.590322
+H 10:50:35 health=503/2.014486 file=503/6.876515
+H 10:50:41 health=503/2.012150 file=503/0.552095
+H 10:50:36 health=503/2.012649 file=503/5.881972
+H 10:50:38 health=503/2.009480 file=503/3.620015
+H 10:50:34 health=503/2.009082 file=503/7.922453
+H 10:50:37 health=503/2.012423 file=503/4.639111
+L 10:50:35 503/9.626406 ra=1 {"detail":"database timeout, try again later"}
+L 10:50:35 503/9.641345 ra=1 {"detail":"database timeout, try again later"}
+L 10:50:36 503/9.655692 ra=1 {"detail":"database timeout, try again later"}
+L 10:50:44 503/2.012859 ra=1 {"detail":"database busy, try again later"}
+L 10:50:44 503/2.019992 ra=1 {"detail":"database busy, try again later"}
+M 10:50:46 db_pool_in_use=5.0 db_pool_timeouts_total=52.0 db_pool_size=5.0 
+L 10:50:45 503/2.006326 ra=1 {"detail":"database busy, try again later"}
+L 10:50:45 503/2.015786 ra=1 {"detail":"database busy, try again later"}
+L 10:50:46 503/2.011252 ra=1 {"detail":"database busy, try again later"}
+U 10:50:46 503/2.008660 {"detail":"database busy, try again later"}
+L 10:50:46 503/2.012411 ra=1 {"detail":"database busy, try again later"}
+L 10:50:47 503/2.017430 ra=1 {"detail":"database busy, try again later"}
+L 10:50:48 503/2.012397 ra=1 {"detail":"database busy, try again later"}
+L 10:50:48 503/2.010435 ra=1 {"detail":"database busy, try again later"}
+L 10:50:49 503/2.010185 ra=1 {"detail":"database busy, try again later"}
+L 10:50:42 503/9.249706 ra=1 {"detail":"database timeout, try again later"}
+L 10:50:42 503/9.280831 ra=1 {"detail":"database timeout, try again later"}
+M 10:50:52 db_pool_in_use=5.0 db_pool_timeouts_total=65.0 db_pool_size=5.0 
+L 10:50:50 503/2.008165 ra=1 {"detail":"database busy, try again later"}
+L 10:50:43 503/9.484003 ra=1 {"detail":"database timeout, try again later"}
+L 10:50:43 503/9.492334 ra=1 {"detail":"database timeout, try again later"}
+H 10:50:49 health=503/2.011288 file=503/2.612168
+H 10:50:42 health=200/1.274827 file=503/9.756813
+H 10:50:46 health=503/2.022598 file=503/4.909360
+H 10:50:43 health=200/1.486873 file=503/8.525717
+H 10:50:45 health=503/2.018238 file=503/5.956058
+H 10:50:51 health=503/2.010837 file=503/0.588270
+H 10:50:50 health=200/1.879688 file=503/1.753275
+H 10:50:44 health=503/2.013613 file=503/6.968343
+H 10:50:48 health=503/2.011542 file=503/3.664626
+L 10:50:53 503/2.012532 ra=1 {"detail":"database busy, try again later"}
+L 10:50:53 503/2.011962 ra=1 {"detail":"database busy, try again later"}
+H 10:50:53 health=503/2.011382 file=503/0.336586
+H 10:50:52 health=200/1.587777 file=503/2.013024
+L 10:50:54 503/2.012851 ra=1 {"detail":"database busy, try again later"}
+L 10:50:54 503/2.012628 ra=1 {"detail":"database busy, try again later"}
+L 10:50:55 503/2.009353 ra=1 {"detail":"database busy, try again later"}
+L 10:50:55 503/2.009731 ra=1 {"detail":"database busy, try again later"}
+M 10:50:57 db_pool_in_use=5.0 db_pool_timeouts_total=77.0 db_pool_size=5.0 
+A 10:50:57 DbPoolExhausted=pending
+L 10:50:56 503/2.010098 ra=1 {"detail":"database busy, try again later"}
+H 10:50:54 health=503/2.016286 file=503/2.014864
+H 10:50:55 health=503/2.008811 file=503/1.019837
+L 10:50:56 503/2.008532 ra=1 {"detail":"database busy, try again later"}
+L 10:50:57 503/2.009517 ra=1 {"detail":"database busy, try again later"}
+L 10:50:49 503/9.838793 ra=1 {"detail":"database timeout, try again later"}
+L 10:50:57 503/2.007171 ra=1 {"detail":"database busy, try again later"}
+L 10:50:50 503/9.883826 ra=1 {"detail":"database timeout, try again later"}
+H 10:50:57 health=503/2.014024 file=503/0.992847
+H 10:50:56 health=503/2.010664 file=503/2.007714
+L 10:50:51 503/9.561607 ra=1 {"detail":"database timeout, try again later"}
+L 10:50:51 503/9.580969 ra=1 {"detail":"database timeout, try again later"}
+L 10:50:52 503/9.591344 ra=1 {"detail":"database timeout, try again later"}
+L 10:51:00 503/2.024103 ra=1 {"detail":"database busy, try again later"}
+H 10:50:58 health=200/1.881418 file=503/2.011176
+H 10:51:00 health=503/2.006838 file=503/0.870481
+L 10:51:01 503/2.008940 ra=1 {"detail":"database busy, try again later"}
+M 10:51:03 db_pool_in_use=5.0 db_pool_timeouts_total=91.0 db_pool_size=5.0 
+L 10:51:01 503/2.007420 ra=1 {"detail":"database busy, try again later"}
+L 10:51:02 503/2.007936 ra=1 {"detail":"database busy, try again later"}
+L 10:51:02 503/2.013427 ra=1 {"detail":"database busy, try again later"}
+H 10:51:01 health=503/2.010077 file=503/2.006989
+H 10:51:02 health=503/2.007228 file=503/0.993675
+L 10:51:03 503/2.008082 ra=1 {"detail":"database busy, try again later"}
+L 10:51:03 503/2.007526 ra=1 {"detail":"database busy, try again later"}
+L 10:51:04 503/2.012636 ra=1 {"detail":"database busy, try again later"}
+L 10:51:04 503/2.008869 ra=1 {"detail":"database busy, try again later"}
+H 10:51:03 health=503/2.008402 file=503/2.010744
+H 10:51:04 health=503/2.015551 file=503/0.736298
+L 10:51:05 503/2.014888 ra=1 {"detail":"database busy, try again later"}
+U 10:50:57 503/9.943984 {"detail":"database timeout, try again later"}
+L 10:50:58 503/9.680131 ra=1 {"detail":"database timeout, try again later"}
+M 10:51:08 db_pool_in_use=5.0 db_pool_timeouts_total=106.0 db_pool_size=5.0 
+L 10:50:58 503/9.887131 ra=1 {"detail":"database timeout, try again later"}
+H 10:51:05 health=503/2.014048 file=503/2.013855
+H 10:51:06 health=503/2.012180 file=503/1.005111
+L 10:51:07 503/2.008772 ra=1 {"detail":"database busy, try again later"}
+L 10:50:59 503/9.910201 ra=1 {"detail":"database timeout, try again later"}
+L 10:51:00 503/9.935777 ra=1 {"detail":"database timeout, try again later"}
+L 10:51:08 503/2.008601 ra=1 {"detail":"database busy, try again later"}
+L 10:51:09 503/2.014322 ra=1 {"detail":"database busy, try again later"}
+H 10:51:08 health=200/1.543961 file=503/1.463234
+H 10:51:07 health=503/2.009715 file=503/2.011749
+L 10:51:09 503/2.008406 ra=1 {"detail":"database busy, try again later"}
+L 10:51:10 503/2.011227 ra=1 {"detail":"database busy, try again later"}
+L 10:51:10 503/2.014186 ra=1 {"detail":"database busy, try again later"}
+L 10:51:11 503/2.011995 ra=1 {"detail":"database busy, try again later"}
+H 10:51:09 health=503/2.013057 file=503/2.019208
+H 10:51:10 health=503/2.019405 file=503/0.982363
+L 10:51:11 503/2.008634 ra=1 {"detail":"database busy, try again later"}
+M 10:51:13 db_pool_in_use=5.0 db_pool_timeouts_total=121.0 db_pool_size=5.0 
+A 10:51:13 DbPoolExhausted=pending
+L 10:51:12 503/2.007259 ra=1 {"detail":"database busy, try again later"}
+L 10:51:12 503/2.011836 ra=1 {"detail":"database busy, try again later"}
+L 10:51:13 503/2.009397 ra=1 {"detail":"database busy, try again later"}
+L 10:51:05 503/9.776728 ra=1 {"detail":"database timeout, try again later"}
+L 10:51:13 503/2.009684 ra=1 {"detail":"database busy, try again later"}
+L 10:51:06 503/9.803304 ra=1 {"detail":"database timeout, try again later"}
+L 10:51:06 503/10.000562 ra=1 {"detail":"database timeout, try again later"}
+L 10:51:07 503/9.508585 ra=1 {"detail":"database timeout, try again later"}
+U 10:51:08 503/9.551756 {"detail":"database timeout, try again later"}
+L 10:51:16 503/2.008606 ra=1 {"detail":"database busy, try again later"}
+L 10:51:17 503/2.013110 ra=1 {"detail":"database busy, try again later"}
+M 10:51:19 db_pool_in_use=5.0 db_pool_timeouts_total=130.0 db_pool_size=5.0 
+L 10:51:17 503/2.008181 ra=1 {"detail":"database busy, try again later"}
+L 10:51:18 503/2.010903 ra=1 {"detail":"database busy, try again later"}
+L 10:51:18 503/2.005991 ra=1 {"detail":"database busy, try again later"}
+L 10:51:19 503/2.014173 ra=1 {"detail":"database busy, try again later"}
+U 10:51:19 503/2.010497 {"detail":"database busy, try again later"}
+L 10:51:19 503/2.029430 ra=1 {"detail":"database busy, try again later"}
+L 10:51:20 503/2.012526 ra=1 {"detail":"database busy, try again later"}
+L 10:51:20 503/2.010987 ra=1 {"detail":"database busy, try again later"}
+L 10:51:21 503/2.013571 ra=1 {"detail":"database busy, try again later"}
+H 10:51:11 health=503/2.010231 file=503/9.940173
+H 10:51:16 health=200/1.943497 file=503/5.663028
+H 10:51:12 health=503/2.024007 file=503/8.888923
+H 10:51:17 health=503/2.012470 file=503/4.564313
+H 10:51:21 health=503/2.012946 file=503/0.249907
+H 10:51:20 health=503/2.011173 file=503/1.266230
+H 10:51:18 health=503/2.012377 file=503/3.560697
+H 10:51:19 health=503/2.013278 file=503/2.525150
+H 10:51:14 health=200/1.882634 file=503/6.744389
+H 10:51:13 health=503/2.013255 file=503/7.910554
+L 10:51:14 503/9.694768 ra=1 {"detail":"database timeout, try again later"}
+M 10:51:24 db_pool_in_use=5.0 db_pool_timeouts_total=143.0 db_pool_size=5.0 
+L 10:51:14 503/9.887555 ra=1 {"detail":"database timeout, try again later"}
+L 10:51:15 503/9.907771 ra=1 {"detail":"database timeout, try again later"}
+L 10:51:23 503/2.010128 ra=1 {"detail":"database busy, try again later"}
+L 10:51:16 503/9.953556 ra=1 {"detail":"database timeout, try again later"}
+L 10:51:24 503/2.012584 ra=1 {"detail":"database busy, try again later"}
+L 10:51:25 503/2.013612 ra=1 {"detail":"database busy, try again later"}
+L 10:51:25 503/2.011894 ra=1 {"detail":"database busy, try again later"}
+L 10:51:26 503/2.006772 ra=1 {"detail":"database busy, try again later"}
+L 10:51:26 503/2.024419 ra=1 {"detail":"database busy, try again later"}
+L 10:51:27 503/2.011594 ra=1 {"detail":"database busy, try again later"}
+L 10:51:27 503/2.012641 ra=1 {"detail":"database busy, try again later"}
+M 10:51:29 db_pool_in_use=5.0 db_pool_timeouts_total=155.0 db_pool_size=5.0 
+A 10:51:30 DbPoolExhausted=pending
+L 10:51:28 503/2.007634 ra=1 {"detail":"database busy, try again later"}
+L 10:51:28 503/2.013873 ra=1 {"detail":"database busy, try again later"}
+L 10:51:29 503/2.010361 ra=1 {"detail":"database busy, try again later"}
+L 10:51:21 503/9.749608 ra=1 {"detail":"database timeout, try again later"}
+U 10:51:29 503/2.007230 {"detail":"database busy, try again later"}
+L 10:51:22 503/9.785903 ra=1 {"detail":"database timeout, try again later"}
+L 10:51:22 503/9.982952 ra=1 {"detail":"database timeout, try again later"}
+L 10:51:23 503/9.996362 ra=1 {"detail":"database timeout, try again later"}
+H 10:51:22 health=200/1.781684 file=503/9.798712
+H 10:51:24 health=503/2.012580 file=503/7.502637
+H 10:51:28 health=503/2.010877 file=503/3.206261
+H 10:51:23 health=200/1.988259 file=503/8.559732
+H 10:51:31 health=200/1.841149 file=503/1.067526
+H 10:51:29 health=200/1.856895 file=503/2.344880
+H 10:51:26 health=503/2.022207 file=503/5.250570
+H 10:51:27 health=503/2.013550 file=503/4.227424
+H 10:51:25 health=503/2.012703 file=503/6.283035
+L 10:51:32 503/2.012682 ra=1 {"detail":"database busy, try again later"}
+L 10:51:33 503/2.006918 ra=1 {"detail":"database busy, try again later"}
+M 10:51:35 db_pool_in_use=5.0 db_pool_timeouts_total=165.0 db_pool_size=5.0 
+L 10:51:33 503/2.006686 ra=1 {"detail":"database busy, try again later"}
+H 10:51:32 health=503/2.008780 file=503/2.011145
+H 10:51:33 health=503/2.008197 file=503/0.982289
+L 10:51:34 503/2.006005 ra=1 {"detail":"database busy, try again later"}
+L 10:51:34 503/2.010527 ra=1 {"detail":"database busy, try again later"}
+L 10:51:35 503/2.015003 ra=1 {"detail":"database busy, try again later"}
+L 10:51:35 503/2.018351 ra=1 {"detail":"database busy, try again later"}
+H 10:51:34 health=503/2.005909 file=503/2.008286
+H 10:51:35 health=503/2.015259 file=503/0.962144
+L 10:51:36 503/2.018026 ra=1 {"detail":"database busy, try again later"}
+L 10:51:36 503/2.013228 ra=1 {"detail":"database busy, try again later"}
+L 10:51:37 503/2.013329 ra=1 {"detail":"database busy, try again later"}
+L 10:51:29 503/9.864253 ra=1 {"detail":"database timeout, try again later"}
+L 10:51:30 503/9.634636 ra=1 {"detail":"database timeout, try again later"}
+L 10:51:38 503/2.009606 ra=1 {"detail":"database busy, try again later"}
+M 10:51:40 db_pool_in_use=5.0 db_pool_timeouts_total=181.0 db_pool_size=5.0 
+L 10:51:31 503/9.846677 ra=1 {"detail":"database timeout, try again later"}
+L 10:51:31 503/9.864513 ra=1 {"detail":"database timeout, try again later"}
+L 10:51:39 503/2.013066 ra=1 {"detail":"database busy, try again later"}
+L 10:51:32 503/9.924520 ra=1 {"detail":"database timeout, try again later"}
+U 10:51:40 503/2.013577 {"detail":"database busy, try again later"}
+L 10:51:41 503/2.017084 ra=1 {"detail":"database busy, try again later"}
+L 10:51:41 503/2.012528 ra=1 {"detail":"database busy, try again later"}
+L 10:51:42 503/2.010779 ra=1 {"detail":"database busy, try again later"}
+L 10:51:42 503/2.013572 ra=1 {"detail":"database busy, try again later"}
+L 10:51:43 503/2.011009 ra=1 {"detail":"database busy, try again later"}
+L 10:51:43 503/2.023384 ra=1 {"detail":"database busy, try again later"}
+M 10:51:45 db_pool_in_use=5.0 db_pool_timeouts_total=192.0 db_pool_size=5.0 
+A 10:51:46 ApiErrorRateHigh=pending ApiLatencyHigh=pending DbPoolExhausted=firing
+L 10:51:44 503/2.012323 ra=1 {"detail":"database busy, try again later"}
+L 10:51:44 503/2.009222 ra=1 {"detail":"database busy, try again later"}
+L 10:51:45 503/2.010021 ra=1 {"detail":"database busy, try again later"}
+L 10:51:37 503/9.743214 ra=1 {"detail":"database timeout, try again later"}
+H 10:51:36 health=503/2.018444 file=503/9.774043
+H 10:51:43 health=503/2.023031 file=503/2.400944
+H 10:51:42 health=503/2.013928 file=503/3.436267
+H 10:51:45 health=200/1.830965 file=503/0.531705
+H 10:51:37 health=503/2.012633 file=503/8.772393
+H 10:51:39 health=200/1.990508 file=503/6.750280
+H 10:51:38 health=503/2.011136 file=503/7.750300
+H 10:51:41 health=503/2.014186 file=503/4.460267
+H 10:51:44 health=503/2.014837 file=503/1.372892
+H 10:51:40 health=200/1.532666 file=503/6.166569
+L 10:51:38 503/9.980431 ra=1 {"detail":"database timeout, try again later"}
+L 10:51:39 503/9.997645 ra=1 {"detail":"database timeout, try again later"}
+L 10:51:40 503/9.540705 ra=1 {"detail":"database timeout, try again later"}
+L 10:51:48 503/2.016695 ra=1 {"detail":"database busy, try again later"}
+H 10:51:47 health=200/1.791822 file=503/2.010146
+H 10:51:48 health=503/2.010399 file=503/0.779236
+L 10:51:49 503/2.012182 ra=1 {"detail":"database busy, try again later"}
+M 10:51:51 db_pool_in_use=5.0 db_pool_timeouts_total=201.0 db_pool_size=5.0 
+L 10:51:49 503/2.010357 ra=1 {"detail":"database busy, try again later"}
+L 10:51:50 503/2.010152 ra=1 {"detail":"database busy, try again later"}
+L 10:51:50 503/2.009758 ra=1 {"detail":"database busy, try again later"}
+H 10:51:49 health=503/2.014051 file=503/2.012070
+H 10:51:50 health=503/2.011733 file=503/0.998546
+U 10:51:51 503/2.009779 {"detail":"database busy, try again later"}
+L 10:51:51 503/2.009110 ra=1 {"detail":"database busy, try again later"}
+L 10:51:51 503/2.011962 ra=1 {"detail":"database busy, try again later"}
+L 10:51:52 503/2.015331 ra=1 {"detail":"database busy, try again later"}
+L 10:51:52 503/2.010725 ra=1 {"detail":"database busy, try again later"}
+H 10:51:51 health=503/2.015639 file=503/2.013571
+H 10:51:52 health=503/2.015307 file=503/0.768284
+L 10:51:53 503/2.012384 ra=1 {"detail":"database busy, try again later"}
+L 10:51:45 503/9.834078 ra=1 {"detail":"database timeout, try again later"}
+L 10:51:46 503/9.576049 ra=1 {"detail":"database timeout, try again later"}
+M 10:51:56 db_pool_in_use=5.0 db_pool_timeouts_total=216.0 db_pool_size=5.0 
+L 10:51:47 503/9.794877 ra=1 {"detail":"database timeout, try again later"}
+L 10:51:47 503/9.809093 ra=1 {"detail":"database timeout, try again later"}
+L 10:51:55 503/2.006509 ra=1 {"detail":"database busy, try again later"}
+L 10:51:48 503/9.871082 ra=1 {"detail":"database timeout, try again later"}
+L 10:51:56 503/2.014515 ra=1 {"detail":"database busy, try again later"}
+L 10:51:57 503/2.015129 ra=1 {"detail":"database busy, try again later"}
+L 10:51:57 503/2.011282 ra=1 {"detail":"database busy, try again later"}
+L 10:51:58 503/2.014144 ra=1 {"detail":"database busy, try again later"}
+L 10:51:58 503/2.010048 ra=1 {"detail":"database busy, try again later"}
+L 10:51:59 503/2.015102 ra=1 {"detail":"database busy, try again later"}
+L 10:51:59 503/2.008120 ra=1 {"detail":"database busy, try again later"}
+M 10:52:01 db_pool_in_use=5.0 db_pool_timeouts_total=229.0 db_pool_size=5.0 
+A 10:52:02 ApiErrorRateHigh=pending ApiLatencyHigh=pending DbPoolExhausted=firing
+L 10:52:00 503/2.008946 ra=1 {"detail":"database busy, try again later"}
+L 10:52:00 503/2.008846 ra=1 {"detail":"database busy, try again later"}
+L 10:52:01 503/2.011230 ra=1 {"detail":"database busy, try again later"}
+L 10:51:53 503/9.678664 ra=1 {"detail":"database timeout, try again later"}
+U 10:52:01 503/2.013089 {"detail":"database busy, try again later"}
+L 10:51:54 503/9.695059 ra=1 {"detail":"database timeout, try again later"}
+L 10:51:55 503/9.929278 ra=1 {"detail":"database timeout, try again later"}
+H 10:52:03 health=200/1.792147 file=503/0.505901
+H 10:51:53 health=503/2.011540 file=503/9.962442
+H 10:51:56 health=503/2.016365 file=503/6.898441
+H 10:51:57 health=503/2.013511 file=503/5.662162
+H 10:52:00 health=503/2.011221 file=503/2.595691
+H 10:51:54 health=200/1.691202 file=503/9.267213
+H 10:51:58 health=503/2.012817 file=503/4.651511
+H 10:51:59 health=503/2.009888 file=503/3.633337
+H 10:51:55 health=503/2.007329 file=503/7.958900
+H 10:52:01 health=200/1.795155 file=503/1.808973
+L 10:51:56 503/9.998847 ra=1 {"detail":"database timeout, try again later"}
+L 10:52:04 503/2.018038 ra=1 {"detail":"database busy, try again later"}
+L 10:52:05 503/2.012082 ra=1 {"detail":"database busy, try again later"}
+M 10:52:07 db_pool_in_use=5.0 db_pool_timeouts_total=237.0 db_pool_size=5.0 
+L 10:52:05 503/2.011267 ra=1 {"detail":"database busy, try again later"}
+H 10:52:04 health=200/1.867949 file=503/2.011429
+H 10:52:05 health=503/2.015000 file=503/0.820996
+L 10:52:06 503/2.008077 ra=1 {"detail":"database busy, try again later"}
+L 10:52:06 503/2.015106 ra=1 {"detail":"database busy, try again later"}
+L 10:52:07 503/2.017085 ra=1 {"detail":"database busy, try again later"}
+L 10:52:08 503/2.017003 ra=1 {"detail":"database busy, try again later"}
+H 10:52:06 health=503/2.010539 file=503/2.009206
+H 10:52:07 health=503/2.017905 file=503/0.962082
+L 10:52:08 503/2.018098 ra=1 {"detail":"database busy, try again later"}
+L 10:52:09 503/2.010956 ra=1 {"detail":"database busy, try again later"}
+L 10:52:09 503/2.013464 ra=1 {"detail":"database busy, try again later"}
+L 10:52:01 503/9.799754 ra=1 {"detail":"database timeout, try again later"}
+L 10:52:02 503/9.578939 ra=1 {"detail":"database timeout, try again later"}
+L 10:52:10 503/2.008705 ra=1 {"detail":"database busy, try again later"}
+M 10:52:12 db_pool_in_use=5.0 db_pool_timeouts_total=253.0 db_pool_size=5.0 
+L 10:52:03 503/9.798149 ra=1 {"detail":"database timeout, try again later"}
+L 10:52:03 503/9.818011 ra=1 {"detail":"database timeout, try again later"}
+L 10:52:04 503/9.876678 ra=1 {"detail":"database timeout, try again later"}
+U 10:52:12 503/2.012033 {"detail":"database busy, try again later"}
+L 10:52:12 503/2.015069 ra=1 {"detail":"database busy, try again later"}
+L 10:52:13 503/2.013760 ra=1 {"detail":"database busy, try again later"}
+L 10:52:13 503/2.019566 ra=1 {"detail":"database busy, try again later"}
+L 10:52:14 503/2.012977 ra=1 {"detail":"database busy, try again later"}
+L 10:52:14 503/2.009926 ra=1 {"detail":"database busy, try again later"}
+L 10:52:15 503/2.012803 ra=1 {"detail":"database busy, try again later"}
+L 10:52:15 503/2.016354 ra=1 {"detail":"database busy, try again later"}
+M 10:52:18 db_pool_in_use=5.0 db_pool_timeouts_total=265.0 db_pool_size=5.0 
+A 10:52:18 ApiErrorRateHigh=pending ApiLatencyHigh=pending DbPoolExhausted=firing
+L 10:52:16 503/2.008448 ra=1 {"detail":"database busy, try again later"}
+L 10:52:16 503/2.009446 ra=1 {"detail":"database busy, try again later"}
+L 10:52:17 503/2.010318 ra=1 {"detail":"database busy, try again later"}
+L 10:52:10 503/9.633997 ra=1 {"detail":"database timeout, try again later"}
+H 10:52:08 health=503/2.020663 file=503/9.690703
+H 10:52:16 health=503/2.010712 file=503/1.237107
+H 10:52:15 health=503/2.016947 file=503/2.232635
+H 10:52:10 health=503/2.008797 file=503/7.655763
+H 10:52:14 health=503/2.011959 file=503/3.279887
+H 10:52:12 health=503/2.015361 file=503/5.590727
+H 10:52:18 health=200/1.691794 file=503/0.540286
+H 10:52:09 health=503/2.016033 file=503/8.662269
+H 10:52:11 health=200/1.888407 file=503/6.748829
+H 10:52:13 health=503/2.016177 file=503/4.316141
+L 10:52:11 503/9.886447 ra=1 {"detail":"database timeout, try again later"}
+L 10:52:11 503/9.891046 ra=1 {"detail":"database timeout, try again later"}
+L 10:52:12 503/9.938842 ra=1 {"detail":"database timeout, try again later"}
+L 10:52:20 503/2.015072 ra=1 {"detail":"database busy, try again later"}
+H 10:52:20 health=200/1.644450 file=503/0.915658
+H 10:52:19 health=200/1.571491 file=503/2.006506
+L 10:52:21 503/2.017465 ra=1 {"detail":"database busy, try again later"}
+M 10:52:23 db_pool_in_use=5.0 db_pool_timeouts_total=273.0 db_pool_size=5.0 
+L 10:52:21 503/2.014806 ra=1 {"detail":"database busy, try again later"}
+L 10:52:22 503/2.011815 ra=1 {"detail":"database busy, try again later"}
+L 10:52:22 503/2.009440 ra=1 {"detail":"database busy, try again later"}
+H 10:52:21 health=503/2.013411 file=503/2.017796
+H 10:52:22 health=503/2.012407 file=503/0.992595
+U 10:52:23 503/2.019086 {"detail":"database busy, try again later"}
+L 10:52:23 503/2.017245 ra=1 {"detail":"database busy, try again later"}
+L 10:52:24 503/2.011671 ra=1 {"detail":"database busy, try again later"}
+L 10:52:24 503/2.013470 ra=1 {"detail":"database busy, try again later"}
+L 10:52:25 503/2.016796 ra=1 {"detail":"database busy, try again later"}
+H 10:52:23 health=503/2.019995 file=503/2.015235
+H 10:52:24 health=503/2.011579 file=503/0.774320
+L 10:52:18 503/9.694590 ra=1 {"detail":"database timeout, try again later"}
+L 10:52:18 503/9.359240 ra=1 {"detail":"database timeout, try again later"}
+L 10:52:26 503/2.016390 ra=1 {"detail":"database busy, try again later"}
+L 10:52:19 503/9.574939 ra=1 {"detail":"database timeout, try again later"}
+M 10:52:28 db_pool_in_use=5.0 db_pool_timeouts_total=288.0 db_pool_size=5.0 
+L 10:52:19 503/9.590329 ra=1 {"detail":"database timeout, try again later"}
+L 10:52:27 503/2.007911 ra=1 {"detail":"database busy, try again later"}
+L 10:52:20 503/9.651245 ra=1 {"detail":"database timeout, try again later"}
+L 10:52:28 503/2.012870 ra=1 {"detail":"database busy, try again later"}
+L 10:52:29 503/2.012243 ra=1 {"detail":"database busy, try again later"}
+L 10:52:30 503/2.010433 ra=1 {"detail":"database busy, try again later"}
+L 10:52:30 503/2.012022 ra=1 {"detail":"database busy, try again later"}
+L 10:52:31 503/2.046784 ra=1 {"detail":"database busy, try again later"}
+L 10:52:31 503/2.016852 ra=1 {"detail":"database busy, try again later"}
+L 10:52:32 503/2.010481 ra=1 {"detail":"database busy, try again later"}
+M 10:52:34 db_pool_in_use=5.0 db_pool_timeouts_total=301.0 db_pool_size=5.0 
+A 10:52:34 ApiErrorRateHigh=pending ApiLatencyHigh=pending DbPoolExhausted=firing
+L 10:52:32 503/2.007771 ra=1 {"detail":"database busy, try again later"}
+L 10:52:33 503/2.016464 ra=1 {"detail":"database busy, try again later"}
+L 10:52:33 503/2.008987 ra=1 {"detail":"database busy, try again later"}
+L 10:52:25 503/9.960443 ra=1 {"detail":"database timeout, try again later"}
+U 10:52:34 503/2.012195 {"detail":"database busy, try again later"}
+L 10:52:26 503/9.979813 ra=1 {"detail":"database timeout, try again later"}
+L 10:52:27 503/9.679001 ra=1 {"detail":"database timeout, try again later"}
+H 10:52:35 health=200/1.423780 file=503/0.509816
+H 10:52:27 health=503/2.009884 file=503/7.678469
+H 10:52:33 health=503/2.017570 file=503/2.313880
+H 10:52:25 health=200/1.953874 file=503/9.787067
+H 10:52:32 health=503/2.014928 file=503/3.363366
+H 10:52:28 health=503/2.011772 file=503/6.637962
+H 10:52:34 health=503/2.017798 file=503/1.308479
+H 10:52:31 health=503/2.052899 file=503/4.332986
+H 10:52:30 health=503/2.012616 file=503/5.406754
+H 10:52:26 health=503/2.018681 file=503/8.702982
+L 10:52:28 503/9.765773 ra=1 {"detail":"database timeout, try again later"}
+L 10:52:37 503/2.010736 ra=1 {"detail":"database busy, try again later"}
+L 10:52:37 503/2.010950 ra=1 {"detail":"database busy, try again later"}
+M 10:52:39 db_pool_in_use=5.0 db_pool_timeouts_total=310.0 db_pool_size=5.0 
+H 10:52:36 health=200/1.508413 file=503/2.016220
+H 10:52:37 health=503/2.015280 file=503/0.493586
+L 10:52:38 503/2.008086 ra=1 {"detail":"database busy, try again later"}
+L 10:52:38 503/2.012840 ra=1 {"detail":"database busy, try again later"}
+L 10:52:39 503/2.007691 ra=1 {"detail":"database busy, try again later"}
+L 10:52:39 503/2.008736 ra=1 {"detail":"database busy, try again later"}
+L 10:52:40 503/2.012044 ra=1 {"detail":"database busy, try again later"}
+H 10:52:38 health=503/2.014572 file=503/2.011194
+H 10:52:39 health=503/2.015918 file=503/0.986046
+L 10:52:40 503/2.008956 ra=1 {"detail":"database busy, try again later"}
+L 10:52:41 503/2.009974 ra=1 {"detail":"database busy, try again later"}
+L 10:52:34 503/9.530051 ra=1 {"detail":"database timeout, try again later"}
+L 10:52:35 503/9.193341 ra=1 {"detail":"database timeout, try again later"}
+H 10:52:40 health=503/2.009863 file=503/2.007787
+H 10:52:41 health=200/1.805818 file=503/1.203752
+L 10:52:42 503/2.005827 ra=1 {"detail":"database busy, try again later"}
+L 10:52:35 503/9.431066 ra=1 {"detail":"database timeout, try again later"}
+M 10:52:44 db_pool_in_use=5.0 db_pool_timeouts_total=325.0 db_pool_size=5.0 
+L 10:52:36 503/9.447266 ra=1 {"detail":"database timeout, try again later"}
+L 10:52:36 503/9.524245 ra=1 {"detail":"database timeout, try again later"}
+H 10:52:43 health=200/1.573819 file=503/1.419173
+H 10:52:42 health=503/2.009117 file=503/2.013004
+U 10:52:44 503/2.009338 {"detail":"database busy, try again later"}
+L 10:52:44 503/2.011081 ra=1 {"detail":"database busy, try again later"}
+L 10:52:45 503/2.010637 ra=1 {"detail":"database busy, try again later"}
+L 10:52:46 503/2.009940 ra=1 {"detail":"database busy, try again later"}
+L 10:52:46 503/2.013297 ra=1 {"detail":"database busy, try again later"}
+H 10:52:44 health=503/2.012115 file=503/2.011320
+H 10:52:46 health=503/2.010622 file=503/0.768872
+L 10:52:47 503/2.008383 ra=1 {"detail":"database busy, try again later"}
+L 10:52:47 503/2.009446 ra=1 {"detail":"database busy, try again later"}
+L 10:52:48 503/2.009803 ra=1 {"detail":"database busy, try again later"}
+M 10:52:50 db_pool_in_use=5.0 db_pool_timeouts_total=339.0 db_pool_size=5.0 
+A 10:52:50 ApiErrorRateHigh=pending ApiLatencyHigh=pending DbPoolExhausted=firing
+L 10:52:48 503/2.012841 ra=1 {"detail":"database busy, try again later"}
+H 10:52:47 health=503/2.008832 file=503/2.011102
+H 10:52:48 health=503/2.010545 file=503/0.994440
+L 10:52:49 503/2.010224 ra=1 {"detail":"database busy, try again later"}
+L 10:52:41 503/9.809392 ra=1 {"detail":"database timeout, try again later"}
+L 10:52:42 503/9.833294 ra=1 {"detail":"database timeout, try again later"}
+L 10:52:43 503/9.567099 ra=1 {"detail":"database timeout, try again later"}
+H 10:52:49 health=503/2.011693 file=503/2.007944
+H 10:52:50 health=200/1.940334 file=503/1.047119
+L 10:52:43 503/9.580696 ra=1 {"detail":"database timeout, try again later"}
+L 10:52:44 503/9.657006 ra=1 {"detail":"database timeout, try again later"}
+L 10:52:52 503/2.014241 ra=1 {"detail":"database busy, try again later"}
+L 10:52:53 503/2.009248 ra=1 {"detail":"database busy, try again later"}
+H 10:52:51 health=200/1.926050 file=503/2.012381
+H 10:52:52 health=503/2.016139 file=503/0.877311
+L 10:52:53 503/2.007611 ra=1 {"detail":"database busy, try again later"}
+M 10:52:55 db_pool_in_use=5.0 db_pool_timeouts_total=350.0 db_pool_size=5.0 
+L 10:52:54 503/2.008142 ra=1 {"detail":"database busy, try again later"}
+L 10:52:54 503/2.013370 ra=1 {"detail":"database busy, try again later"}
+L 10:52:55 503/2.012716 ra=1 {"detail":"database busy, try again later"}
+H 10:52:53 health=503/2.008408 file=503/2.008534
+H 10:52:54 health=503/2.014943 file=503/0.978480
+L 10:52:55 503/2.007908 ra=1 {"detail":"database busy, try again later"}
+U 10:52:55 503/2.009154 {"detail":"database busy, try again later"}
+L 10:52:56 503/2.016970 ra=1 {"detail":"database busy, try again later"}
+L 10:52:57 503/2.014531 ra=1 {"detail":"database busy, try again later"}
+L 10:52:57 503/2.010198 ra=1 {"detail":"database busy, try again later"}
+L 10:52:49 503/9.911708 ra=1 {"detail":"database timeout, try again later"}
+L 10:52:58 503/2.014201 ra=1 {"detail":"database busy, try again later"}
+L 10:52:50 503/9.944855 ra=1 {"detail":"database timeout, try again later"}
+L 10:52:51 503/9.906968 ra=1 {"detail":"database timeout, try again later"}
+M 10:53:01 db_pool_in_use=5.0 db_pool_timeouts_total=364.0 db_pool_size=5.0 
+L 10:52:51 503/9.933286 ra=1 {"detail":"database timeout, try again later"}
+L 10:53:00 503/2.007583 ra=1 {"detail":"database busy, try again later"}
+L 10:52:52 503/9.976690 ra=1 {"detail":"database timeout, try again later"}
+L 10:53:01 503/2.008305 ra=1 {"detail":"database busy, try again later"}
+L 10:53:01 503/2.007406 ra=1 {"detail":"database busy, try again later"}
+L 10:53:02 503/2.013259 ra=1 {"detail":"database busy, try again later"}
+L 10:53:02 503/2.025377 ra=1 {"detail":"database busy, try again later"}
+L 10:53:03 503/2.018703 ra=1 {"detail":"database busy, try again later"}
+L 10:53:03 503/2.011155 ra=1 {"detail":"database busy, try again later"}
+L 10:53:04 503/2.009675 ra=1 {"detail":"database busy, try again later"}
+M 10:53:06 db_pool_in_use=5.0 db_pool_timeouts_total=377.0 db_pool_size=5.0 
+A 10:53:06 ApiErrorRateHigh=pending ApiLatencyHigh=pending DbPoolExhausted=firing
+L 10:53:04 503/2.010524 ra=1 {"detail":"database busy, try again later"}
+L 10:53:05 503/2.010458 ra=1 {"detail":"database busy, try again later"}
+H 10:53:02 health=503/2.012596 file=503/3.415632
+H 10:53:01 health=503/2.011096 file=503/4.643707
+H 10:53:03 health=503/2.013874 file=503/2.386737
+H 10:52:55 health=503/2.011408 file=503/10.000945
+H 10:53:05 health=503/2.013820 file=503/0.348477
+H 10:52:58 health=503/2.015266 file=503/7.703908
+H 10:53:04 health=503/2.010278 file=503/1.380574
+H 10:53:00 health=503/2.010344 file=503/5.666488
+H 10:52:57 health=503/2.012382 file=503/8.716040
+H 10:52:59 health=200/1.970071 file=503/6.718202
+L 10:52:58 503/9.742159 ra=1 {"detail":"database timeout, try again later"}
+U 10:53:06 503/2.011828 {"detail":"database busy, try again later"}
+L 10:52:59 503/9.975146 ra=1 {"detail":"database timeout, try again later"}
+L 10:52:59 503/10.005571 ra=1 {"detail":"database timeout, try again later"}
+L 10:53:00 503/9.565255 ra=1 {"detail":"database timeout, try again later"}
+H 10:53:06 health=503/2.017210 file=503/2.007422
+H 10:53:07 health=200/1.860048 file=503/0.843076
+L 10:53:08 503/2.008665 ra=1 {"detail":"database busy, try again later"}
+L 10:53:09 503/2.011488 ra=1 {"detail":"database busy, try again later"}
+L 10:53:09 503/2.010178 ra=1 {"detail":"database busy, try again later"}
+M 10:53:11 db_pool_in_use=5.0 db_pool_timeouts_total=389.0 db_pool_size=5.0 
+L 10:53:10 503/2.008515 ra=1 {"detail":"database busy, try again later"}
+H 10:53:08 health=503/2.011000 file=503/2.014860
+H 10:53:09 health=503/2.012167 file=503/0.991600
+L 10:53:10 503/2.008828 ra=1 {"detail":"database busy, try again later"}
+L 10:53:11 503/2.008859 ra=1 {"detail":"database busy, try again later"}
+L 10:53:11 503/2.008886 ra=1 {"detail":"database busy, try again later"}
+L 10:53:12 503/2.016726 ra=1 {"detail":"database busy, try again later"}
+H 10:53:11 health=503/2.008834 file=503/0.974597
+H 10:53:10 health=503/2.007886 file=503/2.010483
+L 10:53:13 503/2.007141 ra=1 {"detail":"database busy, try again later"}
+L 10:53:13 503/2.020619 ra=1 {"detail":"database busy, try again later"}
+L 10:53:05 503/9.872029 ra=1 {"detail":"database timeout, try again later"}
+L 10:53:06 503/9.894822 ra=1 {"detail":"database timeout, try again later"}
+L 10:53:07 503/9.842863 ra=1 {"detail":"database timeout, try again later"}
+L 10:53:15 503/2.006713 ra=1 {"detail":"database busy, try again later"}
+M 10:53:17 db_pool_in_use=5.0 db_pool_timeouts_total=403.0 db_pool_size=5.0 
+L 10:53:07 503/9.864002 ra=1 {"detail":"database timeout, try again later"}
+L 10:53:16 503/2.021269 ra=1 {"detail":"database busy, try again later"}
+L 10:53:08 503/9.929250 ra=1 {"detail":"database timeout, try again later"}
+U 10:53:17 503/2.007391 {"detail":"database busy, try again later"}
+L 10:53:17 503/2.008349 ra=1 {"detail":"database busy, try again later"}
+L 10:53:17 503/2.013303 ra=1 {"detail":"database busy, try again later"}
+L 10:53:18 503/2.011955 ra=1 {"detail":"database busy, try again later"}
+L 10:53:18 503/2.013984 ra=1 {"detail":"database busy, try again later"}
+L 10:53:19 503/2.012444 ra=1 {"detail":"database busy, try again later"}
+L 10:53:19 503/2.008414 ra=1 {"detail":"database busy, try again later"}
+L 10:53:20 503/2.015895 ra=1 {"detail":"database busy, try again later"}
+M 10:53:22 db_pool_in_use=5.0 db_pool_timeouts_total=417.0 db_pool_size=5.0 
+A 10:53:22 ApiErrorRateHigh=pending ApiLatencyHigh=pending DbPoolExhausted=firing
+L 10:53:20 503/2.010863 ra=1 {"detail":"database busy, try again later"}
+L 10:53:21 503/2.012189 ra=1 {"detail":"database busy, try again later"}
+L 10:53:14 503/9.704657 ra=1 {"detail":"database timeout, try again later"}
+L 10:53:14 503/9.704204 ra=1 {"detail":"database timeout, try again later"}
+H 10:53:13 health=503/2.008442 file=503/9.998881
+H 10:53:19 health=503/2.013770 file=503/3.622440
+H 10:53:14 health=200/1.698676 file=503/9.293610
+H 10:53:20 health=503/2.017111 file=503/2.606853
+H 10:53:17 health=503/2.010947 file=503/5.908290
+H 10:53:21 health=503/2.016497 file=503/1.585657
+H 10:53:18 health=503/2.012689 file=503/4.668361
+H 10:53:15 health=503/2.007582 file=503/7.958659
+H 10:53:22 health=200/1.825804 file=503/0.750422
+H 10:53:16 health=503/2.024604 file=503/6.911807
+L 10:53:15 503/9.988365 ra=1 {"detail":"database timeout, try again later"}
+L 10:53:16 503/9.534794 ra=1 {"detail":"database timeout, try again later"}
+L 10:53:24 503/2.014960 ra=1 {"detail":"database busy, try again later"}
+L 10:53:25 503/2.015852 ra=1 {"detail":"database busy, try again later"}
+H 10:53:23 health=200/1.834171 file=503/2.019985
+H 10:53:24 health=503/2.015497 file=503/0.789426
+L 10:53:25 503/2.013441 ra=1 {"detail":"database busy, try again later"}
+M 10:53:27 db_pool_in_use=5.0 db_pool_timeouts_total=426.0 db_pool_size=5.0 
+L 10:53:26 503/2.011366 ra=1 {"detail":"database busy, try again later"}
+L 10:53:26 503/2.009694 ra=1 {"detail":"database busy, try again later"}
+L 10:53:27 503/2.007543 ra=1 {"detail":"database busy, try again later"}
+H 10:53:25 health=503/2.014204 file=503/2.013521
+H 10:53:26 health=503/2.012118 file=503/0.989056
+U 10:53:27 503/2.017750 {"detail":"database busy, try again later"}
+L 10:53:27 503/2.017844 ra=1 {"detail":"database busy, try again later"}
+L 10:53:28 503/2.022238 ra=1 {"detail":"database busy, try again later"}
+L 10:53:29 503/2.011849 ra=1 {"detail":"database busy, try again later"}
+L 10:53:29 503/2.007748 ra=1 {"detail":"database busy, try again later"}
+L 10:53:21 503/9.821699 ra=1 {"detail":"database timeout, try again later"}
+L 10:53:30 503/2.008125 ra=1 {"detail":"database busy, try again later"}
+L 10:53:22 503/9.828675 ra=1 {"detail":"database timeout, try again later"}
+L 10:53:23 503/9.838192 ra=1 {"detail":"database timeout, try again later"}
+M 10:53:33 db_pool_in_use=5.0 db_pool_timeouts_total=440.0 db_pool_size=5.0 
+L 10:53:23 503/9.838086 ra=1 {"detail":"database timeout, try again later"}
+L 10:53:24 503/9.868015 ra=1 {"detail":"database timeout, try again later"}
+L 10:53:32 503/2.012315 ra=1 {"detail":"database busy, try again later"}
+L 10:53:33 503/2.008076 ra=1 {"detail":"database busy, try again later"}
+L 10:53:33 503/2.010378 ra=1 {"detail":"database busy, try again later"}
+L 10:53:34 503/2.018052 ra=1 {"detail":"database busy, try again later"}
+L 10:53:34 503/2.014866 ra=1 {"detail":"database busy, try again later"}
+L 10:53:35 503/2.019484 ra=1 {"detail":"database busy, try again later"}
+L 10:53:35 503/2.010556 ra=1 {"detail":"database busy, try again later"}
+L 10:53:36 503/2.013820 ra=1 {"detail":"database busy, try again later"}
+M 10:53:38 db_pool_in_use=5.0 db_pool_timeouts_total=452.0 db_pool_size=5.0 
+A 10:53:38 ApiErrorRateHigh=firing ApiLatencyHigh=firing DbPoolExhausted=firing
+L 10:53:36 503/2.013397 ra=1 {"detail":"database busy, try again later"}
+L 10:53:37 503/2.014678 ra=1 {"detail":"database busy, try again later"}
+H 10:53:27 health=503/2.015024 file=503/9.859814
+H 10:53:33 health=503/2.010917 file=503/4.565206
+H 10:53:29 health=503/2.010809 file=503/8.641447
+H 10:53:35 health=503/2.015511 file=503/2.283073
+H 10:53:31 health=200/1.919085 file=503/6.684428
+H 10:53:34 health=503/2.018031 file=503/3.327579
+H 10:53:32 health=200/1.997755 file=503/5.614591
+H 10:53:37 health=503/2.016462 file=503/0.248420
+H 10:53:30 health=503/2.007667 file=503/7.646636
+H 10:53:36 health=503/2.020038 file=503/1.264098
+L 10:53:30 503/9.662170 ra=1 {"detail":"database timeout, try again later"}
+U 10:53:38 503/2.011029 {"detail":"database busy, try again later"}
+L 10:53:31 503/9.923274 ra=1 {"detail":"database timeout, try again later"}
+L 10:53:31 503/9.941917 ra=1 {"detail":"database timeout, try again later"}
+L 10:53:32 503/10.002430 ra=1 {"detail":"database timeout, try again later"}
+H 10:53:38 health=503/2.029273 file=503/2.013920
+H 10:53:39 health=200/1.789472 file=503/0.961168
+L 10:53:40 503/2.008279 ra=1 {"detail":"database busy, try again later"}
+L 10:53:41 503/2.010055 ra=1 {"detail":"database busy, try again later"}
+L 10:53:41 503/2.014644 ra=1 {"detail":"database busy, try again later"}
+M 10:53:43 db_pool_in_use=5.0 db_pool_timeouts_total=464.0 db_pool_size=5.0 
+L 10:53:42 503/2.011343 ra=1 {"detail":"database busy, try again later"}
+H 10:53:40 health=503/2.010622 file=503/2.010519
+H 10:53:41 health=503/2.018454 file=503/0.968035
+L 10:53:42 503/2.051702 ra=1 {"detail":"database busy, try again later"}
+L 10:53:43 503/2.006703 ra=1 {"detail":"database busy, try again later"}
+L 10:53:43 503/2.009763 ra=1 {"detail":"database busy, try again later"}
+L 10:53:44 503/2.010595 ra=1 {"detail":"database busy, try again later"}
+H 10:53:42 health=503/2.007371 file=503/2.010950
+H 10:53:43 health=503/2.010734 file=503/0.958749
+L 10:53:45 503/2.015431 ra=1 {"detail":"database busy, try again later"}
+L 10:53:45 503/2.011856 ra=1 {"detail":"database busy, try again later"}
+L 10:53:38 503/9.764871 ra=1 {"detail":"database timeout, try again later"}
+L 10:53:38 503/9.765530 ra=1 {"detail":"database timeout, try again later"}
+L 10:53:39 503/9.765948 ra=1 {"detail":"database timeout, try again later"}
+L 10:53:47 503/2.008737 ra=1 {"detail":"database busy, try again later"}
+L 10:53:39 200/9.456346 ra=- {"items":[{"id":"69f5234a-7b5c-4618-a3bc-2569f8d2c34c","object_key":"files/69f5234a-7b5c-4
+H 10:53:47 health=503/2.008465 file=200/0.086697
+H 10:53:45 health=503/2.016063 file=200/2.114958
+H 10:53:46 health=200/1.602750 file=200/1.516722
+L 10:53:46 200/3.114393 ra=- {"items":[{"id":"69f5234a-7b5c-4618-a3bc-2569f8d2c34c","object_key":"files/69f5234a-7b5c-4
+U 10:53:49 201/0.104035 {"id":"2ca884a6-3546-45bf-9854-a2a0751bc027","status":"uploaded"}
+L 10:53:48 200/0.569069 ra=- {"items":[{"id":"69f5234a-7b5c-4618-a3bc-2569f8d2c34c","object_key":"files/69f5234a-7b5c-4
+L 10:53:49 200/0.092938 ra=- {"items":[{"id":"69f5234a-7b5c-4618-a3bc-2569f8d2c34c","object_key":"files/69f5234a-7b5c-4
+L 10:53:46 200/2.595407 ra=- {"items":[{"id":"69f5234a-7b5c-4618-a3bc-2569f8d2c34c","object_key":"files/69f5234a-7b5c-4
+H 10:53:48 health=200/1.083637 file=200/0.011201
+L 10:53:40 200/8.929038 ra=- {"items":[{"id":"69f5234a-7b5c-4618-a3bc-2569f8d2c34c","object_key":"files/69f5234a-7b5c-4
+L 10:53:47 200/1.616882 ra=- {"items":[{"id":"69f5234a-7b5c-4618-a3bc-2569f8d2c34c","object_key":"files/69f5234a-7b5c-4
+L 10:53:48 200/1.108089 ra=- {"items":[{"id":"69f5234a-7b5c-4618-a3bc-2569f8d2c34c","object_key":"files/69f5234a-7b5c-4
+H 10:53:49 health=200/0.092246 file=200/0.007052
+M 10:53:49 db_pool_in_use=0.0 db_pool_timeouts_total=478.0 db_pool_size=5.0 
+L 10:53:50 200/0.012704 ra=- {"items":[{"id":"2ca884a6-3546-45bf-9854-a2a0751bc027","object_key":"files/2ca884a6-3546-4
+L 10:53:50 200/0.014248 ra=- {"items":[{"id":"2ca884a6-3546-45bf-9854-a2a0751bc027","object_key":"files/2ca884a6-3546-4
+H 10:53:50 health=200/0.016926 file=200/0.010970
+L 10:53:51 200/0.013226 ra=- {"items":[{"id":"2ca884a6-3546-45bf-9854-a2a0751bc027","object_key":"files/2ca884a6-3546-4
+L 10:53:51 200/0.017390 ra=- {"items":[{"id":"2ca884a6-3546-45bf-9854-a2a0751bc027","object_key":"files/2ca884a6-3546-4
+H 10:53:51 health=200/0.017289 file=200/0.008035
+L 10:53:52 200/0.015432 ra=- {"items":[{"id":"2ca884a6-3546-45bf-9854-a2a0751bc027","object_key":"files/2ca884a6-3546-4
+L 10:53:52 200/0.013611 ra=- {"items":[{"id":"2ca884a6-3546-45bf-9854-a2a0751bc027","object_key":"files/2ca884a6-3546-4
+H 10:53:52 health=200/0.012137 file=200/0.006042
+L 10:53:53 200/0.014537 ra=- {"items":[{"id":"2ca884a6-3546-45bf-9854-a2a0751bc027","object_key":"files/2ca884a6-3546-4
+L 10:53:53 200/0.016717 ra=- {"items":[{"id":"2ca884a6-3546-45bf-9854-a2a0751bc027","object_key":"files/2ca884a6-3546-4
+H 10:53:53 health=200/0.016455 file=200/0.012882
+L 10:53:54 200/0.011910 ra=- {"items":[{"id":"2ca884a6-3546-45bf-9854-a2a0751bc027","object_key":"files/2ca884a6-3546-4
+L 10:53:54 200/0.015939 ra=- {"items":[{"id":"2ca884a6-3546-45bf-9854-a2a0751bc027","object_key":"files/2ca884a6-3546-4
+H 10:53:54 health=200/0.015069 file=200/0.006769
+M 10:53:54 db_pool_in_use=0.0 db_pool_timeouts_total=478.0 db_pool_size=5.0 
+A 10:53:54 ApiErrorRateHigh=firing ApiLatencyHigh=firing DbPoolExhausted=firing
+L 10:53:55 200/0.016238 ra=- {"items":[{"id":"2ca884a6-3546-45bf-9854-a2a0751bc027","object_key":"files/2ca884a6-3546-4
+L 10:53:55 200/0.023244 ra=- {"items":[{"id":"2ca884a6-3546-45bf-9854-a2a0751bc027","object_key":"files/2ca884a6-3546-4
+H 10:53:55 health=200/0.022069 file=200/0.006982
+L 10:53:56 200/0.014350 ra=- {"items":[{"id":"2ca884a6-3546-45bf-9854-a2a0751bc027","object_key":"files/2ca884a6-3546-4
+L 10:53:57 200/0.016350 ra=- {"items":[{"id":"2ca884a6-3546-45bf-9854-a2a0751bc027","object_key":"files/2ca884a6-3546-4
+H 10:53:57 health=200/0.017188 file=200/0.006396
+L 10:53:57 200/0.017688 ra=- {"items":[{"id":"2ca884a6-3546-45bf-9854-a2a0751bc027","object_key":"files/2ca884a6-3546-4
+L 10:53:58 200/0.025226 ra=- {"items":[{"id":"2ca884a6-3546-45bf-9854-a2a0751bc027","object_key":"files/2ca884a6-3546-4
+H 10:53:58 health=200/0.023754 file=200/0.007620
+L 10:53:58 200/0.016507 ra=- {"items":[{"id":"2ca884a6-3546-45bf-9854-a2a0751bc027","object_key":"files/2ca884a6-3546-4
+L 10:53:59 200/0.023488 ra=- {"items":[{"id":"2ca884a6-3546-45bf-9854-a2a0751bc027","object_key":"files/2ca884a6-3546-4
+H 10:53:59 health=200/0.020385 file=200/0.006964
+L 10:53:59 200/0.018753 ra=- {"items":[{"id":"2ca884a6-3546-45bf-9854-a2a0751bc027","object_key":"files/2ca884a6-3546-4
+L 10:54:00 200/0.029530 ra=- {"items":[{"id":"2ca884a6-3546-45bf-9854-a2a0751bc027","object_key":"files/2ca884a6-3546-4
+H 10:54:00 health=200/0.016776 file=200/0.008637
+U 10:54:00 201/0.038963 {"id":"3c4ee104-2e00-475d-b5b4-276828c50c72","status":"uploaded"}
+M 10:54:00 db_pool_in_use=0.0 db_pool_timeouts_total=478.0 db_pool_size=5.0 
+L 10:54:00 200/0.015972 ra=- {"items":[{"id":"3c4ee104-2e00-475d-b5b4-276828c50c72","object_key":"files/3c4ee104-2e00-4
+L 10:54:01 200/0.014750 ra=- {"items":[{"id":"3c4ee104-2e00-475d-b5b4-276828c50c72","object_key":"files/3c4ee104-2e00-4
+H 10:54:01 health=200/0.013484 file=200/0.006058
+L 10:54:01 200/0.015497 ra=- {"items":[{"id":"3c4ee104-2e00-475d-b5b4-276828c50c72","object_key":"files/3c4ee104-2e00-4
+L 10:54:02 200/0.014762 ra=- {"items":[{"id":"3c4ee104-2e00-475d-b5b4-276828c50c72","object_key":"files/3c4ee104-2e00-4
+H 10:54:02 health=200/0.012354 file=200/0.006821
+L 10:54:02 200/0.016016 ra=- {"items":[{"id":"3c4ee104-2e00-475d-b5b4-276828c50c72","object_key":"files/3c4ee104-2e00-4
+L 10:54:03 200/0.014156 ra=- {"items":[{"id":"3c4ee104-2e00-475d-b5b4-276828c50c72","object_key":"files/3c4ee104-2e00-4
+H 10:54:03 health=200/0.012732 file=200/0.011119
+L 10:54:03 200/0.011445 ra=- {"items":[{"id":"3c4ee104-2e00-475d-b5b4-276828c50c72","object_key":"files/3c4ee104-2e00-4
+L 10:54:04 200/0.028298 ra=- {"items":[{"id":"3c4ee104-2e00-475d-b5b4-276828c50c72","object_key":"files/3c4ee104-2e00-4
+H 10:54:04 health=200/0.025660 file=200/0.005828
+L 10:54:05 200/0.013756 ra=- {"items":[{"id":"3c4ee104-2e00-475d-b5b4-276828c50c72","object_key":"files/3c4ee104-2e00-4
+H 10:54:05 health=200/0.012804 file=200/0.008003
+L 10:54:05 200/0.022872 ra=- {"items":[{"id":"3c4ee104-2e00-475d-b5b4-276828c50c72","object_key":"files/3c4ee104-2e00-4
+M 10:54:05 db_pool_in_use=0.0 db_pool_timeouts_total=478.0 db_pool_size=5.0 
+L 10:54:06 200/0.015465 ra=- {"items":[{"id":"3c4ee104-2e00-475d-b5b4-276828c50c72","object_key":"files/3c4ee104-2e00-4
+L 10:54:06 200/0.015841 ra=- {"items":[{"id":"3c4ee104-2e00-475d-b5b4-276828c50c72","object_key":"files/3c4ee104-2e00-4
+H 10:54:06 health=200/0.014426 file=200/0.007004
+L 10:54:07 200/0.017665 ra=- {"items":[{"id":"3c4ee104-2e00-475d-b5b4-276828c50c72","object_key":"files/3c4ee104-2e00-4
+L 10:54:07 200/0.054795 ra=- {"items":[{"id":"3c4ee104-2e00-475d-b5b4-276828c50c72","object_key":"files/3c4ee104-2e00-4
+H 10:54:07 health=200/0.051675 file=200/0.015093
+L 10:54:08 200/0.011487 ra=- {"items":[{"id":"3c4ee104-2e00-475d-b5b4-276828c50c72","object_key":"files/3c4ee104-2e00-4
+L 10:54:08 200/0.015920 ra=- {"items":[{"id":"3c4ee104-2e00-475d-b5b4-276828c50c72","object_key":"files/3c4ee104-2e00-4
+H 10:54:08 health=200/0.014778 file=200/0.007938
+L 10:54:09 200/0.015490 ra=- {"items":[{"id":"3c4ee104-2e00-475d-b5b4-276828c50c72","object_key":"files/3c4ee104-2e00-4
+L 10:54:09 200/0.012197 ra=- {"items":[{"id":"3c4ee104-2e00-475d-b5b4-276828c50c72","object_key":"files/3c4ee104-2e00-4
+H 10:54:09 health=200/0.010693 file=200/0.006066
+L 10:54:10 200/0.016649 ra=- {"items":[{"id":"3c4ee104-2e00-475d-b5b4-276828c50c72","object_key":"files/3c4ee104-2e00-4
+L 10:54:10 200/0.018397 ra=- {"items":[{"id":"3c4ee104-2e00-475d-b5b4-276828c50c72","object_key":"files/3c4ee104-2e00-4
+H 10:54:10 health=200/0.012173 file=200/0.010107
+U 10:54:10 201/0.043220 {"id":"28740781-4be2-431c-835d-afd122009ad0","status":"uploaded"}
+M 10:54:10 db_pool_in_use=0.0 db_pool_timeouts_total=478.0 db_pool_size=5.0 
+A 10:54:11 ApiErrorRateHigh=firing ApiLatencyHigh=firing DbPoolExhausted=firing
+L 10:54:11 200/0.016301 ra=- {"items":[{"id":"28740781-4be2-431c-835d-afd122009ad0","object_key":"files/28740781-4be2-4
+L 10:54:12 200/0.014544 ra=- {"items":[{"id":"28740781-4be2-431c-835d-afd122009ad0","object_key":"files/28740781-4be2-4
+H 10:54:12 health=200/0.012567 file=200/0.006715
+L 10:54:12 200/0.014143 ra=- {"items":[{"id":"28740781-4be2-431c-835d-afd122009ad0","object_key":"files/28740781-4be2-4
+L 10:54:13 200/0.010243 ra=- {"items":[{"id":"28740781-4be2-431c-835d-afd122009ad0","object_key":"files/28740781-4be2-4
+H 10:54:13 health=200/0.009700 file=200/0.005167
+L 10:54:13 200/0.015034 ra=- {"items":[{"id":"28740781-4be2-431c-835d-afd122009ad0","object_key":"files/28740781-4be2-4
+L 10:54:14 200/0.016229 ra=- {"items":[{"id":"28740781-4be2-431c-835d-afd122009ad0","object_key":"files/28740781-4be2-4
+H 10:54:14 health=200/0.015242 file=200/0.007443
+L 10:54:14 200/0.015582 ra=- {"items":[{"id":"28740781-4be2-431c-835d-afd122009ad0","object_key":"files/28740781-4be2-4
+L 10:54:15 200/0.013807 ra=- {"items":[{"id":"28740781-4be2-431c-835d-afd122009ad0","object_key":"files/28740781-4be2-4
+H 10:54:15 health=200/0.015115 file=200/0.006744
+L 10:54:15 200/0.014757 ra=- {"items":[{"id":"28740781-4be2-431c-835d-afd122009ad0","object_key":"files/28740781-4be2-4
+L 10:54:16 200/0.014997 ra=- {"items":[{"id":"28740781-4be2-431c-835d-afd122009ad0","object_key":"files/28740781-4be2-4
+H 10:54:16 health=200/0.015107 file=200/0.005955
+M 10:54:16 db_pool_in_use=0.0 db_pool_timeouts_total=478.0 db_pool_size=5.0 
+L 10:54:17 200/0.013304 ra=- {"items":[{"id":"28740781-4be2-431c-835d-afd122009ad0","object_key":"files/28740781-4be2-4
+L 10:54:17 200/0.018909 ra=- {"items":[{"id":"28740781-4be2-431c-835d-afd122009ad0","object_key":"files/28740781-4be2-4
+H 10:54:17 health=200/0.018010 file=200/0.007329
+L 10:54:18 200/0.010522 ra=- {"items":[{"id":"28740781-4be2-431c-835d-afd122009ad0","object_key":"files/28740781-4be2-4
+L 10:54:18 200/0.015345 ra=- {"items":[{"id":"28740781-4be2-431c-835d-afd122009ad0","object_key":"files/28740781-4be2-4
+H 10:54:18 health=200/0.014624 file=200/0.006858
+L 10:54:19 200/0.013010 ra=- {"items":[{"id":"28740781-4be2-431c-835d-afd122009ad0","object_key":"files/28740781-4be2-4
+L 10:54:19 200/0.015867 ra=- {"items":[{"id":"28740781-4be2-431c-835d-afd122009ad0","object_key":"files/28740781-4be2-4
+H 10:54:19 health=200/0.015089 file=200/0.006446
+L 10:54:20 200/0.011925 ra=- {"items":[{"id":"28740781-4be2-431c-835d-afd122009ad0","object_key":"files/28740781-4be2-4
+L 10:54:20 200/0.010922 ra=- {"items":[{"id":"28740781-4be2-431c-835d-afd122009ad0","object_key":"files/28740781-4be2-4
+H 10:54:20 health=200/0.010622 file=200/0.005040
+L 10:54:21 200/0.012566 ra=- {"items":[{"id":"28740781-4be2-431c-835d-afd122009ad0","object_key":"files/28740781-4be2-4
+L 10:54:21 200/0.023464 ra=- {"items":[{"id":"28740781-4be2-431c-835d-afd122009ad0","object_key":"files/28740781-4be2-4
+H 10:54:21 health=200/0.024860 file=200/0.009741
+U 10:54:21 201/0.038282 {"id":"0b32b901-dcd2-4ad1-af52-cd903edc97f8","status":"uploaded"}
+M 10:54:21 db_pool_in_use=0.0 db_pool_timeouts_total=478.0 db_pool_size=5.0 
+L 10:54:22 200/0.014773 ra=- {"items":[{"id":"0b32b901-dcd2-4ad1-af52-cd903edc97f8","object_key":"files/0b32b901-dcd2-4
+L 10:54:23 200/0.016607 ra=- {"items":[{"id":"0b32b901-dcd2-4ad1-af52-cd903edc97f8","object_key":"files/0b32b901-dcd2-4
+H 10:54:23 health=200/0.016226 file=200/0.007080
+L 10:54:23 200/0.014876 ra=- {"items":[{"id":"0b32b901-dcd2-4ad1-af52-cd903edc97f8","object_key":"files/0b32b901-dcd2-4
+L 10:54:24 200/0.018129 ra=- {"items":[{"id":"0b32b901-dcd2-4ad1-af52-cd903edc97f8","object_key":"files/0b32b901-dcd2-4
+H 10:54:24 health=200/0.016049 file=200/0.006897
+L 10:54:24 200/0.010459 ra=- {"items":[{"id":"0b32b901-dcd2-4ad1-af52-cd903edc97f8","object_key":"files/0b32b901-dcd2-4
+L 10:54:25 200/0.011686 ra=- {"items":[{"id":"0b32b901-dcd2-4ad1-af52-cd903edc97f8","object_key":"files/0b32b901-dcd2-4
+H 10:54:25 health=200/0.010163 file=200/0.005325
+L 10:54:25 200/0.014405 ra=- {"items":[{"id":"0b32b901-dcd2-4ad1-af52-cd903edc97f8","object_key":"files/0b32b901-dcd2-4
+L 10:54:26 200/0.013465 ra=- {"items":[{"id":"0b32b901-dcd2-4ad1-af52-cd903edc97f8","object_key":"files/0b32b901-dcd2-4
+H 10:54:26 health=200/0.012036 file=200/0.005844
+L 10:54:26 200/0.014307 ra=- {"items":[{"id":"0b32b901-dcd2-4ad1-af52-cd903edc97f8","object_key":"files/0b32b901-dcd2-4
+L 10:54:27 200/0.018681 ra=- {"items":[{"id":"0b32b901-dcd2-4ad1-af52-cd903edc97f8","object_key":"files/0b32b901-dcd2-4
+H 10:54:27 health=200/0.015067 file=200/0.007509
+M 10:54:27 db_pool_in_use=0.0 db_pool_timeouts_total=478.0 db_pool_size=5.0 
+A 10:54:27 ApiErrorRateHigh=firing ApiLatencyHigh=firing DbPoolExhausted=firing
+L 10:54:28 200/0.016714 ra=- {"items":[{"id":"0b32b901-dcd2-4ad1-af52-cd903edc97f8","object_key":"files/0b32b901-dcd2-4
+L 10:54:28 200/0.025849 ra=- {"items":[{"id":"0b32b901-dcd2-4ad1-af52-cd903edc97f8","object_key":"files/0b32b901-dcd2-4
+H 10:54:28 health=200/0.024876 file=200/0.005895
+L 10:54:29 200/0.013670 ra=- {"items":[{"id":"0b32b901-dcd2-4ad1-af52-cd903edc97f8","object_key":"files/0b32b901-dcd2-4
+L 10:54:29 200/0.030223 ra=- {"items":[{"id":"0b32b901-dcd2-4ad1-af52-cd903edc97f8","object_key":"files/0b32b901-dcd2-4
+H 10:54:29 health=200/0.020000 file=200/0.011077
+L 10:54:30 200/0.014649 ra=- {"items":[{"id":"0b32b901-dcd2-4ad1-af52-cd903edc97f8","object_key":"files/0b32b901-dcd2-4
+L 10:54:30 200/0.010103 ra=- {"items":[{"id":"0b32b901-dcd2-4ad1-af52-cd903edc97f8","object_key":"files/0b32b901-dcd2-4
+H 10:54:30 health=200/0.010258 file=200/0.005433
+L 10:54:31 200/0.013022 ra=- {"items":[{"id":"0b32b901-dcd2-4ad1-af52-cd903edc97f8","object_key":"files/0b32b901-dcd2-4
+L 10:54:31 200/0.019528 ra=- {"items":[{"id":"0b32b901-dcd2-4ad1-af52-cd903edc97f8","object_key":"files/0b32b901-dcd2-4
+H 10:54:31 health=200/0.017780 file=200/0.010273
+L 10:54:32 200/0.011395 ra=- {"items":[{"id":"0b32b901-dcd2-4ad1-af52-cd903edc97f8","object_key":"files/0b32b901-dcd2-4
+L 10:54:32 200/0.022588 ra=- {"items":[{"id":"0b32b901-dcd2-4ad1-af52-cd903edc97f8","object_key":"files/0b32b901-dcd2-4
+U 10:54:32 201/0.044264 {"id":"b1bc5c8a-48c5-4b79-8b48-9e754e599cfc","status":"uploaded"}
+H 10:54:32 health=200/0.023010 file=200/0.014479
+M 10:54:32 db_pool_in_use=0.0 db_pool_timeouts_total=478.0 db_pool_size=5.0 
+L 10:54:33 200/0.016899 ra=- {"items":[{"id":"b1bc5c8a-48c5-4b79-8b48-9e754e599cfc","object_key":"files/b1bc5c8a-48c5-4
+L 10:54:34 200/0.016611 ra=- {"items":[{"id":"b1bc5c8a-48c5-4b79-8b48-9e754e599cfc","object_key":"files/b1bc5c8a-48c5-4
+H 10:54:34 health=200/0.013971 file=200/0.012979
+L 10:54:34 200/0.015417 ra=- {"items":[{"id":"b1bc5c8a-48c5-4b79-8b48-9e754e599cfc","object_key":"files/b1bc5c8a-48c5-4
+L 10:54:35 200/0.026351 ra=- {"items":[{"id":"b1bc5c8a-48c5-4b79-8b48-9e754e599cfc","object_key":"files/b1bc5c8a-48c5-4
+H 10:54:35 health=200/0.027476 file=200/0.006395
+L 10:54:35 200/0.012958 ra=- {"items":[{"id":"b1bc5c8a-48c5-4b79-8b48-9e754e599cfc","object_key":"files/b1bc5c8a-48c5-4
+L 10:54:36 200/0.015935 ra=- {"items":[{"id":"b1bc5c8a-48c5-4b79-8b48-9e754e599cfc","object_key":"files/b1bc5c8a-48c5-4
+H 10:54:36 health=200/0.015182 file=200/0.012318
+L 10:54:36 200/0.015525 ra=- {"items":[{"id":"b1bc5c8a-48c5-4b79-8b48-9e754e599cfc","object_key":"files/b1bc5c8a-48c5-4
+L 10:54:37 200/0.016647 ra=- {"items":[{"id":"b1bc5c8a-48c5-4b79-8b48-9e754e599cfc","object_key":"files/b1bc5c8a-48c5-4
+H 10:54:37 health=200/0.014589 file=200/0.012504
+L 10:54:37 200/0.016332 ra=- {"items":[{"id":"b1bc5c8a-48c5-4b79-8b48-9e754e599cfc","object_key":"files/b1bc5c8a-48c5-4
+L 10:54:38 200/0.021662 ra=- {"items":[{"id":"b1bc5c8a-48c5-4b79-8b48-9e754e599cfc","object_key":"files/b1bc5c8a-48c5-4
+H 10:54:38 health=200/0.019031 file=200/0.014454
+M 10:54:38 db_pool_in_use=0.0 db_pool_timeouts_total=478.0 db_pool_size=5.0 
+L 10:54:38 200/0.016112 ra=- {"items":[{"id":"b1bc5c8a-48c5-4b79-8b48-9e754e599cfc","object_key":"files/b1bc5c8a-48c5-4
+L 10:54:39 200/0.015535 ra=- {"items":[{"id":"b1bc5c8a-48c5-4b79-8b48-9e754e599cfc","object_key":"files/b1bc5c8a-48c5-4
+H 10:54:39 health=200/0.013793 file=200/0.008576
+L 10:54:40 200/0.015722 ra=- {"items":[{"id":"b1bc5c8a-48c5-4b79-8b48-9e754e599cfc","object_key":"files/b1bc5c8a-48c5-4
+L 10:54:40 200/0.012863 ra=- {"items":[{"id":"b1bc5c8a-48c5-4b79-8b48-9e754e599cfc","object_key":"files/b1bc5c8a-48c5-4
+H 10:54:40 health=200/0.011884 file=200/0.005578
+L 10:54:41 200/0.010030 ra=- {"items":[{"id":"b1bc5c8a-48c5-4b79-8b48-9e754e599cfc","object_key":"files/b1bc5c8a-48c5-4
+L 10:54:41 200/0.016108 ra=- {"items":[{"id":"b1bc5c8a-48c5-4b79-8b48-9e754e599cfc","object_key":"files/b1bc5c8a-48c5-4
+H 10:54:41 health=200/0.017470 file=200/0.006186
+L 10:54:42 200/0.014297 ra=- {"items":[{"id":"b1bc5c8a-48c5-4b79-8b48-9e754e599cfc","object_key":"files/b1bc5c8a-48c5-4
+L 10:54:42 200/0.017383 ra=- {"items":[{"id":"b1bc5c8a-48c5-4b79-8b48-9e754e599cfc","object_key":"files/b1bc5c8a-48c5-4
+H 10:54:42 health=200/0.013637 file=200/0.007287
+L 10:54:43 200/0.009893 ra=- {"items":[{"id":"b1bc5c8a-48c5-4b79-8b48-9e754e599cfc","object_key":"files/b1bc5c8a-48c5-4
+L 10:54:43 200/0.024854 ra=- {"items":[{"id":"b1bc5c8a-48c5-4b79-8b48-9e754e599cfc","object_key":"files/b1bc5c8a-48c5-4
+H 10:54:43 health=200/0.023408 file=200/0.012015
+U 10:54:43 201/0.050151 {"id":"ee1d7e3c-4179-4c7c-9ad9-0efe497f4b9b","status":"uploaded"}
+M 10:54:43 db_pool_in_use=0.0 db_pool_timeouts_total=478.0 db_pool_size=5.0 
+A 10:54:43 ApiErrorRateHigh=firing ApiLatencyHigh=firing DbPoolExhausted=firing
+L 10:54:44 200/0.017500 ra=- {"items":[{"id":"ee1d7e3c-4179-4c7c-9ad9-0efe497f4b9b","object_key":"files/ee1d7e3c-4179-4
+L 10:54:44 200/0.015789 ra=- {"items":[{"id":"ee1d7e3c-4179-4c7c-9ad9-0efe497f4b9b","object_key":"files/ee1d7e3c-4179-4
+H 10:54:44 health=200/0.011974 file=200/0.010782
+L 10:54:45 200/0.016169 ra=- {"items":[{"id":"ee1d7e3c-4179-4c7c-9ad9-0efe497f4b9b","object_key":"files/ee1d7e3c-4179-4
+L 10:54:46 200/0.023631 ra=- {"items":[{"id":"ee1d7e3c-4179-4c7c-9ad9-0efe497f4b9b","object_key":"files/ee1d7e3c-4179-4
+H 10:54:46 health=200/0.024885 file=200/0.006368
+L 10:54:46 200/0.016485 ra=- {"items":[{"id":"ee1d7e3c-4179-4c7c-9ad9-0efe497f4b9b","object_key":"files/ee1d7e3c-4179-4
+L 10:54:47 200/0.017346 ra=- {"items":[{"id":"ee1d7e3c-4179-4c7c-9ad9-0efe497f4b9b","object_key":"files/ee1d7e3c-4179-4
+H 10:54:47 health=200/0.016233 file=200/0.006544
+L 10:54:47 200/0.016186 ra=- {"items":[{"id":"ee1d7e3c-4179-4c7c-9ad9-0efe497f4b9b","object_key":"files/ee1d7e3c-4179-4
+L 10:54:48 200/0.036826 ra=- {"items":[{"id":"ee1d7e3c-4179-4c7c-9ad9-0efe497f4b9b","object_key":"files/ee1d7e3c-4179-4
+H 10:54:48 health=200/0.024760 file=200/0.013825
+L 10:54:48 200/0.010999 ra=- {"items":[{"id":"ee1d7e3c-4179-4c7c-9ad9-0efe497f4b9b","object_key":"files/ee1d7e3c-4179-4
+L 10:54:49 200/0.014283 ra=- {"items":[{"id":"ee1d7e3c-4179-4c7c-9ad9-0efe497f4b9b","object_key":"files/ee1d7e3c-4179-4
+H 10:54:49 health=200/0.015119 file=200/0.008057
+M 10:54:49 db_pool_in_use=0.0 db_pool_timeouts_total=478.0 db_pool_size=5.0 
+L 10:54:49 200/0.015489 ra=- {"items":[{"id":"ee1d7e3c-4179-4c7c-9ad9-0efe497f4b9b","object_key":"files/ee1d7e3c-4179-4
+L 10:54:50 200/0.013428 ra=- {"items":[{"id":"ee1d7e3c-4179-4c7c-9ad9-0efe497f4b9b","object_key":"files/ee1d7e3c-4179-4
+H 10:54:50 health=200/0.012913 file=200/0.005535
+L 10:54:50 200/0.011896 ra=- {"items":[{"id":"ee1d7e3c-4179-4c7c-9ad9-0efe497f4b9b","object_key":"files/ee1d7e3c-4179-4
+L 10:54:51 200/0.017987 ra=- {"items":[{"id":"ee1d7e3c-4179-4c7c-9ad9-0efe497f4b9b","object_key":"files/ee1d7e3c-4179-4
+H 10:54:51 health=200/0.016005 file=200/0.007628
+L 10:54:51 200/0.015909 ra=- {"items":[{"id":"ee1d7e3c-4179-4c7c-9ad9-0efe497f4b9b","object_key":"files/ee1d7e3c-4179-4
+L 10:54:52 200/0.022437 ra=- {"items":[{"id":"ee1d7e3c-4179-4c7c-9ad9-0efe497f4b9b","object_key":"files/ee1d7e3c-4179-4
+H 10:54:52 health=200/0.018148 file=200/0.008000
+L 10:54:53 200/0.010017 ra=- {"items":[{"id":"ee1d7e3c-4179-4c7c-9ad9-0efe497f4b9b","object_key":"files/ee1d7e3c-4179-4
+L 10:54:53 200/0.011536 ra=- {"items":[{"id":"ee1d7e3c-4179-4c7c-9ad9-0efe497f4b9b","object_key":"files/ee1d7e3c-4179-4
+H 10:54:53 health=200/0.011038 file=200/0.006782
+L 10:54:54 200/0.015309 ra=- {"items":[{"id":"ee1d7e3c-4179-4c7c-9ad9-0efe497f4b9b","object_key":"files/ee1d7e3c-4179-4
+H 10:54:54 health=200/0.026198 file=200/0.014138
+L 10:54:54 200/0.029343 ra=- {"items":[{"id":"ee1d7e3c-4179-4c7c-9ad9-0efe497f4b9b","object_key":"files/ee1d7e3c-4179-4
+U 10:54:54 201/0.054109 {"id":"4bcd91a2-e803-4317-b2ea-8cf26ee53c23","status":"uploaded"}
+M 10:54:54 db_pool_in_use=0.0 db_pool_timeouts_total=478.0 db_pool_size=5.0 
+L 10:54:55 200/0.017596 ra=- {"items":[{"id":"4bcd91a2-e803-4317-b2ea-8cf26ee53c23","object_key":"files/4bcd91a2-e803-4
+L 10:54:55 200/0.023024 ra=- {"items":[{"id":"4bcd91a2-e803-4317-b2ea-8cf26ee53c23","object_key":"files/4bcd91a2-e803-4
+H 10:54:55 health=200/0.033255 file=200/0.016279
+L 10:54:56 200/0.023631 ra=- {"items":[{"id":"4bcd91a2-e803-4317-b2ea-8cf26ee53c23","object_key":"files/4bcd91a2-e803-4
+L 10:54:56 200/0.015546 ra=- {"items":[{"id":"4bcd91a2-e803-4317-b2ea-8cf26ee53c23","object_key":"files/4bcd91a2-e803-4
+H 10:54:56 health=200/0.017599 file=200/0.008320
+L 10:54:57 200/0.016387 ra=- {"items":[{"id":"4bcd91a2-e803-4317-b2ea-8cf26ee53c23","object_key":"files/4bcd91a2-e803-4
+L 10:54:58 200/0.016422 ra=- {"items":[{"id":"4bcd91a2-e803-4317-b2ea-8cf26ee53c23","object_key":"files/4bcd91a2-e803-4
+H 10:54:58 health=200/0.014626 file=200/0.007347
+L 10:54:58 200/0.012779 ra=- {"items":[{"id":"4bcd91a2-e803-4317-b2ea-8cf26ee53c23","object_key":"files/4bcd91a2-e803-4
+L 10:54:59 200/0.016167 ra=- {"items":[{"id":"4bcd91a2-e803-4317-b2ea-8cf26ee53c23","object_key":"files/4bcd91a2-e803-4
+H 10:54:59 health=200/0.014919 file=200/0.006858
+L 10:54:59 200/0.019725 ra=- {"items":[{"id":"4bcd91a2-e803-4317-b2ea-8cf26ee53c23","object_key":"files/4bcd91a2-e803-4
+L 10:55:00 200/0.017838 ra=- {"items":[{"id":"4bcd91a2-e803-4317-b2ea-8cf26ee53c23","object_key":"files/4bcd91a2-e803-4
+H 10:55:00 health=200/0.016719 file=200/0.010237
+M 10:55:00 db_pool_in_use=0.0 db_pool_timeouts_total=478.0 db_pool_size=5.0 
+A 10:55:00 ApiErrorRateHigh=firing ApiLatencyHigh=firing DbPoolExhausted=firing
+L 10:55:00 200/0.012155 ra=- {"items":[{"id":"4bcd91a2-e803-4317-b2ea-8cf26ee53c23","object_key":"files/4bcd91a2-e803-4
+L 10:55:01 200/0.016650 ra=- {"items":[{"id":"4bcd91a2-e803-4317-b2ea-8cf26ee53c23","object_key":"files/4bcd91a2-e803-4
+H 10:55:01 health=200/0.016718 file=200/0.009277
+L 10:55:01 200/0.013225 ra=- {"items":[{"id":"4bcd91a2-e803-4317-b2ea-8cf26ee53c23","object_key":"files/4bcd91a2-e803-4
+L 10:55:02 200/0.014077 ra=- {"items":[{"id":"4bcd91a2-e803-4317-b2ea-8cf26ee53c23","object_key":"files/4bcd91a2-e803-4
+H 10:55:02 health=200/0.011963 file=200/0.009795
+L 10:55:02 200/0.014826 ra=- {"items":[{"id":"4bcd91a2-e803-4317-b2ea-8cf26ee53c23","object_key":"files/4bcd91a2-e803-4
+L 10:55:03 200/0.015625 ra=- {"items":[{"id":"4bcd91a2-e803-4317-b2ea-8cf26ee53c23","object_key":"files/4bcd91a2-e803-4
+H 10:55:03 health=200/0.014584 file=200/0.006762
+L 10:55:04 200/0.011555 ra=- {"items":[{"id":"4bcd91a2-e803-4317-b2ea-8cf26ee53c23","object_key":"files/4bcd91a2-e803-4
+L 10:55:04 200/0.016740 ra=- {"items":[{"id":"4bcd91a2-e803-4317-b2ea-8cf26ee53c23","object_key":"files/4bcd91a2-e803-4
+H 10:55:04 health=200/0.016653 file=200/0.007017
+L 10:55:05 200/0.014641 ra=- {"items":[{"id":"4bcd91a2-e803-4317-b2ea-8cf26ee53c23","object_key":"files/4bcd91a2-e803-4
+L 10:55:05 200/0.026925 ra=- {"items":[{"id":"4bcd91a2-e803-4317-b2ea-8cf26ee53c23","object_key":"files/4bcd91a2-e803-4
+H 10:55:05 health=200/0.021536 file=200/0.008744
+U 10:55:05 201/0.036316 {"id":"cfc37791-3811-44f4-a234-21465ccb1014","status":"uploaded"}
+M 10:55:05 db_pool_in_use=0.0 db_pool_timeouts_total=478.0 db_pool_size=5.0 
+L 10:55:06 200/0.014497 ra=- {"items":[{"id":"cfc37791-3811-44f4-a234-21465ccb1014","object_key":"files/cfc37791-3811-4
+L 10:55:06 200/0.017228 ra=- {"items":[{"id":"cfc37791-3811-44f4-a234-21465ccb1014","object_key":"files/cfc37791-3811-4
+H 10:55:06 health=200/0.015921 file=200/0.007625
+L 10:55:07 200/0.013852 ra=- {"items":[{"id":"cfc37791-3811-44f4-a234-21465ccb1014","object_key":"files/cfc37791-3811-4
+L 10:55:07 200/0.014996 ra=- {"items":[{"id":"cfc37791-3811-44f4-a234-21465ccb1014","object_key":"files/cfc37791-3811-4
+H 10:55:07 health=200/0.016841 file=200/0.006958
+L 10:55:08 200/0.015870 ra=- {"items":[{"id":"cfc37791-3811-44f4-a234-21465ccb1014","object_key":"files/cfc37791-3811-4
+L 10:55:08 200/0.024642 ra=- {"items":[{"id":"cfc37791-3811-44f4-a234-21465ccb1014","object_key":"files/cfc37791-3811-4
+H 10:55:08 health=200/0.016068 file=200/0.007107
+L 10:55:09 200/0.015674 ra=- {"items":[{"id":"cfc37791-3811-44f4-a234-21465ccb1014","object_key":"files/cfc37791-3811-4
+L 10:55:10 200/0.018659 ra=- {"items":[{"id":"cfc37791-3811-44f4-a234-21465ccb1014","object_key":"files/cfc37791-3811-4
+H 10:55:10 health=200/0.023198 file=200/0.006435
+L 10:55:10 200/0.014526 ra=- {"items":[{"id":"cfc37791-3811-44f4-a234-21465ccb1014","object_key":"files/cfc37791-3811-4
+L 10:55:11 200/0.029301 ra=- {"items":[{"id":"cfc37791-3811-44f4-a234-21465ccb1014","object_key":"files/cfc37791-3811-4
+H 10:55:11 health=200/0.024008 file=200/0.008592
+M 10:55:11 db_pool_in_use=0.0 db_pool_timeouts_total=478.0 db_pool_size=5.0 
+L 10:55:11 200/0.014631 ra=- {"items":[{"id":"cfc37791-3811-44f4-a234-21465ccb1014","object_key":"files/cfc37791-3811-4
+L 10:55:12 200/0.019831 ra=- {"items":[{"id":"cfc37791-3811-44f4-a234-21465ccb1014","object_key":"files/cfc37791-3811-4
+H 10:55:12 health=200/0.018237 file=200/0.006391
+L 10:55:12 200/0.015132 ra=- {"items":[{"id":"cfc37791-3811-44f4-a234-21465ccb1014","object_key":"files/cfc37791-3811-4
+L 10:55:13 200/0.009944 ra=- {"items":[{"id":"cfc37791-3811-44f4-a234-21465ccb1014","object_key":"files/cfc37791-3811-4
+H 10:55:13 health=200/0.009573 file=200/0.005538
+L 10:55:13 200/0.019743 ra=- {"items":[{"id":"cfc37791-3811-44f4-a234-21465ccb1014","object_key":"files/cfc37791-3811-4
+L 10:55:14 200/0.025312 ra=- {"items":[{"id":"cfc37791-3811-44f4-a234-21465ccb1014","object_key":"files/cfc37791-3811-4
+H 10:55:14 health=200/0.024120 file=200/0.006357
+L 10:55:14 200/0.014996 ra=- {"items":[{"id":"cfc37791-3811-44f4-a234-21465ccb1014","object_key":"files/cfc37791-3811-4
+L 10:55:15 200/0.011033 ra=- {"items":[{"id":"cfc37791-3811-44f4-a234-21465ccb1014","object_key":"files/cfc37791-3811-4
+H 10:55:15 health=200/0.010162 file=200/0.007013
+L 10:55:15 200/0.014003 ra=- {"items":[{"id":"cfc37791-3811-44f4-a234-21465ccb1014","object_key":"files/cfc37791-3811-4
+H 10:55:16 health=200/0.029009 file=200/0.011221
+U 10:55:16 201/0.043669 {"id":"ca919091-a383-424c-ab13-3e1e3ce8dc8c","status":"uploaded"}
+L 10:55:16 200/0.037882 ra=- {"items":[{"id":"ca919091-a383-424c-ab13-3e1e3ce8dc8c","object_key":"files/ca919091-a383-4
+M 10:55:16 db_pool_in_use=0.0 db_pool_timeouts_total=478.0 db_pool_size=5.0 
+A 10:55:16 ApiErrorRateHigh=firing ApiLatencyHigh=firing DbPoolExhausted=firing
+L 10:55:17 200/0.015212 ra=- {"items":[{"id":"ca919091-a383-424c-ab13-3e1e3ce8dc8c","object_key":"files/ca919091-a383-4
+L 10:55:17 200/0.013569 ra=- {"items":[{"id":"ca919091-a383-424c-ab13-3e1e3ce8dc8c","object_key":"files/ca919091-a383-4
+H 10:55:17 health=200/0.013450 file=200/0.006782
+L 10:55:18 200/0.010667 ra=- {"items":[{"id":"ca919091-a383-424c-ab13-3e1e3ce8dc8c","object_key":"files/ca919091-a383-4
+L 10:55:18 200/0.012628 ra=- {"items":[{"id":"ca919091-a383-424c-ab13-3e1e3ce8dc8c","object_key":"files/ca919091-a383-4
+H 10:55:18 health=200/0.012308 file=200/0.006152
+L 10:55:19 200/0.014798 ra=- {"items":[{"id":"ca919091-a383-424c-ab13-3e1e3ce8dc8c","object_key":"files/ca919091-a383-4
+L 10:55:19 200/0.014581 ra=- {"items":[{"id":"ca919091-a383-424c-ab13-3e1e3ce8dc8c","object_key":"files/ca919091-a383-4
+H 10:55:19 health=200/0.014477 file=200/0.006547
+L 10:55:20 200/0.012737 ra=- {"items":[{"id":"ca919091-a383-424c-ab13-3e1e3ce8dc8c","object_key":"files/ca919091-a383-4
+L 10:55:20 200/0.012281 ra=- {"items":[{"id":"ca919091-a383-424c-ab13-3e1e3ce8dc8c","object_key":"files/ca919091-a383-4
+H 10:55:20 health=200/0.010336 file=200/0.005657
+L 10:55:21 200/0.015730 ra=- {"items":[{"id":"ca919091-a383-424c-ab13-3e1e3ce8dc8c","object_key":"files/ca919091-a383-4
+L 10:55:21 200/0.018265 ra=- {"items":[{"id":"ca919091-a383-424c-ab13-3e1e3ce8dc8c","object_key":"files/ca919091-a383-4
+H 10:55:21 health=200/0.020573 file=200/0.007785
+M 10:55:21 db_pool_in_use=0.0 db_pool_timeouts_total=478.0 db_pool_size=5.0 
+L 10:55:22 200/0.016715 ra=- {"items":[{"id":"ca919091-a383-424c-ab13-3e1e3ce8dc8c","object_key":"files/ca919091-a383-4
+L 10:55:23 200/0.015269 ra=- {"items":[{"id":"ca919091-a383-424c-ab13-3e1e3ce8dc8c","object_key":"files/ca919091-a383-4
+H 10:55:23 health=200/0.013345 file=200/0.006780
+L 10:55:23 200/0.015312 ra=- {"items":[{"id":"ca919091-a383-424c-ab13-3e1e3ce8dc8c","object_key":"files/ca919091-a383-4
+L 10:55:24 200/0.011190 ra=- {"items":[{"id":"ca919091-a383-424c-ab13-3e1e3ce8dc8c","object_key":"files/ca919091-a383-4
+H 10:55:24 health=200/0.010524 file=200/0.005446
+L 10:55:24 200/0.013380 ra=- {"items":[{"id":"ca919091-a383-424c-ab13-3e1e3ce8dc8c","object_key":"files/ca919091-a383-4
+L 10:55:25 200/0.015276 ra=- {"items":[{"id":"ca919091-a383-424c-ab13-3e1e3ce8dc8c","object_key":"files/ca919091-a383-4
+H 10:55:25 health=200/0.014530 file=200/0.006720
+L 10:55:25 200/0.015094 ra=- {"items":[{"id":"ca919091-a383-424c-ab13-3e1e3ce8dc8c","object_key":"files/ca919091-a383-4
+L 10:55:26 200/0.012685 ra=- {"items":[{"id":"ca919091-a383-424c-ab13-3e1e3ce8dc8c","object_key":"files/ca919091-a383-4
+H 10:55:26 health=200/0.012475 file=200/0.006214
+L 10:55:26 200/0.013825 ra=- {"items":[{"id":"ca919091-a383-424c-ab13-3e1e3ce8dc8c","object_key":"files/ca919091-a383-4
+L 10:55:27 200/0.023758 ra=- {"items":[{"id":"ca919091-a383-424c-ab13-3e1e3ce8dc8c","object_key":"files/ca919091-a383-4
+U 10:55:27 201/0.033905 {"id":"2149ad7d-2851-415b-94a4-faabfcebac17","status":"uploaded"}
+H 10:55:27 health=200/0.019496 file=200/0.012515
+M 10:55:27 db_pool_in_use=0.0 db_pool_timeouts_total=478.0 db_pool_size=5.0 
+L 10:55:28 200/0.016475 ra=- {"items":[{"id":"2149ad7d-2851-415b-94a4-faabfcebac17","object_key":"files/2149ad7d-2851-4
+L 10:55:28 200/0.016853 ra=- {"items":[{"id":"2149ad7d-2851-415b-94a4-faabfcebac17","object_key":"files/2149ad7d-2851-4
+H 10:55:28 health=200/0.014340 file=200/0.009120
+L 10:55:29 200/0.013979 ra=- {"items":[{"id":"2149ad7d-2851-415b-94a4-faabfcebac17","object_key":"files/2149ad7d-2851-4
+L 10:55:29 200/0.015403 ra=- {"items":[{"id":"2149ad7d-2851-415b-94a4-faabfcebac17","object_key":"files/2149ad7d-2851-4
+H 10:55:29 health=200/0.013593 file=200/0.006301
+L 10:55:30 200/0.016128 ra=- {"items":[{"id":"2149ad7d-2851-415b-94a4-faabfcebac17","object_key":"files/2149ad7d-2851-4
+L 10:55:30 200/0.014520 ra=- {"items":[{"id":"2149ad7d-2851-415b-94a4-faabfcebac17","object_key":"files/2149ad7d-2851-4
+H 10:55:30 health=200/0.014580 file=200/0.006629
+L 10:55:31 200/0.013728 ra=- {"items":[{"id":"2149ad7d-2851-415b-94a4-faabfcebac17","object_key":"files/2149ad7d-2851-4
+L 10:55:31 200/0.013479 ra=- {"items":[{"id":"2149ad7d-2851-415b-94a4-faabfcebac17","object_key":"files/2149ad7d-2851-4
+H 10:55:31 health=200/0.013068 file=200/0.007673
+L 10:55:32 200/0.013445 ra=- {"items":[{"id":"2149ad7d-2851-415b-94a4-faabfcebac17","object_key":"files/2149ad7d-2851-4
+L 10:55:32 200/0.020133 ra=- {"items":[{"id":"2149ad7d-2851-415b-94a4-faabfcebac17","object_key":"files/2149ad7d-2851-4
+H 10:55:32 health=200/0.018507 file=200/0.005844
+M 10:55:32 db_pool_in_use=0.0 db_pool_timeouts_total=478.0 db_pool_size=5.0 
+A 10:55:32 ApiErrorRateHigh=firing ApiLatencyHigh=firing DbPoolExhausted=firing
+L 10:55:33 200/0.023377 ra=- {"items":[{"id":"2149ad7d-2851-415b-94a4-faabfcebac17","object_key":"files/2149ad7d-2851-4
+L 10:55:34 200/0.016164 ra=- {"items":[{"id":"2149ad7d-2851-415b-94a4-faabfcebac17","object_key":"files/2149ad7d-2851-4
+H 10:55:34 health=200/0.016083 file=200/0.006624
+L 10:55:34 200/0.021967 ra=- {"items":[{"id":"2149ad7d-2851-415b-94a4-faabfcebac17","object_key":"files/2149ad7d-2851-4
+L 10:55:35 200/0.015944 ra=- {"items":[{"id":"2149ad7d-2851-415b-94a4-faabfcebac17","object_key":"files/2149ad7d-2851-4
+H 10:55:35 health=200/0.013638 file=200/0.006401
+L 10:55:35 200/0.010328 ra=- {"items":[{"id":"2149ad7d-2851-415b-94a4-faabfcebac17","object_key":"files/2149ad7d-2851-4
+L 10:55:36 200/0.013077 ra=- {"items":[{"id":"2149ad7d-2851-415b-94a4-faabfcebac17","object_key":"files/2149ad7d-2851-4
+H 10:55:36 health=200/0.011393 file=200/0.005808
+L 10:55:36 200/0.016759 ra=- {"items":[{"id":"2149ad7d-2851-415b-94a4-faabfcebac17","object_key":"files/2149ad7d-2851-4
+L 10:55:37 200/0.014780 ra=- {"items":[{"id":"2149ad7d-2851-415b-94a4-faabfcebac17","object_key":"files/2149ad7d-2851-4
+H 10:55:37 health=200/0.012405 file=200/0.007346
+L 10:55:37 200/0.014774 ra=- {"items":[{"id":"2149ad7d-2851-415b-94a4-faabfcebac17","object_key":"files/2149ad7d-2851-4
+L 10:55:38 200/0.024062 ra=- {"items":[{"id":"c244d4a9-19d4-44c3-803d-a4109f501b13","object_key":"files/c244d4a9-19d4-4
+U 10:55:38 201/0.036402 {"id":"c244d4a9-19d4-44c3-803d-a4109f501b13","status":"uploaded"}
+H 10:55:38 health=200/0.021407 file=200/0.016094
+M 10:55:38 db_pool_in_use=0.0 db_pool_timeouts_total=478.0 db_pool_size=5.0 
+L 10:55:38 200/0.025615 ra=- {"items":[{"id":"c244d4a9-19d4-44c3-803d-a4109f501b13","object_key":"files/c244d4a9-19d4-4
+L 10:55:39 200/0.014763 ra=- {"items":[{"id":"c244d4a9-19d4-44c3-803d-a4109f501b13","object_key":"files/c244d4a9-19d4-4
+H 10:55:39 health=200/0.012477 file=200/0.006265
+L 10:55:39 200/0.021954 ra=- {"items":[{"id":"c244d4a9-19d4-44c3-803d-a4109f501b13","object_key":"files/c244d4a9-19d4-4
+L 10:55:40 200/0.017112 ra=- {"items":[{"id":"c244d4a9-19d4-44c3-803d-a4109f501b13","object_key":"files/c244d4a9-19d4-4
+H 10:55:40 health=200/0.016675 file=200/0.007101
+L 10:55:41 200/0.019165 ra=- {"items":[{"id":"c244d4a9-19d4-44c3-803d-a4109f501b13","object_key":"files/c244d4a9-19d4-4
+L 10:55:41 200/0.009880 ra=- {"items":[{"id":"c244d4a9-19d4-44c3-803d-a4109f501b13","object_key":"files/c244d4a9-19d4-4
+H 10:55:41 health=200/0.008924 file=200/0.007313
+L 10:55:42 200/0.016933 ra=- {"items":[{"id":"c244d4a9-19d4-44c3-803d-a4109f501b13","object_key":"files/c244d4a9-19d4-4
+L 10:55:42 200/0.014771 ra=- {"items":[{"id":"c244d4a9-19d4-44c3-803d-a4109f501b13","object_key":"files/c244d4a9-19d4-4
+H 10:55:42 health=200/0.013891 file=200/0.007005
+L 10:55:43 200/0.030030 ra=- {"items":[{"id":"c244d4a9-19d4-44c3-803d-a4109f501b13","object_key":"files/c244d4a9-19d4-4
+L 10:55:43 200/0.013445 ra=- {"items":[{"id":"c244d4a9-19d4-44c3-803d-a4109f501b13","object_key":"files/c244d4a9-19d4-4
+H 10:55:43 health=200/0.014021 file=200/0.006194
+M 10:55:43 db_pool_in_use=0.0 db_pool_timeouts_total=478.0 db_pool_size=5.0 
+L 10:55:44 200/0.015798 ra=- {"items":[{"id":"c244d4a9-19d4-44c3-803d-a4109f501b13","object_key":"files/c244d4a9-19d4-4
+L 10:55:44 200/0.017002 ra=- {"items":[{"id":"c244d4a9-19d4-44c3-803d-a4109f501b13","object_key":"files/c244d4a9-19d4-4
+H 10:55:44 health=200/0.014880 file=200/0.006523
+L 10:55:45 200/0.013970 ra=- {"items":[{"id":"c244d4a9-19d4-44c3-803d-a4109f501b13","object_key":"files/c244d4a9-19d4-4
+L 10:55:45 200/0.012967 ra=- {"items":[{"id":"c244d4a9-19d4-44c3-803d-a4109f501b13","object_key":"files/c244d4a9-19d4-4
+H 10:55:45 health=200/0.012085 file=200/0.006108
+L 10:55:46 200/0.013474 ra=- {"items":[{"id":"c244d4a9-19d4-44c3-803d-a4109f501b13","object_key":"files/c244d4a9-19d4-4
+L 10:55:46 200/0.014106 ra=- {"items":[{"id":"c244d4a9-19d4-44c3-803d-a4109f501b13","object_key":"files/c244d4a9-19d4-4
+H 10:55:46 health=200/0.012203 file=200/0.006058
+L 10:55:47 200/0.016262 ra=- {"items":[{"id":"c244d4a9-19d4-44c3-803d-a4109f501b13","object_key":"files/c244d4a9-19d4-4
+L 10:55:47 200/0.013482 ra=- {"items":[{"id":"c244d4a9-19d4-44c3-803d-a4109f501b13","object_key":"files/c244d4a9-19d4-4
+H 10:55:47 health=200/0.012445 file=200/0.005876
+L 10:55:48 200/0.013527 ra=- {"items":[{"id":"c244d4a9-19d4-44c3-803d-a4109f501b13","object_key":"files/c244d4a9-19d4-4
+L 10:55:48 200/0.019766 ra=- {"items":[{"id":"c244d4a9-19d4-44c3-803d-a4109f501b13","object_key":"files/c244d4a9-19d4-4
+U 10:55:48 201/0.024586 {"id":"4c091bc4-168e-482a-862a-c257d25e39ca","status":"uploaded"}
+H 10:55:48 health=200/0.014285 file=200/0.013618
+M 10:55:48 db_pool_in_use=0.0 db_pool_timeouts_total=478.0 db_pool_size=5.0 
+A 10:55:49 ApiErrorRateHigh=firing ApiLatencyHigh=firing DbPoolExhausted=firing
+L 10:55:49 200/0.015255 ra=- {"items":[{"id":"4c091bc4-168e-482a-862a-c257d25e39ca","object_key":"files/4c091bc4-168e-4
+L 10:55:50 200/0.011852 ra=- {"items":[{"id":"4c091bc4-168e-482a-862a-c257d25e39ca","object_key":"files/4c091bc4-168e-4
+H 10:55:50 health=200/0.011311 file=200/0.005499
+L 10:55:50 200/0.009010 ra=- {"items":[{"id":"4c091bc4-168e-482a-862a-c257d25e39ca","object_key":"files/4c091bc4-168e-4
+L 10:55:51 200/0.009405 ra=- {"items":[{"id":"4c091bc4-168e-482a-862a-c257d25e39ca","object_key":"files/4c091bc4-168e-4
+H 10:55:51 health=200/0.008630 file=200/0.005773
+L 10:55:51 200/0.012176 ra=- {"items":[{"id":"4c091bc4-168e-482a-862a-c257d25e39ca","object_key":"files/4c091bc4-168e-4
+L 10:55:52 200/0.016252 ra=- {"items":[{"id":"4c091bc4-168e-482a-862a-c257d25e39ca","object_key":"files/4c091bc4-168e-4
+H 10:55:52 health=200/0.013868 file=200/0.007031
+L 10:55:52 200/0.015563 ra=- {"items":[{"id":"4c091bc4-168e-482a-862a-c257d25e39ca","object_key":"files/4c091bc4-168e-4
+L 10:55:53 200/0.013891 ra=- {"items":[{"id":"4c091bc4-168e-482a-862a-c257d25e39ca","object_key":"files/4c091bc4-168e-4
+H 10:55:53 health=200/0.012988 file=200/0.006570
+L 10:55:53 200/0.009837 ra=- {"items":[{"id":"4c091bc4-168e-482a-862a-c257d25e39ca","object_key":"files/4c091bc4-168e-4
+L 10:55:54 200/0.016952 ra=- {"items":[{"id":"4c091bc4-168e-482a-862a-c257d25e39ca","object_key":"files/4c091bc4-168e-4
+H 10:55:54 health=200/0.018086 file=200/0.007145
+M 10:55:54 db_pool_in_use=0.0 db_pool_timeouts_total=478.0 db_pool_size=5.0 
+L 10:55:55 200/0.016166 ra=- {"items":[{"id":"4c091bc4-168e-482a-862a-c257d25e39ca","object_key":"files/4c091bc4-168e-4
+L 10:55:55 200/0.014964 ra=- {"items":[{"id":"4c091bc4-168e-482a-862a-c257d25e39ca","object_key":"files/4c091bc4-168e-4
+H 10:55:55 health=200/0.012683 file=200/0.006303
+L 10:55:56 200/0.014297 ra=- {"items":[{"id":"4c091bc4-168e-482a-862a-c257d25e39ca","object_key":"files/4c091bc4-168e-4
+L 10:55:56 200/0.016127 ra=- {"items":[{"id":"4c091bc4-168e-482a-862a-c257d25e39ca","object_key":"files/4c091bc4-168e-4
+H 10:55:56 health=200/0.013738 file=200/0.006793
+L 10:55:57 200/0.012028 ra=- {"items":[{"id":"4c091bc4-168e-482a-862a-c257d25e39ca","object_key":"files/4c091bc4-168e-4
+L 10:55:57 200/0.010838 ra=- {"items":[{"id":"4c091bc4-168e-482a-862a-c257d25e39ca","object_key":"files/4c091bc4-168e-4
+H 10:55:57 health=200/0.011475 file=200/0.005282
+L 10:55:58 200/0.014043 ra=- {"items":[{"id":"4c091bc4-168e-482a-862a-c257d25e39ca","object_key":"files/4c091bc4-168e-4
+L 10:55:58 200/0.012693 ra=- {"items":[{"id":"4c091bc4-168e-482a-862a-c257d25e39ca","object_key":"files/4c091bc4-168e-4
+H 10:55:58 health=200/0.011111 file=200/0.007096
+L 10:55:59 200/0.013645 ra=- {"items":[{"id":"4c091bc4-168e-482a-862a-c257d25e39ca","object_key":"files/4c091bc4-168e-4
+L 10:55:59 200/0.030990 ra=- {"items":[{"id":"4c091bc4-168e-482a-862a-c257d25e39ca","object_key":"files/4c091bc4-168e-4
+H 10:55:59 health=200/0.116980 file=200/0.009480
+U 10:55:59 201/0.040074 {"id":"5a0d8daf-67b7-4f4f-993d-551b98a8c325","status":"uploaded"}
+M 10:55:59 db_pool_in_use=0.0 db_pool_timeouts_total=478.0 db_pool_size=5.0 
+L 10:56:00 200/0.013073 ra=- {"items":[{"id":"5a0d8daf-67b7-4f4f-993d-551b98a8c325","object_key":"files/5a0d8daf-67b7-4
+L 10:56:01 200/0.016648 ra=- {"items":[{"id":"5a0d8daf-67b7-4f4f-993d-551b98a8c325","object_key":"files/5a0d8daf-67b7-4
+H 10:56:01 health=200/0.017410 file=200/0.007956
+L 10:56:01 200/0.016212 ra=- {"items":[{"id":"5a0d8daf-67b7-4f4f-993d-551b98a8c325","object_key":"files/5a0d8daf-67b7-4
+L 10:56:02 200/0.013372 ra=- {"items":[{"id":"5a0d8daf-67b7-4f4f-993d-551b98a8c325","object_key":"files/5a0d8daf-67b7-4
+H 10:56:02 health=200/0.013303 file=200/0.006337
+L 10:56:02 200/0.016583 ra=- {"items":[{"id":"5a0d8daf-67b7-4f4f-993d-551b98a8c325","object_key":"files/5a0d8daf-67b7-4
+L 10:56:03 200/0.016878 ra=- {"items":[{"id":"5a0d8daf-67b7-4f4f-993d-551b98a8c325","object_key":"files/5a0d8daf-67b7-4
+H 10:56:03 health=200/0.016503 file=200/0.007691
+L 10:56:03 200/0.015443 ra=- {"items":[{"id":"5a0d8daf-67b7-4f4f-993d-551b98a8c325","object_key":"files/5a0d8daf-67b7-4
+L 10:56:04 200/0.018513 ra=- {"items":[{"id":"5a0d8daf-67b7-4f4f-993d-551b98a8c325","object_key":"files/5a0d8daf-67b7-4
+H 10:56:04 health=200/0.016821 file=200/0.005727
+L 10:56:04 200/0.013790 ra=- {"items":[{"id":"5a0d8daf-67b7-4f4f-993d-551b98a8c325","object_key":"files/5a0d8daf-67b7-4
+L 10:56:05 200/0.019139 ra=- {"items":[{"id":"5a0d8daf-67b7-4f4f-993d-551b98a8c325","object_key":"files/5a0d8daf-67b7-4
+H 10:56:05 health=200/0.020942 file=200/0.007335
+M 10:56:05 db_pool_in_use=0.0 db_pool_timeouts_total=478.0 db_pool_size=5.0 
+A 10:56:05 ApiErrorRateHigh=firing ApiLatencyHigh=firing DbPoolExhausted=firing
+L 10:56:06 200/0.017371 ra=- {"items":[{"id":"5a0d8daf-67b7-4f4f-993d-551b98a8c325","object_key":"files/5a0d8daf-67b7-4
+L 10:56:06 200/0.019835 ra=- {"items":[{"id":"5a0d8daf-67b7-4f4f-993d-551b98a8c325","object_key":"files/5a0d8daf-67b7-4
+H 10:56:06 health=200/0.017650 file=200/0.007848
+L 10:56:07 200/0.016047 ra=- {"items":[{"id":"5a0d8daf-67b7-4f4f-993d-551b98a8c325","object_key":"files/5a0d8daf-67b7-4
+L 10:56:07 200/0.014311 ra=- {"items":[{"id":"5a0d8daf-67b7-4f4f-993d-551b98a8c325","object_key":"files/5a0d8daf-67b7-4
+H 10:56:07 health=200/0.014380 file=200/0.006302
+L 10:56:08 200/0.014332 ra=- {"items":[{"id":"5a0d8daf-67b7-4f4f-993d-551b98a8c325","object_key":"files/5a0d8daf-67b7-4
+L 10:56:08 200/0.015737 ra=- {"items":[{"id":"5a0d8daf-67b7-4f4f-993d-551b98a8c325","object_key":"files/5a0d8daf-67b7-4
+H 10:56:08 health=200/0.015727 file=200/0.007541
+L 10:56:09 200/0.010412 ra=- {"items":[{"id":"5a0d8daf-67b7-4f4f-993d-551b98a8c325","object_key":"files/5a0d8daf-67b7-4
+L 10:56:09 200/0.015853 ra=- {"items":[{"id":"5a0d8daf-67b7-4f4f-993d-551b98a8c325","object_key":"files/5a0d8daf-67b7-4
+H 10:56:09 health=200/0.015557 file=200/0.006768
+L 10:56:10 200/0.013824 ra=- {"items":[{"id":"5a0d8daf-67b7-4f4f-993d-551b98a8c325","object_key":"files/5a0d8daf-67b7-4
+H 10:56:10 health=200/0.022657 file=200/0.012382
+L 10:56:10 200/0.030961 ra=- {"items":[{"id":"5a0d8daf-67b7-4f4f-993d-551b98a8c325","object_key":"files/5a0d8daf-67b7-4
+U 10:56:10 201/0.045017 {"id":"74a7e120-dda1-4f6a-8c83-bd6a5eb82ebf","status":"uploaded"}
+M 10:56:10 db_pool_in_use=0.0 db_pool_timeouts_total=478.0 db_pool_size=5.0 
+L 10:56:11 200/0.011304 ra=- {"items":[{"id":"74a7e120-dda1-4f6a-8c83-bd6a5eb82ebf","object_key":"files/74a7e120-dda1-4
+L 10:56:12 200/0.017117 ra=- {"items":[{"id":"74a7e120-dda1-4f6a-8c83-bd6a5eb82ebf","object_key":"files/74a7e120-dda1-4
+H 10:56:12 health=200/0.014977 file=200/0.007034
+L 10:56:12 200/0.016557 ra=- {"items":[{"id":"74a7e120-dda1-4f6a-8c83-bd6a5eb82ebf","object_key":"files/74a7e120-dda1-4
+L 10:56:13 200/0.013548 ra=- {"items":[{"id":"74a7e120-dda1-4f6a-8c83-bd6a5eb82ebf","object_key":"files/74a7e120-dda1-4
+H 10:56:13 health=200/0.010939 file=200/0.006008
+L 10:56:13 200/0.013918 ra=- {"items":[{"id":"74a7e120-dda1-4f6a-8c83-bd6a5eb82ebf","object_key":"files/74a7e120-dda1-4
+L 10:56:14 200/0.014951 ra=- {"items":[{"id":"74a7e120-dda1-4f6a-8c83-bd6a5eb82ebf","object_key":"files/74a7e120-dda1-4
+H 10:56:14 health=200/0.016575 file=200/0.006656
+L 10:56:14 200/0.014586 ra=- {"items":[{"id":"74a7e120-dda1-4f6a-8c83-bd6a5eb82ebf","object_key":"files/74a7e120-dda1-4
+L 10:56:15 200/0.016739 ra=- {"items":[{"id":"74a7e120-dda1-4f6a-8c83-bd6a5eb82ebf","object_key":"files/74a7e120-dda1-4
+H 10:56:15 health=200/0.016357 file=200/0.007938
+L 10:56:15 200/0.012089 ra=- {"items":[{"id":"74a7e120-dda1-4f6a-8c83-bd6a5eb82ebf","object_key":"files/74a7e120-dda1-4
+L 10:56:16 200/0.017891 ra=- {"items":[{"id":"74a7e120-dda1-4f6a-8c83-bd6a5eb82ebf","object_key":"files/74a7e120-dda1-4
+H 10:56:16 health=200/0.016052 file=200/0.012223
+M 10:56:16 db_pool_in_use=0.0 db_pool_timeouts_total=478.0 db_pool_size=5.0 
+L 10:56:17 200/0.014380 ra=- {"items":[{"id":"74a7e120-dda1-4f6a-8c83-bd6a5eb82ebf","object_key":"files/74a7e120-dda1-4
+L 10:56:17 200/0.015864 ra=- {"items":[{"id":"74a7e120-dda1-4f6a-8c83-bd6a5eb82ebf","object_key":"files/74a7e120-dda1-4
+H 10:56:17 health=200/0.014697 file=200/0.007190
+L 10:56:18 200/0.012112 ra=- {"items":[{"id":"74a7e120-dda1-4f6a-8c83-bd6a5eb82ebf","object_key":"files/74a7e120-dda1-4
+L 10:56:18 200/0.011029 ra=- {"items":[{"id":"74a7e120-dda1-4f6a-8c83-bd6a5eb82ebf","object_key":"files/74a7e120-dda1-4
+H 10:56:18 health=200/0.010371 file=200/0.011498
+L 10:56:19 200/0.011110 ra=- {"items":[{"id":"74a7e120-dda1-4f6a-8c83-bd6a5eb82ebf","object_key":"files/74a7e120-dda1-4
+L 10:56:19 200/0.022817 ra=- {"items":[{"id":"74a7e120-dda1-4f6a-8c83-bd6a5eb82ebf","object_key":"files/74a7e120-dda1-4
+H 10:56:19 health=200/0.023666 file=200/0.007040
+E 10:56:20 опрос закончен, жду незавершённых запросов (до 20 с)
+E 10:56:20 готово

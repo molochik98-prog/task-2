@@ -107,5 +107,5 @@ echo "backend: 'upload to storage failed': $(docker logs --since "$SINCE" "$BE" 
 docker logs --since "$SINCE" worker 2>&1 | grep -iE 'error|traceback' | cut -c1-170 | sort | uniq -c | sort -rn | head -3
 docker inspect -f 'worker: status={{.State.Status}} перезапусков={{.RestartCount}}' worker
 docker inspect -f 'minio: status={{.State.Status}} health={{.State.Health.Status}}' minio
-cp "$OUT" evidence/chaos2-minio-stop.txt
+cp "$OUT" "evidence/${EVID:-chaos2-minio-stop.txt}"
 echo "готово"

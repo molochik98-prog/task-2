@@ -16,7 +16,7 @@ import db
 import queue_metrics
 import storage
 import tasks
-from metrics import FILE_DB_LOADS
+from metrics import FILE_DB_LOADS, STORAGE_ERRORS
 
 DATABASE_URL = os.environ["DATABASE_URL"]
 log = logging.getLogger("uvicorn.error")
@@ -154,6 +154,7 @@ def upload_file(
         storage.put(object_key, file.file, file.size, file.content_type)
     except Exception:
         log.exception("upload to storage failed: %s", object_key)
+        STORAGE_ERRORS.labels("put").inc()
         db.set_status(file_id, "failed")
         cache.invalidate(f"file:{file_id}")
         raise HTTPException(status_code=503, detail="storage unavailable, try again later")
@@ -195,6 +196,7 @@ def delete_file(file_id: uuid.UUID):
         storage.remove(object_key)
     except Exception:
         log.exception("orphan object after row delete: %s", object_key)
+        STORAGE_ERRORS.labels("remove").inc()
     return Response(status_code=204)
 
 

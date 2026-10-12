@@ -67,5 +67,5 @@ python3 scripts/chaos-pool-summary.py "$OUT"
 echo "== логи за опыт"
 echo "backend: Traceback $(docker logs --since "$SINCE" "$BE" 2>&1 | grep -c Traceback), healthcheck: $(docker inspect -f '{{.State.Health.Status}}' "$BE")"
 echo "worker: 'sweeper failed' $(docker logs --since "$SINCE" worker 2>&1 | grep -c 'sweeper failed'), перезапусков $(docker inspect -f '{{.RestartCount}}' worker)"
-cp "$OUT" evidence/chaos6-pool-exhaustion.txt
+cp "$OUT" "evidence/${EVID:-chaos6-pool-exhaustion.txt}"
 echo "готово"

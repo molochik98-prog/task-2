@@ -97,8 +97,8 @@ if snaps:
 print("== алерты Prometheus")
 seen = {}
 for l in by["A"]:
-    p = l.split(None, 3)
-    for it in (p[3].split() if len(p) > 3 else []):
+    p = l.split(None, 2)  # строка: A <время> <алерты> (поля фазы здесь нет)
+    for it in (p[2].split() if len(p) > 2 else []):
         if "=" in it:
             n, st = it.split("=", 1)
             d = seen.setdefault(n, {})

@@ -44,16 +44,16 @@ groups:
           summary: "Кеш недоступен: запросы идут напрямую в Postgres"
 
       - alert: ApiErrorRateHigh
-        expr: sum(rate(http_requests_total{status=~"5.."}[5m])) / sum(rate(http_requests_total[5m])) > 0.05
-        for: 5m
+        expr: sum(rate(http_requests_total{status=~"5.."}[2m])) / sum(rate(http_requests_total[2m])) > 0.05 and sum(increase(http_requests_total{status=~"5.."}[2m])) >= 5
+        for: 2m
         labels:
           severity: critical
         annotations:
           summary: "Доля 5xx выше 5%: {{ $value | humanizePercentage }}"
 
       - alert: ApiLatencyHigh
-        expr: histogram_quantile(0.95, sum by (le) (rate(http_request_duration_highr_seconds_bucket[5m]))) > 1
-        for: 5m
+        expr: histogram_quantile(0.95, sum by (le) (rate(http_request_duration_highr_seconds_bucket[2m]))) > 1
+        for: 2m
         labels:
           severity: warning
         annotations:
@@ -66,6 +66,14 @@ groups:
           severity: critical
         annotations:
           summary: "Запросы отказывают из-за исчерпания пула Postgres"
+
+      - alert: StorageErrors
+        expr: sum(increase(storage_errors_total[2m])) > 0
+        for: 1m
+        labels:
+          severity: warning
+        annotations:
+          summary: "Операции с хранилищем MinIO падают (загрузка или удаление объекта)"
 
       - alert: ReconcileMismatch
         expr: reconcile_last_mismatches > 0
