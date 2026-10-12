@@ -1,0 +1,283 @@
+E 10:19:24 старт RUN=1791800364 iface=enp0s1 delay=300ms wrk -c20; фазы pre=60с delay=450с post=90с
+P 10:19:24 pre health=200/0.021483 file=200/0.045148 list1=200/0.044792
+U 10:19:24 pre 201/0.083178 {"id":"a74f3d1a-fc40-453e-982a-15acf5d3ec75","status":"uploaded"}
+M 10:19:24 pre db_pool_in_use=1.0 db_pool_timeouts_total=441.0 db_pool_stale_total=7.0  docker=healthy
+A 10:19:25 pre none
+P 10:19:26 pre health=200/0.033010 file=200/0.055903 list1=200/0.036833
+P 10:19:27 pre health=200/0.040959 file=200/0.034249 list1=200/0.029552
+P 10:19:28 pre health=200/0.020722 file=200/0.026246 list1=200/0.030421
+P 10:19:29 pre health=200/0.041000 file=200/0.030799 list1=200/0.036945
+P 10:19:30 pre health=200/0.042316 file=200/0.024470 list1=200/0.028675
+M 10:19:30 pre db_pool_in_use=5.0 db_pool_timeouts_total=441.0 db_pool_stale_total=7.0  docker=healthy
+P 10:19:32 pre health=200/0.032877 file=200/0.020827 list1=200/0.045661
+P 10:19:33 pre health=200/0.027942 file=200/0.017953 list1=200/0.061599
+P 10:19:34 pre health=200/0.030423 file=200/0.017864 list1=200/0.036796
+P 10:19:35 pre health=200/0.050338 file=200/0.025938 list1=200/0.048479
+P 10:19:36 pre health=200/0.037860 file=200/0.033597 list1=200/0.039189
+U 10:19:36 pre 201/0.054828 {"id":"775c0aca-0ba9-45ff-9ec2-376dcc9b53cd","status":"uploaded"}
+M 10:19:36 pre db_pool_in_use=2.0 db_pool_timeouts_total=441.0 db_pool_stale_total=7.0  docker=healthy
+P 10:19:38 pre health=200/0.034401 file=200/0.026816 list1=200/0.047454
+P 10:19:39 pre health=200/0.041744 file=200/0.018829 list1=200/0.024526
+P 10:19:40 pre health=200/0.030523 file=200/0.029767 list1=200/0.031624
+P 10:19:41 pre health=200/0.034889 file=200/0.022842 list1=200/0.026551
+P 10:19:42 pre health=200/0.028656 file=200/0.028486 list1=200/0.034249
+M 10:19:42 pre db_pool_in_use=3.0 db_pool_timeouts_total=441.0 db_pool_stale_total=7.0  docker=healthy
+A 10:19:43 pre none
+P 10:19:44 pre health=200/0.033251 file=200/0.035009 list1=200/0.034961
+P 10:19:45 pre health=200/0.016730 file=200/0.034461 list1=200/0.039180
+P 10:19:46 pre health=200/0.030821 file=200/0.027249 list1=200/0.037226
+P 10:19:47 pre health=200/0.035897 file=200/0.018741 list1=200/0.040217
+P 10:19:48 pre health=200/0.039173 file=200/0.018851 list1=200/0.026548
+U 10:19:49 pre 201/0.069542 {"id":"9d71607e-5a7e-4a0d-a2ed-c02ff6c67545","status":"uploaded"}
+M 10:19:49 pre db_pool_in_use=4.0 db_pool_timeouts_total=441.0 db_pool_stale_total=7.0  docker=healthy
+P 10:19:50 pre health=200/0.047635 file=200/0.026724 list1=200/0.046970
+P 10:19:51 pre health=200/0.040976 file=200/0.025386 list1=200/0.041670
+P 10:19:52 pre health=200/0.046186 file=200/0.031403 list1=200/0.037758
+P 10:19:53 pre health=200/0.031221 file=200/0.024842 list1=200/0.034378
+W 10:19:24 rps=680 p50=28.3 p95=44.0 p99=57.6 non2xx=0 connect=0 read=0 write=0 timeout=0
+P 10:19:54 pre health=200/0.020101 file=200/0.025974 list1=200/0.037451
+M 10:19:55 pre db_pool_in_use=3.0 db_pool_timeouts_total=441.0 db_pool_stale_total=7.0  docker=healthy
+P 10:19:56 pre health=200/0.042952 file=200/0.030853 list1=200/0.041938
+P 10:19:57 pre health=200/0.044681 file=200/0.025753 list1=200/0.036143
+P 10:19:58 pre health=200/0.034022 file=200/0.032284 list1=200/0.032601
+P 10:19:59 pre health=200/0.033156 file=200/0.029299 list1=200/0.032192
+P 10:20:00 pre health=200/0.038862 file=200/0.031119 list1=200/0.034736
+U 10:20:01 pre 201/0.078904 {"id":"1bc69cd9-174c-49b8-9a6c-30aea93785a8","status":"uploaded"}
+M 10:20:01 pre db_pool_in_use=2.0 db_pool_timeouts_total=441.0 db_pool_stale_total=7.0  docker=healthy
+A 10:20:01 pre none
+P 10:20:02 pre health=200/0.031620 file=200/0.031877 list1=200/0.041864
+P 10:20:03 pre health=200/0.039648 file=200/0.026675 list1=200/0.030212
+P 10:20:04 pre health=200/0.030600 file=200/0.030884 list1=200/0.022515
+P 10:20:05 pre health=200/0.026044 file=200/0.036772 list1=200/0.064252
+P 10:20:07 pre health=200/0.046467 file=200/0.031614 list1=200/0.027598
+M 10:20:07 pre db_pool_in_use=0.0 db_pool_timeouts_total=441.0 db_pool_stale_total=7.0  docker=healthy
+P 10:20:08 pre health=200/0.013733 file=200/0.025277 list1=200/0.047557
+P 10:20:09 pre health=200/0.034058 file=200/0.027997 list1=200/0.050069
+P 10:20:10 pre health=200/0.041444 file=200/0.025374 list1=200/0.021958
+P 10:20:11 pre health=200/0.029817 file=200/0.022266 list1=200/0.032356
+P 10:20:13 pre health=200/0.040014 file=200/0.035088 list1=200/0.037812
+U 10:20:13 pre 201/0.058801 {"id":"4f6a69e3-77ba-4dda-a511-3c9c4ece20a7","status":"uploaded"}
+M 10:20:13 pre db_pool_in_use=0.0 db_pool_timeouts_total=441.0 db_pool_stale_total=7.0  docker=healthy
+P 10:20:14 pre health=200/0.038594 file=200/0.021127 list1=200/0.039802
+P 10:20:15 pre health=200/0.039168 file=200/0.033960 list1=200/0.030826
+P 10:20:16 pre health=200/0.069066 file=200/0.045361 list1=200/0.047060
+P 10:20:18 pre health=200/0.030254 file=200/0.026625 list1=200/0.036022
+P 10:20:19 pre health=200/0.042216 file=200/0.031663 list1=200/0.025674
+M 10:20:19 pre db_pool_in_use=0.0 db_pool_timeouts_total=441.0 db_pool_stale_total=7.0  docker=healthy
+A 10:20:19 pre none
+P 10:20:20 pre health=200/0.041281 file=200/0.034587 list1=200/0.045811
+P 10:20:22 pre health=200/0.035428 file=200/0.036371 list1=200/0.026450
+P 10:20:23 pre health=200/0.053150 file=200/0.032371 list1=200/0.040104
+E 10:20:24 задержка 300ms включена: qdisc prio 1: root refcnt 2 bands 3 priomap 1 2 2 2 1 2 0 0 1 1 1 1 1 1 1 1;qdisc netem 30: parent 1:3 limit 1000 delay 300ms seed 8056657013179168414;
+W 10:19:54 rps=640 p50=29.6 p95=47.4 p99=60.5 non2xx=0 connect=0 read=0 write=0 timeout=0
+P 10:20:24 delay health=503/2.011343 file=200/0.008777 list1=200/1.630045
+P 10:20:29 delay health=200/3.026663 file=200/0.008031 list1=200/3.203468
+U 10:20:37 delay 503/2.007818 {"detail":"database busy, try again later"}
+M 10:20:37 delay db_pool_in_use=4.0 db_pool_timeouts_total=517.0 db_pool_stale_total=7.0  docker=healthy
+P 10:20:38 delay health=200/3.020740 file=200/3.030465 list1=200/3.172623
+W 10:20:24 rps=8 p50=1351.0 p95=1775.0 p99=1775.0 non2xx=138 connect=0 read=0 write=0 timeout=236
+P 10:20:48 delay health=200/3.085684 file=200/0.010523 list1=200/3.130432
+P 10:20:56 delay health=200/1.910336 file=200/0.011890 list1=200/2.691423
+P 10:21:01 delay health=200/2.632755 file=200/0.009819 list1=503/2.013830
+P 10:21:07 delay health=200/2.962210 file=200/0.012337 list1=503/2.010425
+M 10:21:12 delay db_pool_in_use=4.0 db_pool_timeouts_total=683.0 db_pool_stale_total=7.0  docker=healthy
+P 10:21:13 delay health=503/2.013615 file=200/0.006251 list1=200/3.151157
+W 10:20:54 rps=8 p50=1884.8 p95=1989.9 p99=1989.9 non2xx=135 connect=0 read=0 write=0 timeout=235
+P 10:21:20 delay health=200/2.957059 file=200/0.009264 list1=503/2.008134
+P 10:21:26 delay health=200/2.390003 file=200/0.006438 list1=200/1.800066
+P 10:21:31 delay health=200/3.234854 file=200/0.010867 list1=200/2.691467
+P 10:21:38 delay health=503/2.016760 file=200/0.010047 list1=503/2.007823
+U 10:21:47 delay 503/5.099633 {"detail":"database busy, try again later"}
+M 10:21:47 delay db_pool_in_use=5.0 db_pool_timeouts_total=854.0 db_pool_stale_total=7.0  docker=unhealthy
+A 10:21:47 delay none
+P 10:21:48 delay health=200/2.987798 file=200/0.011475 list1=503/2.006992
+W 10:21:24 rps=8 p50=1540.5 p95=1846.6 p99=1846.6 non2xx=136 connect=0 read=0 write=0 timeout=235
+P 10:21:54 delay health=200/3.006240 file=200/2.423850 list1=200/2.705770
+P 10:22:04 delay health=200/3.205588 file=200/0.011413 list1=200/2.984691
+P 10:22:11 delay health=200/3.210726 file=200/0.012272 list1=200/3.012713
+P 10:22:18 delay health=200/3.204853 file=200/0.010522 list1=200/3.016364
+W 10:21:55 rps=8 p50=1260.0 p95=1858.1 p99=1858.1 non2xx=136 connect=0 read=0 write=0 timeout=236
+M 10:22:25 delay db_pool_in_use=3.0 db_pool_timeouts_total=1028.0 db_pool_stale_total=7.0  docker=unhealthy
+P 10:22:26 delay health=200/2.069810 file=200/0.007236 list1=200/2.404026
+P 10:22:31 delay health=503/2.011138 file=200/0.012508 list1=200/3.006891
+P 10:22:37 delay health=503/2.013179 file=200/0.010107 list1=200/3.019401
+P 10:22:44 delay health=503/2.013898 file=200/0.005901 list1=200/3.040149
+P 10:22:50 delay health=503/2.010233 file=200/0.010616 list1=200/3.006002
+W 10:22:25 rps=8 p50=1565.5 p95=1963.0 p99=1963.0 non2xx=135 connect=0 read=0 write=0 timeout=234
+U 10:22:57 delay 503/2.011375 {"detail":"database busy, try again later"}
+M 10:22:57 delay db_pool_in_use=4.0 db_pool_timeouts_total=1203.0 db_pool_stale_total=7.0  docker=unhealthy
+P 10:22:58 delay health=200/2.548710 file=200/0.011641 list1=200/2.682630
+P 10:23:04 delay health=200/2.614738 file=503/2.009612 list1=503/2.008949
+P 10:23:12 delay health=200/3.127321 file=200/3.093952 list1=503/2.008625
+W 10:22:55 rps=8 p50=1594.4 p95=1906.1 p99=1906.1 non2xx=133 connect=0 read=0 write=0 timeout=232
+P 10:23:21 delay health=503/2.010008 file=200/0.009382 list1=200/3.096797
+P 10:23:27 delay health=200/2.619226 file=200/0.019961 list1=200/2.712139
+M 10:23:33 delay db_pool_in_use=3.0 db_pool_timeouts_total=1373.0 db_pool_stale_total=7.0  docker=unhealthy
+A 10:23:33 delay DbPoolExhausted=firing
+P 10:23:34 delay health=503/2.012212 file=200/0.005724 list1=503/2.011181
+P 10:23:39 delay health=200/3.047659 file=200/0.012083 list1=503/2.009387
+P 10:23:45 delay health=200/3.057817 file=200/0.011055 list1=503/2.015130
+W 10:23:25 rps=8 p50=1758.4 p95=1758.4 p99=1758.4 non2xx=130 connect=0 read=0 write=0 timeout=235
+P 10:23:51 delay health=503/2.025220 file=200/0.010058 list1=503/2.013438
+P 10:23:57 delay health=200/1.508556 file=200/0.025106 list1=200/2.387452
+U 10:24:05 delay 503/4.751898 {"detail":"database busy, try again later"}
+M 10:24:05 delay db_pool_in_use=3.0 db_pool_timeouts_total=1530.0 db_pool_stale_total=7.0  docker=unhealthy
+P 10:24:07 delay health=503/2.010175 file=200/0.009500 list1=200/3.139195
+P 10:24:13 delay health=200/3.213082 file=200/0.009579 list1=200/3.047085
+W 10:23:55 rps=8 p50=1575.5 p95=1581.8 p99=1581.8 non2xx=134 connect=0 read=0 write=0 timeout=235
+P 10:24:20 delay health=200/3.250919 file=200/0.011433 list1=200/2.999970
+P 10:24:28 delay health=503/2.012172 file=200/0.010212 list1=200/2.699425
+P 10:24:33 delay health=503/2.012373 file=200/3.015493 list1=503/2.011294
+M 10:24:40 delay db_pool_in_use=4.0 db_pool_timeouts_total=1697.0 db_pool_stale_total=7.0  docker=unhealthy
+P 10:24:42 delay health=503/2.029191 file=200/0.010547 list1=200/3.131672
+P 10:24:48 delay health=503/2.014612 file=200/0.011330 list1=503/2.013486
+W 10:24:25 rps=8 p50=1962.9 p95=1963.1 p99=1963.1 non2xx=132 connect=0 read=0 write=0 timeout=234
+P 10:24:53 delay health=503/2.011861 file=200/0.005927 list1=503/2.012243
+P 10:24:58 delay health=200/2.479520 file=200/0.011577 list1=200/2.410469
+P 10:25:04 delay health=503/2.011752 file=200/0.010924 list1=503/2.008324
+U 10:25:13 delay 503/5.136420 {"detail":"database busy, try again later"}
+M 10:25:13 delay db_pool_in_use=4.0 db_pool_timeouts_total=1855.0 db_pool_stale_total=7.0  docker=unhealthy
+A 10:25:14 delay DbPoolExhausted=firing
+P 10:25:15 delay health=200/3.038844 file=200/0.010875 list1=503/2.010740
+W 10:24:55 rps=8 p50=1736.6 p95=1736.6 p99=1736.6 non2xx=134 connect=0 read=0 write=0 timeout=238
+P 10:25:21 delay health=503/2.011080 file=200/0.011816 list1=200/3.099614
+P 10:25:27 delay health=200/1.388052 file=200/0.013986 list1=200/2.378174
+P 10:25:32 delay health=503/2.021996 file=200/0.011933 list1=200/2.999858
+P 10:25:38 delay health=503/2.015865 file=200/0.011013 list1=200/3.022735
+M 10:25:43 delay db_pool_in_use=3.0 db_pool_timeouts_total=2001.0 db_pool_stale_total=7.0  docker=unhealthy
+P 10:25:44 delay health=503/2.007919 file=200/0.008753 list1=503/2.015262
+W 10:25:25 rps=8 p50=1567.0 p95=1960.1 p99=1960.1 non2xx=130 connect=0 read=0 write=0 timeout=234
+P 10:25:49 delay health=503/2.011943 file=503/2.013781 list1=503/2.011293
+P 10:25:56 delay health=200/2.365962 file=200/2.435800 list1=503/2.027787
+P 10:26:04 delay health=200/2.982078 file=200/0.010092 list1=503/2.007598
+P 10:26:10 delay health=200/2.971912 file=200/0.007659 list1=503/2.008617
+U 10:26:21 delay 503/5.238231 {"detail":"database busy, try again later"}
+M 10:26:21 delay db_pool_in_use=3.0 db_pool_timeouts_total=2177.0 db_pool_stale_total=7.0  docker=unhealthy
+W 10:25:55 rps=8 p50=1878.6 p95=1882.9 p99=1882.9 non2xx=131 connect=0 read=0 write=0 timeout=232
+P 10:26:22 delay health=503/2.014313 file=200/0.018590 list1=200/3.170392
+P 10:26:28 delay health=200/2.266498 file=200/0.008823 list1=200/2.705061
+P 10:26:34 delay health=503/2.018026 file=200/0.022973 list1=503/2.011793
+P 10:26:40 delay health=503/2.013332 file=200/0.017098 list1=503/2.007294
+P 10:26:45 delay health=503/2.014229 file=200/0.016185 list1=503/2.007047
+M 10:26:49 delay db_pool_in_use=4.0 db_pool_timeouts_total=2312.0 db_pool_stale_total=7.0  docker=unhealthy
+A 10:26:49 delay ApiErrorRateHigh=pending ApiLatencyHigh=pending DbPoolExhausted=firing
+P 10:26:50 delay health=503/2.011505 file=200/0.008528 list1=200/3.129299
+W 10:26:25 rps=8 p50=1555.4 p95=1880.1 p99=1880.1 non2xx=127 connect=0 read=0 write=0 timeout=232
+P 10:26:56 delay health=200/2.575875 file=200/0.014342 list1=200/2.429892
+P 10:27:03 delay health=200/3.125984 file=200/0.007064 list1=503/2.007963
+P 10:27:09 delay health=503/2.011861 file=200/0.012991 list1=503/2.006428
+P 10:27:14 delay health=503/2.023100 file=503/2.011459 list1=503/2.007955
+U 10:27:22 delay 503/2.009285 {"detail":"database busy, try again later"}
+M 10:27:22 delay db_pool_in_use=3.0 db_pool_timeouts_total=2468.0 db_pool_stale_total=7.0  docker=unhealthy
+W 10:26:55 rps=8 p50=1461.8 p95=1815.6 p99=1815.6 non2xx=127 connect=0 read=0 write=0 timeout=231
+P 10:27:23 delay health=503/2.014361 file=503/2.018593 list1=200/2.005248
+P 10:27:30 delay health=200/2.963637 file=200/3.049705 list1=200/3.023376
+P 10:27:41 delay health=200/3.225537 file=200/0.008389 list1=503/2.010616
+P 10:27:47 delay health=503/2.014391 file=200/0.014125 list1=503/2.009116
+W 10:27:26 rps=8 p50=1342.9 p95=1817.5 p99=1817.5 non2xx=130 connect=0 read=0 write=0 timeout=232
+P 10:27:52 delay health=503/2.016888 file=200/0.011327 list1=503/2.012094
+M 10:27:56 delay db_pool_in_use=4.0 db_pool_timeouts_total=2627.0 db_pool_stale_total=7.0  docker=unhealthy
+E 10:27:57 задержка снята
+P 10:27:57 post health=200/0.403629 file=200/0.028973 list1=200/0.046390
+P 10:27:59 post health=200/0.037203 file=200/0.016521 list1=200/0.033309
+P 10:28:00 post health=200/0.032463 file=200/0.015424 list1=200/0.028145
+P 10:28:01 post health=200/0.033266 file=200/0.028056 list1=200/0.027822
+P 10:28:02 post health=200/0.032745 file=200/0.036679 list1=200/0.029385
+U 10:28:02 post 201/0.053633 {"id":"b4b2ec5a-8161-4638-8166-40d1199d16af","status":"uploaded"}
+M 10:28:02 post db_pool_in_use=2.0 db_pool_timeouts_total=2640.0 db_pool_stale_total=7.0  docker=unhealthy
+A 10:28:03 post ApiErrorRateHigh=pending ApiLatencyHigh=pending DbPoolExhausted=firing
+P 10:28:04 post health=200/0.030107 file=200/0.027683 list1=200/0.047883
+P 10:28:05 post health=200/0.037649 file=200/0.029547 list1=200/0.034019
+P 10:28:06 post health=200/0.057003 file=200/0.028499 list1=200/0.035996
+P 10:28:07 post health=200/0.040013 file=200/0.027390 list1=200/0.030552
+P 10:28:08 post health=200/0.062387 file=200/0.032988 list1=200/0.038938
+M 10:28:08 post db_pool_in_use=1.0 db_pool_timeouts_total=2640.0 db_pool_stale_total=7.0  docker=unhealthy
+P 10:28:10 post health=200/0.028164 file=200/0.018189 list1=200/0.033342
+P 10:28:11 post health=200/0.040170 file=200/0.026344 list1=200/0.034274
+P 10:28:12 post health=200/0.033378 file=200/0.012733 list1=200/0.031896
+P 10:28:13 post health=200/0.038652 file=200/0.023683 list1=200/0.034094
+P 10:28:14 post health=200/0.037795 file=200/0.024479 list1=200/0.037454
+U 10:28:15 post 201/0.103426 {"id":"8f767f59-214f-4d94-a7d2-0c450212a070","status":"uploaded"}
+M 10:28:15 post db_pool_in_use=3.0 db_pool_timeouts_total=2640.0 db_pool_stale_total=7.0  docker=healthy
+P 10:28:16 post health=200/0.031734 file=200/0.026816 list1=200/0.042517
+P 10:28:17 post health=200/0.026932 file=200/0.030332 list1=200/0.034697
+P 10:28:18 post health=200/0.027111 file=200/0.023077 list1=200/0.037722
+P 10:28:19 post health=200/0.032609 file=200/0.026451 list1=200/0.036019
+P 10:28:21 post health=200/0.028415 file=200/0.021294 list1=200/0.029123
+M 10:28:21 post db_pool_in_use=3.0 db_pool_timeouts_total=2640.0 db_pool_stale_total=7.0  docker=healthy
+A 10:28:21 post ApiErrorRateHigh=pending ApiLatencyHigh=pending DbPoolExhausted=firing
+P 10:28:22 post health=200/0.032818 file=200/0.028230 list1=200/0.032583
+P 10:28:23 post health=200/0.029857 file=200/0.023456 list1=200/0.019501
+P 10:28:24 post health=200/0.032129 file=200/0.035717 list1=200/0.032915
+P 10:28:25 post health=200/0.029826 file=200/0.025956 list1=200/0.033002
+W 10:27:56 rps=638 p50=28.1 p95=43.4 p99=57.3 non2xx=8 connect=0 read=0 write=0 timeout=20
+P 10:28:26 post health=200/0.027211 file=200/0.027125 list1=200/0.037076
+U 10:28:27 post 201/0.084111 {"id":"08f8068e-040d-4c68-9b6d-accc4122800d","status":"uploaded"}
+M 10:28:27 post db_pool_in_use=4.0 db_pool_timeouts_total=2640.0 db_pool_stale_total=7.0  docker=healthy
+P 10:28:28 post health=200/0.049130 file=200/0.025753 list1=200/0.025929
+P 10:28:29 post health=200/0.033648 file=200/0.026170 list1=200/0.015921
+P 10:28:30 post health=200/0.033243 file=200/0.033376 list1=200/0.024276
+P 10:28:31 post health=200/0.025148 file=200/0.022210 list1=200/0.040411
+P 10:28:32 post health=200/0.031399 file=200/0.030034 list1=200/0.078196
+M 10:28:33 post db_pool_in_use=3.0 db_pool_timeouts_total=2640.0 db_pool_stale_total=7.0  docker=healthy
+P 10:28:34 post health=200/0.026894 file=200/0.029086 list1=200/0.041452
+P 10:28:35 post health=200/0.073533 file=200/0.027563 list1=200/0.036471
+P 10:28:36 post health=200/0.024810 file=200/0.028683 list1=200/0.049740
+P 10:28:37 post health=200/0.030607 file=200/0.023777 list1=200/0.046435
+P 10:28:39 post health=200/0.035517 file=200/0.030030 list1=200/0.043956
+U 10:28:39 post 201/0.095644 {"id":"4272f91c-de64-4060-a7fe-f19a23119d94","status":"uploaded"}
+M 10:28:39 post db_pool_in_use=3.0 db_pool_timeouts_total=2640.0 db_pool_stale_total=7.0  docker=healthy
+A 10:28:39 post ApiErrorRateHigh=pending ApiLatencyHigh=pending DbPoolExhausted=firing
+P 10:28:40 post health=200/0.036384 file=200/0.031408 list1=200/0.021501
+P 10:28:41 post health=200/0.029398 file=200/0.031414 list1=200/0.041917
+P 10:28:43 post health=200/0.046244 file=200/0.028665 list1=200/0.039736
+P 10:28:44 post health=200/0.031497 file=200/0.024982 list1=200/0.039392
+P 10:28:45 post health=200/0.035600 file=200/0.028108 list1=200/0.036517
+M 10:28:45 post db_pool_in_use=4.0 db_pool_timeouts_total=2640.0 db_pool_stale_total=7.0  docker=healthy
+P 10:28:46 post health=200/0.040369 file=200/0.035075 list1=200/0.029385
+P 10:28:47 post health=200/0.034861 file=200/0.027729 list1=200/0.026856
+P 10:28:49 post health=200/0.038038 file=200/0.029772 list1=200/0.034943
+P 10:28:50 post health=200/0.015930 file=200/0.021590 list1=200/0.029694
+P 10:28:51 post health=200/0.024364 file=200/0.026868 list1=200/0.027689
+U 10:28:51 post 201/0.053656 {"id":"52dbccbf-8111-4201-a3d7-4ab7ebac1f29","status":"uploaded"}
+M 10:28:51 post db_pool_in_use=4.0 db_pool_timeouts_total=2640.0 db_pool_stale_total=7.0  docker=healthy
+P 10:28:52 post health=200/0.036576 file=200/0.030270 list1=200/0.036266
+P 10:28:53 post health=200/0.034315 file=200/0.018770 list1=200/0.030567
+P 10:28:55 post health=200/0.029185 file=200/0.024503 list1=200/0.044963
+P 10:28:56 post health=200/0.014058 file=200/0.025548 list1=200/0.047410
+W 10:28:26 rps=657 p50=29.3 p95=45.1 p99=58.9 non2xx=0 connect=0 read=0 write=0 timeout=0
+P 10:28:57 post health=200/0.035569 file=200/0.030003 list1=200/0.018568
+M 10:28:57 post db_pool_in_use=4.0 db_pool_timeouts_total=2640.0 db_pool_stale_total=7.0  docker=healthy
+A 10:28:57 post ApiErrorRateHigh=pending ApiLatencyHigh=pending DbPoolExhausted=firing
+P 10:28:58 post health=200/0.043421 file=200/0.026437 list1=200/0.033822
+P 10:28:59 post health=200/0.031785 file=200/0.026460 list1=200/0.038444
+P 10:29:01 post health=200/0.031178 file=200/0.029976 list1=200/0.031751
+P 10:29:02 post health=200/0.059785 file=200/0.023478 list1=200/0.031704
+P 10:29:03 post health=200/0.038907 file=200/0.022938 list1=200/0.032274
+U 10:29:03 post 201/0.053486 {"id":"82d88b4d-1778-4d50-8b44-93f0f4878661","status":"uploaded"}
+M 10:29:03 post db_pool_in_use=4.0 db_pool_timeouts_total=2640.0 db_pool_stale_total=7.0  docker=healthy
+P 10:29:04 post health=200/0.037961 file=200/0.026695 list1=200/0.040635
+P 10:29:05 post health=200/0.036684 file=200/0.027018 list1=200/0.036088
+P 10:29:07 post health=200/0.027372 file=200/0.025710 list1=200/0.038916
+P 10:29:08 post health=200/0.024867 file=200/0.018465 list1=200/0.035668
+P 10:29:09 post health=200/0.033472 file=200/0.018363 list1=200/0.031689
+M 10:29:09 post db_pool_in_use=2.0 db_pool_timeouts_total=2640.0 db_pool_stale_total=7.0  docker=healthy
+P 10:29:10 post health=200/0.039723 file=200/0.025355 list1=200/0.030836
+P 10:29:11 post health=200/0.036995 file=200/0.036490 list1=200/0.039619
+P 10:29:13 post health=200/0.044009 file=200/0.019561 list1=200/0.027780
+P 10:29:14 post health=200/0.033571 file=200/0.026962 list1=200/0.039230
+P 10:29:15 post health=200/0.024955 file=200/0.028316 list1=200/0.047995
+U 10:29:15 post 201/0.046655 {"id":"1239b2bb-450f-4f60-a5eb-aab5809744fa","status":"uploaded"}
+M 10:29:15 post db_pool_in_use=3.0 db_pool_timeouts_total=2640.0 db_pool_stale_total=7.0  docker=healthy
+A 10:29:15 post ApiErrorRateHigh=pending ApiLatencyHigh=pending DbPoolExhausted=firing
+P 10:29:16 post health=200/0.044298 file=200/0.020492 list1=200/0.035415
+P 10:29:17 post health=200/0.040198 file=200/0.018483 list1=200/0.028087
+P 10:29:19 post health=200/0.021923 file=200/0.020167 list1=200/0.038253
+P 10:29:20 post health=200/0.032683 file=200/0.027445 list1=200/0.033835
+P 10:29:21 post health=200/0.033359 file=200/0.017896 list1=200/0.029529
+M 10:29:21 post db_pool_in_use=3.0 db_pool_timeouts_total=2640.0 db_pool_stale_total=7.0  docker=healthy
+P 10:29:22 post health=200/0.055564 file=200/0.029018 list1=200/0.055835
+P 10:29:23 post health=200/0.035285 file=200/0.023111 list1=200/0.047627
+E 10:29:25 опрос закончен, дожидаюсь wrk
+W 10:28:56 rps=697 p50=27.8 p95=41.4 p99=52.9 non2xx=0 connect=0 read=0 write=0 timeout=0
+E 10:29:26 готово
