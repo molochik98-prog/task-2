@@ -1,0 +1,262 @@
+E 08:53:53 старт RUN=1791795233 backend=backend-green ключ=chaos2-1791795233-k1, фазы: pre=20с down=150с post=100с
+M 08:53:53 pre cache_errors_total=43.0 bucket_objects=85.0 bucket_bytes=1190.0 queue_stats_up=1.0 
+P 08:53:53 pre health=200/0.008565 file=200/0.005361 list=200/0.010317 minio=healthy link=200/0.008532 dl=200/0.010594 deps=ok
+U 08:53:53 pre 201/0.017822 {"id":"eef9d279-71d1-4318-8bba-8c9695ef271b","status":"uploaded"}
+A 08:53:53 pre none
+P 08:53:54 pre health=200/0.011152 file=200/0.005943 list=200/0.009209 minio=healthy
+P 08:53:55 pre health=200/0.010515 file=200/0.005884 list=200/0.009829 minio=healthy
+P 08:53:56 pre health=200/0.010839 file=200/0.006487 list=200/0.009015 minio=healthy
+P 08:53:57 pre health=200/0.010440 file=200/0.009862 list=200/0.010049 minio=healthy
+M 08:53:59 pre cache_errors_total=43.0 bucket_objects=85.0 bucket_bytes=1190.0 queue_stats_up=1.0 
+P 08:53:59 pre health=200/0.009930 file=200/0.006653 list=200/0.008752 minio=healthy link=200/0.008248 dl=200/0.006744 deps=ok
+P 08:54:00 pre health=200/0.009982 file=200/0.006124 list=200/0.009035 minio=healthy
+P 08:54:01 pre health=200/0.012020 file=200/0.006071 list=200/0.009651 minio=healthy
+P 08:54:02 pre health=200/0.010129 file=200/0.005824 list=200/0.009332 minio=healthy
+P 08:54:03 pre health=200/0.010850 file=200/0.005961 list=200/0.008767 minio=healthy
+M 08:54:04 pre cache_errors_total=43.0 bucket_objects=85.0 bucket_bytes=1190.0 queue_stats_up=1.0 
+P 08:54:04 pre health=200/0.012999 file=200/0.006242 list=200/0.013106 minio=healthy link=200/0.007312 dl=200/0.009184 deps=ok
+U 08:54:05 pre 201/0.015583 {"id":"23c1b937-47f5-4314-9f44-4339dc30f84a","status":"uploaded"}
+P 08:54:06 pre health=200/0.009379 file=200/0.005491 list=200/0.009606 minio=healthy
+P 08:54:07 pre health=200/0.008389 file=200/0.005416 list=200/0.009071 minio=healthy
+P 08:54:08 pre health=200/0.010267 file=200/0.006103 list=200/0.009539 minio=healthy
+P 08:54:09 pre health=200/0.013442 file=200/0.005839 list=200/0.009681 minio=healthy
+M 08:54:10 pre cache_errors_total=43.0 bucket_objects=85.0 bucket_bytes=1190.0 queue_stats_up=1.0 
+P 08:54:10 pre health=200/0.012685 file=200/0.006530 list=200/0.009422 minio=healthy link=200/0.008027 dl=200/0.005887 deps=ok
+A 08:54:10 pre none
+P 08:54:11 pre health=200/0.011594 file=200/0.005576 list=200/0.009333 minio=healthy
+E 08:54:13 docker stop minio
+E 08:54:13 minio остановлен
+P 08:54:13 down health=200/0.008019 file=200/0.005396 list=200/0.009218 minio=unhealthy
+P 08:54:14 down health=200/0.009760 file=200/0.005962 list=200/0.009848 minio=unhealthy
+P 08:54:15 down health=200/0.010704 file=200/0.006265 list=200/0.009851 minio=unhealthy
+M 08:54:16 down cache_errors_total=43.0 bucket_objects=85.0 bucket_bytes=1190.0 queue_stats_up=1.0 
+P 08:54:16 down health=200/0.010032 file=200/0.010192 list=200/0.010454 minio=unhealthy link=200/0.008539 dl=502/0.005637 deps=degraded
+U 08:54:22 down 503/6.079630 {"detail":"storage unavailable, try again later"}
+P 08:54:23 down health=200/0.011223 file=200/0.006054 list=200/0.010234 minio=unhealthy
+P 08:54:25 down health=200/0.009969 file=200/0.005528 list=200/0.008999 minio=unhealthy
+P 08:54:26 down health=200/0.011029 file=200/0.005830 list=200/0.009069 minio=unhealthy
+P 08:54:27 down health=200/0.007464 file=200/0.004803 list=200/0.008874 minio=unhealthy
+M 08:54:28 down cache_errors_total=43.0 bucket_objects=85.0 bucket_bytes=1190.0 queue_stats_up=1.0 
+P 08:54:28 down health=200/0.011091 file=200/0.006156 list=200/0.010409 minio=unhealthy link=200/0.007381 dl=502/0.004280 deps=degraded
+P 08:54:29 down health=200/0.010259 file=200/0.006049 list=200/0.008936 minio=unhealthy
+P 08:54:30 down health=200/0.009557 file=200/0.005614 list=200/0.009311 minio=unhealthy
+P 08:54:31 down health=200/0.010417 file=200/0.005608 list=200/0.008938 minio=unhealthy
+P 08:54:32 down health=200/0.011618 file=200/0.006536 list=200/0.009708 minio=unhealthy
+M 08:54:34 down cache_errors_total=43.0 bucket_objects=85.0 bucket_bytes=1190.0 queue_stats_up=1.0 
+P 08:54:33 down health=200/0.010470 file=200/0.006009 list=200/0.009449 minio=unhealthy link=200/0.007945 dl=502/0.004238 deps=degraded
+U 08:54:40 down 503/6.058738 {"detail":"storage unavailable, try again later"}
+A 08:54:40 down none
+P 08:54:41 down health=200/0.011284 file=200/0.005016 list=200/0.009765 minio=unhealthy
+P 08:54:42 down health=200/0.010172 file=200/0.010536 list=200/0.009594 minio=unhealthy
+P 08:54:43 down health=200/0.009042 file=200/0.006299 list=200/0.008637 minio=unhealthy
+P 08:54:44 down health=200/0.010059 file=200/0.006014 list=200/0.008893 minio=unhealthy
+M 08:54:45 down cache_errors_total=43.0 bucket_objects=NaN bucket_bytes=NaN queue_stats_up=1.0 
+P 08:54:45 down health=200/0.010621 file=200/0.006314 list=200/0.009254 minio=unhealthy link=200/0.007808 dl=502/0.004254 deps=degraded
+P 08:54:47 down health=200/0.010471 file=200/0.005712 list=200/0.009221 minio=unhealthy
+P 08:54:48 down health=200/0.010782 file=200/0.005713 list=200/0.009335 minio=unhealthy
+P 08:54:49 down health=200/0.010293 file=200/0.005729 list=200/0.008967 minio=unhealthy
+P 08:54:50 down health=200/0.013197 file=200/0.006109 list=200/0.009201 minio=unhealthy
+M 08:54:51 down cache_errors_total=43.0 bucket_objects=NaN bucket_bytes=NaN queue_stats_up=1.0 
+P 08:54:51 down health=200/0.010875 file=200/0.005828 list=200/0.009693 minio=unhealthy link=200/0.006990 dl=502/0.004299 deps=degraded
+U 08:54:57 down 503/6.054472 {"detail":"storage unavailable, try again later"}
+P 08:54:58 down health=200/0.017443 file=200/0.005787 list=200/0.009463 minio=unhealthy
+P 08:54:59 down health=200/0.016025 file=200/0.006188 list=200/0.009263 minio=unhealthy
+P 08:55:01 down health=200/0.010444 file=200/0.005535 list=200/0.009654 minio=unhealthy
+P 08:55:02 down health=200/0.010657 file=200/0.005971 list=200/0.009707 minio=unhealthy
+M 08:55:03 down cache_errors_total=43.0 bucket_objects=NaN bucket_bytes=NaN queue_stats_up=1.0 
+P 08:55:03 down health=200/0.011276 file=200/0.005877 list=200/0.013498 minio=unhealthy link=200/0.007852 dl=502/0.004520 deps=degraded
+A 08:55:03 down none
+P 08:55:04 down health=200/0.010381 file=200/0.006066 list=200/0.009260 minio=unhealthy
+P 08:55:05 down health=200/0.010408 file=200/0.005877 list=200/0.009152 minio=unhealthy
+P 08:55:06 down health=200/0.010458 file=200/0.005933 list=200/0.010000 minio=unhealthy
+P 08:55:07 down health=200/0.010980 file=200/0.006211 list=200/0.013211 minio=unhealthy
+M 08:55:09 down cache_errors_total=43.0 bucket_objects=NaN bucket_bytes=NaN queue_stats_up=1.0 
+P 08:55:08 down health=200/0.010270 file=200/0.005636 list=200/0.009044 minio=unhealthy link=200/0.007877 dl=502/0.004214 deps=degraded
+U 08:55:15 down 503/6.061925 {"detail":"storage unavailable, try again later"}
+K 08:55:21 down(MinIO лежит) 503/6.062049 {"detail":"storage unavailable, try again later"}
+P 08:55:22 down health=200/0.010088 file=200/0.009451 list=200/0.009297 minio=unhealthy
+P 08:55:23 down health=200/0.009477 file=200/0.005382 list=200/0.008995 minio=unhealthy
+P 08:55:24 down health=200/0.010888 file=200/0.006105 list=200/0.008893 minio=unhealthy
+P 08:55:25 down health=200/0.010795 file=200/0.006875 list=200/0.009250 minio=unhealthy
+M 08:55:26 down cache_errors_total=43.0 bucket_objects=NaN bucket_bytes=NaN queue_stats_up=1.0 
+P 08:55:26 down health=200/0.011301 file=200/0.006132 list=200/0.009056 minio=unhealthy link=200/0.007236 dl=502/0.004621 deps=degraded
+P 08:55:28 down health=200/0.008733 file=200/0.005039 list=200/0.008809 minio=unhealthy
+P 08:55:29 down health=200/0.011232 file=200/0.006520 list=200/0.013047 minio=unhealthy
+P 08:55:30 down health=200/0.011373 file=200/0.006022 list=200/0.013472 minio=unhealthy
+P 08:55:31 down health=200/0.008514 file=200/0.005525 list=200/0.009181 minio=unhealthy
+M 08:55:32 down cache_errors_total=43.0 bucket_objects=NaN bucket_bytes=NaN queue_stats_up=1.0 
+P 08:55:32 down health=200/0.010460 file=200/0.005903 list=200/0.008933 minio=unhealthy link=200/0.007279 dl=502/0.004302 deps=degraded
+U 08:55:38 down 503/6.068351 {"detail":"storage unavailable, try again later"}
+A 08:55:38 down none
+P 08:55:39 down health=200/0.010086 file=200/0.005398 list=200/0.008539 minio=unhealthy
+P 08:55:41 down health=200/0.009745 file=200/0.005991 list=200/0.009514 minio=unhealthy
+P 08:55:42 down health=200/0.009281 file=200/0.004995 list=200/0.009915 minio=unhealthy
+P 08:55:43 down health=200/0.012122 file=200/0.006576 list=200/0.009148 minio=unhealthy
+M 08:55:44 down cache_errors_total=43.0 bucket_objects=NaN bucket_bytes=NaN queue_stats_up=1.0 
+P 08:55:44 down health=200/0.017319 file=200/0.006143 list=200/0.010164 minio=unhealthy link=200/0.007680 dl=502/0.004085 deps=degraded
+P 08:55:45 down health=200/0.009735 file=200/0.005429 list=200/0.008441 minio=unhealthy
+P 08:55:46 down health=200/0.010717 file=200/0.006369 list=200/0.012896 minio=unhealthy
+P 08:55:47 down health=200/0.010228 file=200/0.006092 list=200/0.012999 minio=unhealthy
+P 08:55:48 down health=200/0.009569 file=200/0.005545 list=200/0.009465 minio=unhealthy
+M 08:55:50 down cache_errors_total=43.0 bucket_objects=NaN bucket_bytes=NaN queue_stats_up=1.0 
+P 08:55:49 down health=200/0.009872 file=200/0.005571 list=200/0.009217 minio=unhealthy link=200/0.009077 dl=502/0.004827 deps=degraded
+U 08:55:56 down 503/6.071906 {"detail":"storage unavailable, try again later"}
+P 08:55:57 down health=200/0.008321 file=200/0.005713 list=200/0.008511 minio=unhealthy
+P 08:55:58 down health=200/0.007347 file=200/0.005111 list=200/0.009033 minio=unhealthy
+P 08:55:59 down health=200/0.009389 file=200/0.006425 list=200/0.008741 minio=unhealthy
+P 08:56:00 down health=200/0.010529 file=200/0.006079 list=200/0.011650 minio=unhealthy
+M 08:56:01 down cache_errors_total=43.0 bucket_objects=NaN bucket_bytes=NaN queue_stats_up=1.0 
+P 08:56:01 down health=200/0.010774 file=200/0.005854 list=200/0.012797 minio=unhealthy link=200/0.007809 dl=502/0.004515 deps=degraded
+A 08:56:02 down none
+P 08:56:03 down health=200/0.011375 file=200/0.005975 list=200/0.009147 minio=unhealthy
+P 08:56:04 down health=200/0.011930 file=200/0.006352 list=200/0.009611 minio=unhealthy
+P 08:56:05 down health=200/0.016284 file=200/0.005862 list=200/0.008636 minio=unhealthy
+P 08:56:06 down health=200/0.010613 file=200/0.006355 list=200/0.008852 minio=unhealthy
+M 08:56:07 down cache_errors_total=43.0 bucket_objects=NaN bucket_bytes=NaN queue_stats_up=1.0 
+P 08:56:07 down health=200/0.011317 file=200/0.006225 list=200/0.009590 minio=unhealthy link=200/0.007847 dl=502/0.004500 deps=degraded
+U 08:56:13 down 503/6.076046 {"detail":"storage unavailable, try again later"}
+P 08:56:14 down health=200/0.009839 file=200/0.006117 list=200/0.008693 minio=unhealthy
+P 08:56:15 down health=200/0.010983 file=200/0.005869 list=200/0.009302 minio=unhealthy
+P 08:56:17 down health=200/0.013034 file=200/0.006402 list=200/0.009718 minio=unhealthy
+P 08:56:18 down health=200/0.017465 file=200/0.006083 list=200/0.009356 minio=unhealthy
+M 08:56:19 down cache_errors_total=43.0 bucket_objects=NaN bucket_bytes=NaN queue_stats_up=1.0 
+P 08:56:19 down health=200/0.009606 file=200/0.005820 list=200/0.008815 minio=unhealthy link=200/0.008067 dl=502/0.004654 deps=degraded
+P 08:56:20 down health=200/0.012269 file=200/0.006163 list=200/0.011032 minio=unhealthy
+P 08:56:21 down health=200/0.012174 file=200/0.008956 list=200/0.010288 minio=unhealthy
+P 08:56:22 down health=200/0.009707 file=200/0.006226 list=200/0.008945 minio=unhealthy
+P 08:56:23 down health=200/0.010418 file=200/0.005643 list=200/0.009432 minio=unhealthy
+M 08:56:25 down cache_errors_total=43.0 bucket_objects=NaN bucket_bytes=NaN queue_stats_up=1.0 
+P 08:56:24 down health=200/0.013632 file=200/0.006441 list=200/0.009541 minio=unhealthy link=200/0.007780 dl=502/0.004701 deps=degraded
+U 08:56:31 down 503/6.113567 {"detail":"storage unavailable, try again later"}
+A 08:56:31 down none
+P 08:56:32 down health=200/0.014556 file=200/0.007827 list=200/0.011268 minio=unhealthy
+P 08:56:33 down health=200/0.012768 file=200/0.005372 list=200/0.013836 minio=unhealthy
+P 08:56:34 down health=200/0.010459 file=200/0.005847 list=200/0.010504 minio=unhealthy
+P 08:56:35 down health=200/0.011443 file=200/0.005986 list=200/0.010164 minio=unhealthy
+M 08:56:37 down cache_errors_total=43.0 bucket_objects=NaN bucket_bytes=NaN queue_stats_up=1.0 
+P 08:56:36 down health=200/0.011421 file=200/0.006008 list=200/0.008816 minio=unhealthy link=200/0.009161 dl=502/0.008202 deps=degraded
+P 08:56:38 down health=200/0.009184 file=200/0.013318 list=200/0.008371 minio=unhealthy
+P 08:56:39 down health=200/0.009865 file=200/0.005748 list=200/0.008922 minio=unhealthy
+P 08:56:40 down health=200/0.008595 file=200/0.005253 list=200/0.008798 minio=unhealthy
+P 08:56:41 down health=200/0.010256 file=200/0.006449 list=200/0.009627 minio=unhealthy
+M 08:56:42 down cache_errors_total=43.0 bucket_objects=NaN bucket_bytes=NaN queue_stats_up=1.0 
+P 08:56:42 down health=200/0.011385 file=200/0.006227 list=200/0.009124 minio=unhealthy link=200/0.007881 dl=502/0.004478 deps=degraded
+U 08:56:49 down 503/6.066653 {"detail":"storage unavailable, try again later"}
+E 08:56:50 docker start minio
+E 08:56:50 minio запущен
+P 08:56:50 post health=200/0.013439 file=200/0.006471 list=200/0.009332 minio=starting
+P 08:56:51 post health=200/0.009232 file=200/0.005288 list=200/0.009274 minio=starting
+P 08:56:52 post health=200/0.011252 file=200/0.005379 list=200/0.012973 minio=starting
+P 08:56:53 post health=200/0.011257 file=200/0.005334 list=200/0.009286 minio=starting
+M 08:56:54 post cache_errors_total=43.0 bucket_objects=NaN bucket_bytes=NaN queue_stats_up=1.0 
+P 08:56:54 post health=200/0.009794 file=200/0.005982 list=200/0.008515 minio=starting link=200/0.007832 dl=200/0.007333 deps=ok
+A 08:56:54 post none
+P 08:56:56 post health=200/0.011351 file=200/0.006043 list=200/0.008899 minio=starting
+P 08:56:57 post health=200/0.007882 file=200/0.005404 list=200/0.010171 minio=starting
+P 08:56:58 post health=200/0.008121 file=200/0.007004 list=200/0.008992 minio=starting
+P 08:56:59 post health=200/0.013724 file=200/0.005672 list=200/0.009025 minio=starting
+M 08:57:00 post cache_errors_total=43.0 bucket_objects=NaN bucket_bytes=NaN queue_stats_up=1.0 
+P 08:57:00 post health=200/0.009898 file=200/0.005448 list=200/0.009008 minio=starting link=200/0.008314 dl=200/0.006858 deps=ok
+U 08:57:00 post 201/0.056056 {"id":"8ad5ca21-d4ff-49bd-afb4-a2567aae569c","status":"uploaded"}
+P 08:57:01 post health=200/0.010674 file=200/0.005689 list=200/0.009289 minio=starting
+P 08:57:02 post health=200/0.011657 file=200/0.005965 list=200/0.011065 minio=starting
+P 08:57:04 post health=200/0.010382 file=200/0.005297 list=200/0.012578 minio=starting
+P 08:57:05 post health=200/0.010793 file=200/0.006545 list=200/0.009411 minio=starting
+M 08:57:06 post cache_errors_total=43.0 bucket_objects=NaN bucket_bytes=NaN queue_stats_up=1.0 
+P 08:57:06 post health=200/0.009369 file=200/0.005553 list=200/0.009115 minio=starting link=200/0.008327 dl=200/0.010638 deps=ok
+P 08:57:07 post health=200/0.011615 file=200/0.005589 list=200/0.008964 minio=starting
+P 08:57:08 post health=200/0.011454 file=200/0.005812 list=200/0.009381 minio=starting
+P 08:57:09 post health=200/0.010660 file=200/0.005903 list=200/0.008621 minio=starting
+P 08:57:10 post health=200/0.010837 file=200/0.005831 list=200/0.008041 minio=starting
+M 08:57:12 post cache_errors_total=43.0 bucket_objects=NaN bucket_bytes=NaN queue_stats_up=1.0 
+P 08:57:11 post health=200/0.008210 file=200/0.005158 list=200/0.010761 minio=starting link=200/0.012898 dl=200/0.010950 deps=ok
+U 08:57:12 post 201/0.023216 {"id":"08015b9a-9669-4f2a-a8a3-9bfe3063952b","status":"uploaded"}
+A 08:57:12 post none
+P 08:57:13 post health=200/0.009631 file=200/0.005503 list=200/0.012538 minio=starting
+P 08:57:14 post health=200/0.011934 file=200/0.006144 list=200/0.008982 minio=starting
+P 08:57:15 post health=200/0.008935 file=200/0.005342 list=200/0.008304 minio=starting
+P 08:57:16 post health=200/0.009965 file=200/0.005694 list=200/0.009685 minio=starting
+M 08:57:17 post cache_errors_total=43.0 bucket_objects=NaN bucket_bytes=NaN queue_stats_up=1.0 
+P 08:57:17 post health=200/0.011967 file=200/0.006155 list=200/0.009284 minio=starting link=200/0.007648 dl=200/0.005927 deps=ok
+P 08:57:19 post health=200/0.010453 file=200/0.005864 list=200/0.008724 minio=starting
+P 08:57:20 post health=200/0.009639 file=200/0.006804 list=200/0.009518 minio=starting
+P 08:57:21 post health=200/0.010241 file=200/0.006412 list=200/0.009005 minio=healthy
+K 08:57:21 up1(повтор после запуска) 201/0.022268 {"id":"0b023d74-8b70-45be-a0a1-2e07819aacd0","status":"uploaded"}
+P 08:57:22 post health=200/0.016638 file=200/0.006287 list=200/0.008936 minio=healthy
+K 08:57:22 up2(второй повтор) 200/0.008183 {"id":"0b023d74-8b70-45be-a0a1-2e07819aacd0","status":"done","duplicate":true}
+M 08:57:23 post cache_errors_total=43.0 bucket_objects=NaN bucket_bytes=NaN queue_stats_up=1.0 
+P 08:57:23 post health=200/0.014948 file=200/0.005641 list=200/0.009337 minio=healthy link=200/0.007804 dl=200/0.006954 deps=ok
+U 08:57:23 post 201/0.017217 {"id":"3a6cf623-1483-4acd-b0a8-119db44783c3","status":"uploaded"}
+P 08:57:25 post health=200/0.012703 file=200/0.006128 list=200/0.009185 minio=healthy
+P 08:57:26 post health=200/0.010792 file=200/0.006272 list=200/0.008762 minio=healthy
+P 08:57:27 post health=200/0.007583 file=200/0.005170 list=200/0.009210 minio=healthy
+P 08:57:28 post health=200/0.009935 file=200/0.005628 list=200/0.009589 minio=healthy
+M 08:57:29 post cache_errors_total=43.0 bucket_objects=NaN bucket_bytes=NaN queue_stats_up=1.0 
+P 08:57:29 post health=200/0.011329 file=200/0.010636 list=200/0.009067 minio=healthy link=200/0.007992 dl=200/0.005154 deps=ok
+A 08:57:29 post none
+P 08:57:30 post health=200/0.011691 file=200/0.006516 list=200/0.008910 minio=healthy
+P 08:57:31 post health=200/0.010894 file=200/0.005933 list=200/0.008380 minio=healthy
+P 08:57:32 post health=200/0.009786 file=200/0.005292 list=200/0.008659 minio=healthy
+P 08:57:33 post health=200/0.010653 file=200/0.006194 list=200/0.009348 minio=healthy
+M 08:57:35 post cache_errors_total=43.0 bucket_objects=NaN bucket_bytes=NaN queue_stats_up=1.0 
+P 08:57:35 post health=200/0.010550 file=200/0.005969 list=200/0.009077 minio=healthy link=200/0.007798 dl=200/0.005544 deps=ok
+U 08:57:35 post 201/0.015752 {"id":"99ca7ad7-ef33-4e39-b7ba-2217aa270e1a","status":"uploaded"}
+P 08:57:36 post health=200/0.010056 file=200/0.006350 list=200/0.008354 minio=healthy
+P 08:57:37 post health=200/0.009971 file=200/0.005641 list=200/0.008620 minio=healthy
+P 08:57:38 post health=200/0.008019 file=200/0.005351 list=200/0.008413 minio=healthy
+P 08:57:39 post health=200/0.010201 file=200/0.006357 list=200/0.009320 minio=healthy
+M 08:57:40 post cache_errors_total=43.0 bucket_objects=NaN bucket_bytes=NaN queue_stats_up=1.0 
+P 08:57:40 post health=200/0.009618 file=200/0.005913 list=200/0.009197 minio=healthy link=200/0.007336 dl=200/0.009244 deps=ok
+P 08:57:42 post health=200/0.013536 file=200/0.005667 list=200/0.010420 minio=healthy
+P 08:57:43 post health=200/0.010405 file=200/0.006159 list=200/0.008807 minio=healthy
+P 08:57:44 post health=200/0.011115 file=200/0.006713 list=200/0.009286 minio=healthy
+P 08:57:45 post health=200/0.017525 file=200/0.006081 list=200/0.008962 minio=healthy
+M 08:57:46 post cache_errors_total=43.0 bucket_objects=NaN bucket_bytes=NaN queue_stats_up=1.0 
+P 08:57:46 post health=200/0.010275 file=200/0.006003 list=200/0.008963 minio=healthy link=200/0.007396 dl=200/0.006112 deps=ok
+U 08:57:46 post 201/0.014036 {"id":"bdb9807f-5139-488f-b45c-1327f8dd0a93","status":"uploaded"}
+A 08:57:46 post none
+P 08:57:47 post health=200/0.010802 file=200/0.005514 list=200/0.008702 minio=healthy
+P 08:57:48 post health=200/0.009607 file=200/0.005818 list=200/0.008350 minio=healthy
+P 08:57:49 post health=200/0.010464 file=200/0.005599 list=200/0.008972 minio=healthy
+P 08:57:51 post health=200/0.010117 file=200/0.006891 list=200/0.014026 minio=healthy
+M 08:57:52 post cache_errors_total=43.0 bucket_objects=93.0 bucket_bytes=1302.0 queue_stats_up=1.0 
+P 08:57:52 post health=200/0.011079 file=200/0.006126 list=200/0.008740 minio=healthy link=200/0.008298 dl=200/0.006201 deps=ok
+P 08:57:53 post health=200/0.010262 file=200/0.010621 list=200/0.009093 minio=healthy
+P 08:57:54 post health=200/0.011090 file=200/0.005952 list=200/0.008572 minio=healthy
+P 08:57:55 post health=200/0.012238 file=200/0.005490 list=200/0.008843 minio=healthy
+P 08:57:56 post health=200/0.009953 file=200/0.006177 list=200/0.008737 minio=healthy
+M 08:57:58 post cache_errors_total=43.0 bucket_objects=93.0 bucket_bytes=1302.0 queue_stats_up=1.0 
+P 08:57:57 post health=200/0.012615 file=200/0.005764 list=200/0.008409 minio=healthy link=200/0.008006 dl=200/0.005952 deps=ok
+U 08:57:58 post 201/0.017444 {"id":"c5088dbe-e8b1-4f0e-932a-38b951112d09","status":"uploaded"}
+P 08:57:59 post health=200/0.009311 file=200/0.005512 list=200/0.008758 minio=healthy
+P 08:58:00 post health=200/0.008117 file=200/0.005322 list=200/0.008518 minio=healthy
+P 08:58:01 post health=200/0.010661 file=200/0.006499 list=200/0.008771 minio=healthy
+P 08:58:02 post health=200/0.012289 file=200/0.010485 list=200/0.008526 minio=healthy
+M 08:58:03 post cache_errors_total=43.0 bucket_objects=93.0 bucket_bytes=1302.0 queue_stats_up=1.0 
+P 08:58:03 post health=200/0.009332 file=200/0.005810 list=200/0.008407 minio=healthy link=200/0.007433 dl=200/0.006066 deps=ok
+A 08:58:03 post none
+P 08:58:05 post health=200/0.012745 file=200/0.006019 list=200/0.012949 minio=healthy
+P 08:58:06 post health=200/0.009895 file=200/0.005583 list=200/0.009158 minio=healthy
+P 08:58:07 post health=200/0.010388 file=200/0.005575 list=200/0.008956 minio=healthy
+P 08:58:08 post health=200/0.010372 file=200/0.005565 list=200/0.008220 minio=healthy
+M 08:58:09 post cache_errors_total=43.0 bucket_objects=93.0 bucket_bytes=1302.0 queue_stats_up=1.0 
+P 08:58:09 post health=200/0.011436 file=200/0.006367 list=200/0.009421 minio=healthy link=200/0.008324 dl=200/0.008327 deps=ok
+U 08:58:09 post 201/0.036229 {"id":"d2f7dcdc-846f-454e-8746-930ae8c5c4f9","status":"uploaded"}
+P 08:58:10 post health=200/0.008279 file=200/0.005895 list=200/0.008802 minio=healthy
+P 08:58:11 post health=200/0.007762 file=200/0.005306 list=200/0.008443 minio=healthy
+P 08:58:12 post health=200/0.009709 file=200/0.005930 list=200/0.009881 minio=healthy
+P 08:58:14 post health=200/0.012154 file=200/0.005701 list=200/0.009097 minio=healthy
+M 08:58:15 post cache_errors_total=43.0 bucket_objects=93.0 bucket_bytes=1302.0 queue_stats_up=1.0 
+P 08:58:15 post health=200/0.010247 file=200/0.006009 list=200/0.008798 minio=healthy link=200/0.007936 dl=200/0.007377 deps=ok
+P 08:58:16 post health=200/0.012580 file=200/0.006856 list=200/0.009478 minio=healthy
+P 08:58:17 post health=200/0.010429 file=200/0.006683 list=200/0.008327 minio=healthy
+P 08:58:18 post health=200/0.010507 file=200/0.005487 list=200/0.008311 minio=healthy
+P 08:58:19 post health=200/0.011201 file=200/0.005964 list=200/0.008849 minio=healthy
+M 08:58:20 post cache_errors_total=43.0 bucket_objects=93.0 bucket_bytes=1302.0 queue_stats_up=1.0 
+P 08:58:20 post health=200/0.011699 file=200/0.006071 list=200/0.013235 minio=healthy link=200/0.012658 dl=200/0.006536 deps=ok
+U 08:58:21 post 201/0.016447 {"id":"74739174-5e0c-41a4-a712-0b0a007724e2","status":"uploaded"}
+A 08:58:21 post none
+P 08:58:22 post health=200/0.010307 file=200/0.005536 list=200/0.008897 minio=healthy
+E 08:58:23 опрос закончен, жду обработки задач (до 120 с)
+S 08:58:23 done=11 failed=9 | строк с ключом: 1 | id: 0b023d74-8b70-45be-a0a1-2e07819aacd0:done
+E 08:58:23 готово

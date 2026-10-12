@@ -1,0 +1,507 @@
+E 08:33:33 старт RUN=1791794012 backend=backend-green, фазы: pre=20с down=240с post=150с
+P 08:33:33 pre health=200/0.007607 file=200/0.005208 list=200/0.010009
+U 08:33:33 pre 201/0.022227 {"id":"92eae7f7-ccfa-4e08-acb5-6de4078893f5","status":"uploaded"}
+M 08:33:33 pre cache_hits_total=285.0 cache_misses_total=150.0 cache_errors_total=0.0 queue_waiting_tasks=0.0 queue_stats_up=1.0 
+A 08:33:33 pre none
+P 08:33:34 pre health=200/0.014451 file=200/0.007155 list=200/0.010335
+P 08:33:35 pre health=200/0.015366 file=200/0.011273 list=200/0.010547
+P 08:33:36 pre health=200/0.018305 file=200/0.009833 list=200/0.011177
+P 08:33:37 pre health=200/0.020073 file=200/0.009282 list=200/0.010308
+P 08:33:38 pre health=200/0.017029 file=200/0.013461 list=200/0.009951
+M 08:33:38 pre cache_hits_total=290.0 cache_misses_total=150.0 cache_errors_total=0.0 queue_waiting_tasks=0.0 queue_stats_up=1.0 
+P 08:33:40 pre health=200/0.012643 file=200/0.007165 list=200/0.009434
+P 08:33:41 pre health=200/0.014606 file=200/0.007306 list=200/0.009827
+P 08:33:42 pre health=200/0.007248 file=200/0.005103 list=200/0.008933
+P 08:33:43 pre health=200/0.017864 file=200/0.008852 list=200/0.010796
+P 08:33:44 pre health=200/0.020803 file=200/0.008455 list=200/0.010841
+U 08:33:44 pre 201/0.020773 {"id":"7ff3393e-f87c-4aa1-807a-37ca0db55411","status":"uploaded"}
+M 08:33:44 pre cache_hits_total=295.0 cache_misses_total=150.0 cache_errors_total=0.0 queue_waiting_tasks=0.0 queue_stats_up=1.0 
+P 08:33:45 pre health=200/0.018312 file=200/0.007563 list=200/0.010691
+P 08:33:46 pre health=200/0.022219 file=200/0.008283 list=200/0.010405
+P 08:33:47 pre health=200/0.018148 file=200/0.009339 list=200/0.009927
+P 08:33:49 pre health=200/0.019845 file=200/0.008379 list=200/0.010796
+P 08:33:50 pre health=200/0.011735 file=200/0.006656 list=200/0.008865
+M 08:33:50 pre cache_hits_total=300.0 cache_misses_total=150.0 cache_errors_total=0.0 queue_waiting_tasks=0.0 queue_stats_up=1.0 
+A 08:33:50 pre none
+P 08:33:51 pre health=200/0.012112 file=200/0.007020 list=200/0.010058
+P 08:33:52 pre health=200/0.015503 file=200/0.008178 list=200/0.010536
+E 08:33:53 docker stop redis
+E 08:33:53 redis остановлен
+P 08:33:53 down health=200/0.011606 file=200/0.012697 list=200/0.008329
+P 08:33:54 down health=200/0.016717 file=200/0.010556 list=200/0.008930
+P 08:33:56 down health=200/0.018345 file=200/0.010438 list=200/0.008953
+U 08:33:56 down 201/0.019460 {"id":"0cda5160-5534-4ade-8c3d-9a4aab0ce58c","status":"uploaded"}
+M 08:33:56 down cache_hits_total=302.0 cache_misses_total=150.0 cache_errors_total=1.0 queue_waiting_tasks=0.0 queue_stats_up=1.0 
+P 08:33:57 down health=200/0.006775 file=200/0.007819 list=200/0.009020
+P 08:33:58 down health=200/0.018698 file=200/0.011323 list=200/0.014591
+P 08:33:59 down health=200/0.026137 file=200/0.013758 list=200/0.008994
+P 08:34:00 down health=200/0.011414 file=200/0.029505 list=200/0.014670
+P 08:34:01 down health=200/0.009617 file=200/0.007603 list=200/0.008749
+M 08:34:01 down cache_hits_total=302.0 cache_misses_total=150.0 cache_errors_total=2.0 queue_waiting_tasks=NaN queue_stats_up=0.0 
+P 08:34:02 down health=200/0.054006 file=200/0.020848 list=200/0.010729
+P 08:34:04 down health=200/0.025797 file=200/0.011197 list=200/0.009218
+P 08:34:05 down health=200/0.010256 file=200/0.012251 list=200/0.008766
+P 08:34:06 down health=200/0.018274 file=200/0.010875 list=200/0.009366
+P 08:34:07 down health=200/0.014038 file=200/0.010632 list=200/0.009063
+U 08:34:07 down 201/0.024843 {"id":"043111db-a355-444e-b38d-6d50eb030b9c","status":"uploaded"}
+M 08:34:07 down cache_hits_total=302.0 cache_misses_total=150.0 cache_errors_total=3.0 queue_waiting_tasks=NaN queue_stats_up=0.0 
+A 08:34:07 down none
+P 08:34:08 down health=200/0.016163 file=200/0.010911 list=200/0.010100
+P 08:34:09 down health=200/0.017737 file=200/0.011770 list=200/0.010132
+P 08:34:10 down health=200/0.020702 file=200/0.014016 list=200/0.009457
+P 08:34:11 down health=200/0.011134 file=200/0.008624 list=200/0.009927
+P 08:34:12 down health=200/0.017526 file=200/0.011268 list=200/0.009680
+M 08:34:12 down cache_hits_total=302.0 cache_misses_total=150.0 cache_errors_total=4.0 queue_waiting_tasks=NaN queue_stats_up=0.0 
+P 08:34:14 down health=200/0.014351 file=200/0.009869 list=200/0.008770
+P 08:34:15 down health=200/0.016222 file=200/0.010303 list=200/0.010114
+P 08:34:16 down health=200/0.011193 file=200/0.010281 list=200/0.008459
+P 08:34:17 down health=200/0.016248 file=200/0.011536 list=200/0.010990
+P 08:34:18 down health=200/0.018308 file=200/0.010697 list=200/0.010100
+U 08:34:18 down 201/0.017034 {"id":"509e99b6-8587-4697-b713-23f15b41438a","status":"uploaded"}
+M 08:34:18 down cache_hits_total=302.0 cache_misses_total=150.0 cache_errors_total=5.0 queue_waiting_tasks=NaN queue_stats_up=0.0 
+P 08:34:19 down health=200/0.014344 file=200/0.010190 list=200/0.009918
+P 08:34:20 down health=200/0.020689 file=200/0.008179 list=200/0.009302
+P 08:34:21 down health=200/0.016087 file=200/0.014864 list=200/0.009173
+P 08:34:23 down health=200/0.020395 file=200/0.012575 list=200/0.010484
+P 08:34:24 down health=200/0.022618 file=200/0.012320 list=200/0.010319
+M 08:34:24 down cache_hits_total=302.0 cache_misses_total=150.0 cache_errors_total=6.0 queue_waiting_tasks=NaN queue_stats_up=0.0 
+A 08:34:24 down none
+P 08:34:25 down health=200/0.013851 file=200/0.008574 list=200/0.011273
+P 08:34:26 down health=200/0.020424 file=200/0.009905 list=200/0.010102
+P 08:34:27 down health=200/0.026725 file=200/0.015622 list=200/0.013740
+P 08:34:28 down health=200/0.022944 file=200/0.010080 list=200/0.010238
+P 08:34:29 down health=200/0.015716 file=200/0.010315 list=200/0.009537
+U 08:34:29 down 201/0.022282 {"id":"371204c0-6539-46e6-9ba8-b5b8804b0d6b","status":"uploaded"}
+M 08:34:29 down cache_hits_total=302.0 cache_misses_total=150.0 cache_errors_total=7.0 queue_waiting_tasks=NaN queue_stats_up=0.0 
+P 08:34:31 down health=200/0.020225 file=200/0.013772 list=200/0.010571
+P 08:34:32 down health=200/0.026743 file=200/0.010127 list=200/0.009679
+P 08:34:33 down health=200/0.013428 file=200/0.013254 list=200/0.010828
+P 08:34:34 down health=200/0.016517 file=200/0.012206 list=200/0.014587
+P 08:34:35 down health=200/0.020574 file=200/0.011344 list=200/0.010324
+M 08:34:35 down cache_hits_total=302.0 cache_misses_total=150.0 cache_errors_total=8.0 queue_waiting_tasks=NaN queue_stats_up=0.0 
+P 08:34:36 down health=200/0.013945 file=200/0.010438 list=200/0.011172
+P 08:34:37 down health=200/0.013267 file=200/0.011268 list=200/0.013643
+P 08:34:39 down health=200/0.027092 file=200/0.018963 list=200/0.012332
+P 08:34:40 down health=200/0.012738 file=200/0.010252 list=200/0.011113
+P 08:34:41 down health=200/0.017037 file=200/0.013024 list=200/0.010560
+U 08:34:41 down 201/0.018002 {"id":"35991444-75d7-46f1-9732-0785824a4c55","status":"uploaded"}
+M 08:34:41 down cache_hits_total=302.0 cache_misses_total=150.0 cache_errors_total=9.0 queue_waiting_tasks=NaN queue_stats_up=0.0 
+A 08:34:41 down none
+P 08:34:42 down health=200/0.012256 file=200/0.010274 list=200/0.009591
+P 08:34:43 down health=200/0.018731 file=200/0.013448 list=200/0.010588
+P 08:34:44 down health=200/0.017838 file=200/0.016141 list=200/0.009978
+P 08:34:45 down health=200/0.019069 file=200/0.014042 list=200/0.010385
+P 08:34:46 down health=200/0.020459 file=200/0.012241 list=200/0.010693
+M 08:34:46 down cache_hits_total=302.0 cache_misses_total=150.0 cache_errors_total=10.0 queue_waiting_tasks=NaN queue_stats_up=0.0 
+P 08:34:48 down health=200/0.015768 file=200/0.011001 list=200/0.009070
+P 08:34:49 down health=200/0.020224 file=200/0.007606 list=200/0.010276
+P 08:34:50 down health=200/0.016394 file=200/0.012026 list=200/0.009495
+P 08:34:51 down health=200/0.017434 file=200/0.016512 list=200/0.009311
+P 08:34:52 down health=200/0.014653 file=200/0.011041 list=200/0.009742
+U 08:34:52 down 201/0.018140 {"id":"a8527346-b63e-41f6-a678-8a6e0fd47990","status":"uploaded"}
+M 08:34:52 down cache_hits_total=302.0 cache_misses_total=150.0 cache_errors_total=11.0 queue_waiting_tasks=NaN queue_stats_up=0.0 
+P 08:34:53 down health=200/0.015666 file=200/0.009961 list=200/0.009967
+P 08:34:54 down health=200/0.019016 file=200/0.009696 list=200/0.009313
+P 08:34:55 down health=200/0.016721 file=200/0.013454 list=200/0.009733
+P 08:34:56 down health=200/0.018711 file=200/0.012154 list=200/0.010791
+P 08:34:58 down health=200/0.015176 file=200/0.011453 list=200/0.009627
+M 08:34:58 down cache_hits_total=302.0 cache_misses_total=150.0 cache_errors_total=12.0 queue_waiting_tasks=NaN queue_stats_up=0.0 
+A 08:34:58 down RedisUnavailable=pending CacheBypassed=pending
+P 08:34:59 down health=200/0.020195 file=200/0.010445 list=200/0.010286
+P 08:35:00 down health=200/0.026998 file=200/0.010499 list=200/0.009921
+P 08:35:01 down health=200/0.016104 file=200/0.013484 list=200/0.009553
+P 08:35:02 down health=200/0.018419 file=200/0.011894 list=200/0.010981
+P 08:35:03 down health=200/0.014928 file=200/0.010488 list=200/0.009200
+U 08:35:03 down 201/0.021459 {"id":"7f23bd88-5753-4753-acd1-a5dc5e282706","status":"uploaded"}
+M 08:35:03 down cache_hits_total=302.0 cache_misses_total=150.0 cache_errors_total=13.0 queue_waiting_tasks=NaN queue_stats_up=0.0 
+P 08:35:05 down health=200/0.015605 file=200/0.010296 list=200/0.009202
+P 08:35:06 down health=200/0.015259 file=200/0.010540 list=200/0.009866
+P 08:35:07 down health=200/0.016500 file=200/0.013715 list=200/0.009641
+P 08:35:08 down health=200/0.017308 file=200/0.011627 list=200/0.010537
+P 08:35:09 down health=200/0.015051 file=200/0.010729 list=200/0.009292
+M 08:35:09 down cache_hits_total=302.0 cache_misses_total=150.0 cache_errors_total=14.0 queue_waiting_tasks=NaN queue_stats_up=0.0 
+P 08:35:10 down health=200/0.016608 file=200/0.010282 list=200/0.009389
+P 08:35:11 down health=200/0.023198 file=200/0.010309 list=200/0.010035
+P 08:35:12 down health=200/0.009790 file=200/0.012534 list=200/0.009992
+P 08:35:13 down health=200/0.017769 file=200/0.015324 list=200/0.009559
+P 08:35:14 down health=200/0.019345 file=200/0.011274 list=200/0.010002
+U 08:35:14 down 201/0.023678 {"id":"8e38335c-c272-4f08-9ab7-33faba07163b","status":"uploaded"}
+M 08:35:14 down cache_hits_total=302.0 cache_misses_total=150.0 cache_errors_total=15.0 queue_waiting_tasks=NaN queue_stats_up=0.0 
+A 08:35:15 down RedisUnavailable=pending CacheBypassed=pending
+P 08:35:16 down health=200/0.018474 file=200/0.015358 list=200/0.013465
+P 08:35:17 down health=200/0.019794 file=200/0.012345 list=200/0.010119
+P 08:35:18 down health=200/0.016559 file=200/0.014988 list=200/0.010080
+P 08:35:19 down health=200/0.014105 file=200/0.010240 list=200/0.009462
+P 08:35:20 down health=200/0.015610 file=200/0.009849 list=200/0.008955
+M 08:35:20 down cache_hits_total=302.0 cache_misses_total=150.0 cache_errors_total=16.0 queue_waiting_tasks=NaN queue_stats_up=0.0 
+P 08:35:21 down health=200/0.017196 file=200/0.016600 list=200/0.010032
+P 08:35:23 down health=200/0.017757 file=200/0.011383 list=200/0.010496
+P 08:35:24 down health=200/0.013954 file=200/0.013650 list=200/0.008541
+P 08:35:25 down health=200/0.018311 file=200/0.010680 list=200/0.010316
+P 08:35:26 down health=200/0.015325 file=200/0.011046 list=200/0.010372
+U 08:35:26 down 201/0.019844 {"id":"1dd9a33b-b380-479d-904d-07678c9190e0","status":"uploaded"}
+M 08:35:26 down cache_hits_total=302.0 cache_misses_total=150.0 cache_errors_total=17.0 queue_waiting_tasks=NaN queue_stats_up=0.0 
+P 08:35:27 down health=200/0.015243 file=200/0.015673 list=200/0.009495
+P 08:35:28 down health=200/0.014054 file=200/0.010779 list=200/0.009492
+P 08:35:29 down health=200/0.013727 file=200/0.012034 list=200/0.009045
+P 08:35:30 down health=200/0.013584 file=200/0.009723 list=200/0.009791
+P 08:35:31 down health=200/0.017246 file=200/0.009831 list=200/0.009395
+M 08:35:31 down cache_hits_total=302.0 cache_misses_total=150.0 cache_errors_total=18.0 queue_waiting_tasks=NaN queue_stats_up=0.0 
+A 08:35:32 down RedisUnavailable=pending CacheBypassed=pending
+P 08:35:33 down health=200/0.016991 file=200/0.010556 list=200/0.010039
+P 08:35:34 down health=200/0.017077 file=200/0.011020 list=200/0.009653
+P 08:35:35 down health=200/0.019555 file=200/0.015300 list=200/0.010581
+P 08:35:36 down health=200/0.018578 file=200/0.010926 list=200/0.009084
+P 08:35:37 down health=200/0.010921 file=200/0.008722 list=200/0.008562
+U 08:35:37 down 201/0.016322 {"id":"df7e27c4-7394-4abb-863d-b55357cbddde","status":"uploaded"}
+M 08:35:37 down cache_hits_total=302.0 cache_misses_total=150.0 cache_errors_total=19.0 queue_waiting_tasks=NaN queue_stats_up=0.0 
+P 08:35:38 down health=200/0.016588 file=200/0.011019 list=200/0.010075
+P 08:35:39 down health=200/0.017524 file=200/0.011557 list=200/0.010768
+P 08:35:40 down health=200/0.048573 file=200/0.018095 list=200/0.015936
+P 08:35:42 down health=200/0.033157 file=200/0.012886 list=200/0.015991
+P 08:35:43 down health=200/0.017710 file=200/0.015265 list=200/0.010292
+M 08:35:43 down cache_hits_total=302.0 cache_misses_total=150.0 cache_errors_total=20.0 queue_waiting_tasks=NaN queue_stats_up=0.0 
+P 08:35:44 down health=200/0.018356 file=200/0.012018 list=200/0.009867
+P 08:35:45 down health=200/0.017647 file=200/0.011019 list=200/0.010039
+P 08:35:46 down health=200/0.016675 file=200/0.014323 list=200/0.010276
+P 08:35:47 down health=200/0.017285 file=200/0.011818 list=200/0.010757
+P 08:35:48 down health=200/0.018903 file=200/0.011118 list=200/0.011054
+U 08:35:48 down 201/0.019387 {"id":"1fed0e3a-5072-4a57-97d8-7a49bbab59b5","status":"uploaded"}
+M 08:35:48 down cache_hits_total=302.0 cache_misses_total=150.0 cache_errors_total=21.0 queue_waiting_tasks=NaN queue_stats_up=0.0 
+A 08:35:49 down RedisUnavailable=pending CacheBypassed=pending
+P 08:35:50 down health=200/0.009331 file=200/0.007766 list=200/0.008533
+P 08:35:51 down health=200/0.020906 file=200/0.010907 list=200/0.009539
+P 08:35:52 down health=200/0.012362 file=200/0.013149 list=200/0.011032
+P 08:35:53 down health=200/0.014183 file=200/0.010080 list=200/0.010963
+P 08:35:54 down health=200/0.019087 file=200/0.010869 list=200/0.009982
+M 08:35:54 down cache_hits_total=302.0 cache_misses_total=150.0 cache_errors_total=22.0 queue_waiting_tasks=NaN queue_stats_up=0.0 
+P 08:35:55 down health=200/0.015462 file=200/0.009577 list=200/0.009638
+P 08:35:56 down health=200/0.013737 file=200/0.014765 list=200/0.008881
+P 08:35:57 down health=200/0.015584 file=200/0.011831 list=200/0.011342
+P 08:35:58 down health=200/0.019801 file=200/0.012012 list=200/0.010084
+P 08:36:00 down health=200/0.014817 file=200/0.011774 list=200/0.009859
+U 08:36:00 down 201/0.015557 {"id":"0cb75db3-74bd-4dad-8448-70dcf24eb6ea","status":"uploaded"}
+M 08:36:00 down cache_hits_total=302.0 cache_misses_total=150.0 cache_errors_total=23.0 queue_waiting_tasks=NaN queue_stats_up=0.0 
+P 08:36:01 down health=200/0.016862 file=200/0.010622 list=200/0.014177
+P 08:36:02 down health=200/0.007584 file=200/0.007475 list=200/0.008579
+P 08:36:03 down health=200/0.015370 file=200/0.012492 list=200/0.009500
+P 08:36:04 down health=200/0.015206 file=200/0.010399 list=200/0.009862
+P 08:36:05 down health=200/0.017293 file=200/0.014029 list=200/0.009662
+M 08:36:05 down cache_hits_total=302.0 cache_misses_total=150.0 cache_errors_total=24.0 queue_waiting_tasks=NaN queue_stats_up=0.0 
+A 08:36:05 down RedisUnavailable=firing CacheBypassed=firing
+P 08:36:06 down health=200/0.018668 file=200/0.011647 list=200/0.009655
+P 08:36:08 down health=200/0.018610 file=200/0.010241 list=200/0.009316
+P 08:36:09 down health=200/0.008071 file=200/0.011784 list=200/0.009579
+P 08:36:10 down health=200/0.018368 file=200/0.009937 list=200/0.010432
+P 08:36:11 down health=200/0.016584 file=200/0.011198 list=200/0.010188
+U 08:36:11 down 201/0.018650 {"id":"ca21a907-d60a-4f2e-9c3e-aeca6ff85eda","status":"uploaded"}
+M 08:36:11 down cache_hits_total=302.0 cache_misses_total=150.0 cache_errors_total=25.0 queue_waiting_tasks=NaN queue_stats_up=0.0 
+P 08:36:12 down health=200/0.011709 file=200/0.008958 list=200/0.009298
+P 08:36:13 down health=200/0.030607 file=200/0.015796 list=200/0.014246
+P 08:36:14 down health=200/0.019788 file=200/0.014034 list=200/0.009635
+P 08:36:15 down health=200/0.016123 file=200/0.010667 list=200/0.010247
+P 08:36:16 down health=200/0.016640 file=200/0.010982 list=200/0.009901
+M 08:36:17 down cache_hits_total=302.0 cache_misses_total=150.0 cache_errors_total=26.0 queue_waiting_tasks=NaN queue_stats_up=0.0 
+P 08:36:18 down health=200/0.016774 file=200/0.010102 list=200/0.013774
+P 08:36:19 down health=200/0.018785 file=200/0.011346 list=200/0.009777
+P 08:36:20 down health=200/0.015661 file=200/0.012867 list=200/0.009847
+P 08:36:21 down health=200/0.015858 file=200/0.011151 list=200/0.009338
+P 08:36:22 down health=200/0.017795 file=200/0.011556 list=200/0.010561
+U 08:36:22 down 201/0.017854 {"id":"3d21880f-337a-48a2-8c52-628925560e26","status":"uploaded"}
+M 08:36:22 down cache_hits_total=302.0 cache_misses_total=150.0 cache_errors_total=27.0 queue_waiting_tasks=NaN queue_stats_up=0.0 
+A 08:36:22 down RedisUnavailable=firing CacheBypassed=firing
+P 08:36:23 down health=200/0.022757 file=200/0.010852 list=200/0.009682
+P 08:36:25 down health=200/0.016496 file=200/0.010705 list=200/0.009964
+P 08:36:26 down health=200/0.018787 file=200/0.014444 list=200/0.009317
+P 08:36:27 down health=200/0.007275 file=200/0.013051 list=200/0.009801
+P 08:36:28 down health=200/0.014672 file=200/0.011066 list=200/0.009774
+M 08:36:28 down cache_hits_total=302.0 cache_misses_total=150.0 cache_errors_total=28.0 queue_waiting_tasks=NaN queue_stats_up=0.0 
+P 08:36:29 down health=200/0.018713 file=200/0.011092 list=200/0.010541
+P 08:36:30 down health=200/0.009827 file=200/0.007554 list=200/0.012052
+P 08:36:31 down health=200/0.026624 file=200/0.015097 list=200/0.009955
+P 08:36:32 down health=200/0.008842 file=200/0.007814 list=200/0.008595
+P 08:36:33 down health=200/0.011518 file=200/0.009548 list=200/0.013605
+U 08:36:33 down 201/0.020505 {"id":"91b1ac8f-e8e8-4f0b-97b5-26a6449abfc7","status":"uploaded"}
+M 08:36:33 down cache_hits_total=302.0 cache_misses_total=150.0 cache_errors_total=29.0 queue_waiting_tasks=NaN queue_stats_up=0.0 
+P 08:36:35 down health=200/0.016956 file=200/0.010522 list=200/0.009454
+P 08:36:36 down health=200/0.017658 file=200/0.011953 list=200/0.009348
+P 08:36:37 down health=200/0.015165 file=200/0.011148 list=200/0.009055
+P 08:36:38 down health=200/0.017319 file=200/0.010599 list=200/0.010103
+P 08:36:39 down health=200/0.015744 file=200/0.016230 list=200/0.009785
+M 08:36:39 down cache_hits_total=302.0 cache_misses_total=150.0 cache_errors_total=30.0 queue_waiting_tasks=NaN queue_stats_up=0.0 
+A 08:36:39 down RedisUnavailable=firing CacheBypassed=firing
+P 08:36:40 down health=200/0.013729 file=200/0.009309 list=200/0.008886
+P 08:36:41 down health=200/0.016377 file=200/0.010663 list=200/0.011738
+P 08:36:42 down health=200/0.018898 file=200/0.012731 list=200/0.009927
+P 08:36:43 down health=200/0.014379 file=200/0.010963 list=200/0.009687
+P 08:36:45 down health=200/0.016993 file=200/0.010578 list=200/0.013892
+U 08:36:45 down 201/0.017057 {"id":"c170a79e-c1f8-4eae-8839-317191022a1d","status":"uploaded"}
+M 08:36:45 down cache_hits_total=302.0 cache_misses_total=150.0 cache_errors_total=31.0 queue_waiting_tasks=NaN queue_stats_up=0.0 
+P 08:36:46 down health=200/0.017475 file=200/0.011314 list=200/0.009628
+P 08:36:47 down health=200/0.017482 file=200/0.010821 list=200/0.010434
+P 08:36:48 down health=200/0.018196 file=200/0.014518 list=200/0.009499
+P 08:36:49 down health=200/0.016460 file=200/0.010950 list=200/0.010085
+P 08:36:50 down health=200/0.018799 file=200/0.017526 list=200/0.009463
+M 08:36:50 down cache_hits_total=302.0 cache_misses_total=150.0 cache_errors_total=32.0 queue_waiting_tasks=NaN queue_stats_up=0.0 
+P 08:36:51 down health=200/0.031239 file=200/0.009428 list=200/0.009818
+P 08:36:53 down health=200/0.016078 file=200/0.010771 list=200/0.009914
+P 08:36:54 down health=200/0.011338 file=200/0.010753 list=200/0.010082
+P 08:36:55 down health=200/0.020896 file=200/0.011402 list=200/0.009475
+P 08:36:56 down health=200/0.015756 file=200/0.011279 list=200/0.009789
+U 08:36:56 down 201/0.016847 {"id":"e35b6c5a-3fc3-4540-95b0-4b7723b8c994","status":"uploaded"}
+M 08:36:56 down cache_hits_total=302.0 cache_misses_total=150.0 cache_errors_total=33.0 queue_waiting_tasks=NaN queue_stats_up=0.0 
+A 08:36:56 down RedisUnavailable=firing CacheBypassed=firing
+P 08:36:57 down health=200/0.012382 file=200/0.009651 list=200/0.008632
+P 08:36:58 down health=200/0.015228 file=200/0.010182 list=200/0.010510
+P 08:36:59 down health=200/0.021684 file=200/0.013788 list=200/0.009379
+P 08:37:00 down health=200/0.013423 file=200/0.010525 list=200/0.009677
+P 08:37:01 down health=200/0.017906 file=200/0.011478 list=200/0.014285
+M 08:37:01 down cache_hits_total=302.0 cache_misses_total=150.0 cache_errors_total=34.0 queue_waiting_tasks=NaN queue_stats_up=0.0 
+P 08:37:03 down health=200/0.015804 file=200/0.009359 list=200/0.009559
+P 08:37:04 down health=200/0.013575 file=200/0.009573 list=200/0.009544
+P 08:37:05 down health=200/0.016803 file=200/0.013110 list=200/0.009911
+P 08:37:06 down health=200/0.018715 file=200/0.010759 list=200/0.009767
+P 08:37:07 down health=200/0.017761 file=200/0.010915 list=200/0.010432
+U 08:37:07 down 201/0.019531 {"id":"6ae90e6e-8706-4b81-abeb-33ee343fb8d1","status":"uploaded"}
+M 08:37:07 down cache_hits_total=302.0 cache_misses_total=150.0 cache_errors_total=35.0 queue_waiting_tasks=NaN queue_stats_up=0.0 
+P 08:37:08 down health=200/0.026224 file=200/0.010768 list=200/0.009529
+P 08:37:09 down health=200/0.015428 file=200/0.010228 list=200/0.010539
+P 08:37:10 down health=200/0.017331 file=200/0.014579 list=200/0.008804
+P 08:37:12 down health=200/0.019444 file=200/0.013090 list=200/0.012327
+P 08:37:13 down health=200/0.029763 file=200/0.010397 list=200/0.008876
+M 08:37:13 down cache_hits_total=302.0 cache_misses_total=150.0 cache_errors_total=36.0 queue_waiting_tasks=NaN queue_stats_up=0.0 
+A 08:37:13 down RedisUnavailable=firing CacheBypassed=firing
+P 08:37:14 down health=200/0.025966 file=200/0.011054 list=200/0.009806
+P 08:37:15 down health=200/0.014966 file=200/0.010987 list=200/0.009946
+P 08:37:16 down health=200/0.020386 file=200/0.011812 list=200/0.012788
+P 08:37:17 down health=200/0.022716 file=200/0.009923 list=200/0.009305
+P 08:37:18 down health=200/0.015243 file=200/0.010902 list=200/0.009904
+U 08:37:18 down 201/0.023631 {"id":"891a04a2-f254-4c5c-930e-86935eca8ef2","status":"uploaded"}
+M 08:37:18 down cache_hits_total=302.0 cache_misses_total=150.0 cache_errors_total=37.0 queue_waiting_tasks=NaN queue_stats_up=0.0 
+P 08:37:20 down health=200/0.013208 file=200/0.010118 list=200/0.011118
+P 08:37:21 down health=200/0.010899 file=200/0.008403 list=200/0.010824
+P 08:37:22 down health=200/0.018162 file=200/0.013589 list=200/0.012915
+P 08:37:23 down health=200/0.024365 file=200/0.010144 list=200/0.011549
+P 08:37:24 down health=200/0.016899 file=200/0.011044 list=200/0.010016
+M 08:37:24 down cache_hits_total=302.0 cache_misses_total=150.0 cache_errors_total=38.0 queue_waiting_tasks=NaN queue_stats_up=0.0 
+P 08:37:25 down health=200/0.017225 file=200/0.010063 list=200/0.009888
+P 08:37:26 down health=200/0.009964 file=200/0.008884 list=200/0.008522
+P 08:37:27 down health=200/0.011642 file=200/0.011876 list=200/0.009178
+P 08:37:28 down health=200/0.015442 file=200/0.010536 list=200/0.013806
+P 08:37:30 down health=200/0.031221 file=200/0.011612 list=200/0.010278
+U 08:37:30 down 201/0.016683 {"id":"920c511e-50ed-4246-9c59-9771a9b99691","status":"uploaded"}
+M 08:37:30 down cache_hits_total=302.0 cache_misses_total=150.0 cache_errors_total=39.0 queue_waiting_tasks=NaN queue_stats_up=0.0 
+A 08:37:30 down RedisUnavailable=firing CacheBypassed=firing
+P 08:37:31 down health=200/0.020113 file=200/0.012781 list=200/0.010181
+P 08:37:32 down health=200/0.014731 file=200/0.010272 list=200/0.009322
+P 08:37:33 down health=200/0.017653 file=200/0.018556 list=200/0.009185
+P 08:37:34 down health=200/0.014192 file=200/0.011437 list=200/0.010185
+P 08:37:35 down health=200/0.014271 file=200/0.010261 list=200/0.013883
+M 08:37:35 down cache_hits_total=302.0 cache_misses_total=150.0 cache_errors_total=40.0 queue_waiting_tasks=NaN queue_stats_up=0.0 
+P 08:37:37 down health=200/0.031814 file=200/0.011886 list=200/0.018136
+P 08:37:38 down health=200/0.018091 file=200/0.009846 list=200/0.009676
+P 08:37:39 down health=200/0.015029 file=200/0.014084 list=200/0.009743
+P 08:37:40 down health=200/0.015951 file=200/0.011830 list=200/0.009492
+P 08:37:41 down health=200/0.019052 file=200/0.015942 list=200/0.013786
+U 08:37:41 down 201/0.028126 {"id":"b36c5818-5f19-48bd-8f2a-e49fd9d77c51","status":"uploaded"}
+M 08:37:41 down cache_hits_total=302.0 cache_misses_total=150.0 cache_errors_total=41.0 queue_waiting_tasks=NaN queue_stats_up=0.0 
+P 08:37:42 down health=200/0.016591 file=200/0.010901 list=200/0.010247
+P 08:37:43 down health=200/0.023566 file=200/0.011079 list=200/0.010187
+P 08:37:44 down health=200/0.014602 file=200/0.013714 list=200/0.009249
+P 08:37:45 down health=200/0.019694 file=200/0.012006 list=200/0.009809
+P 08:37:47 down health=200/0.016767 file=200/0.010634 list=200/0.010166
+M 08:37:47 down cache_hits_total=302.0 cache_misses_total=150.0 cache_errors_total=42.0 queue_waiting_tasks=NaN queue_stats_up=0.0 
+A 08:37:47 down RedisUnavailable=firing CacheBypassed=firing
+P 08:37:48 down health=200/0.018362 file=200/0.011762 list=200/0.009988
+P 08:37:49 down health=200/0.016017 file=200/0.010835 list=200/0.009229
+P 08:37:50 down health=200/0.017919 file=200/0.014380 list=200/0.010519
+P 08:37:51 down health=200/0.017325 file=200/0.011075 list=200/0.010645
+P 08:37:52 down health=200/0.015101 file=200/0.010498 list=200/0.010657
+U 08:37:52 down 201/0.016042 {"id":"fa229409-9d7f-4379-a9fe-6224f234d6ea","status":"uploaded"}
+M 08:37:52 down cache_hits_total=302.0 cache_misses_total=150.0 cache_errors_total=43.0 queue_waiting_tasks=NaN queue_stats_up=0.0 
+E 08:37:53 docker start redis
+E 08:37:54 redis запущен
+P 08:37:54 post health=200/0.010771 file=200/0.010100 list=200/0.011608
+P 08:37:55 post health=200/0.011285 file=200/0.008918 list=200/0.009783
+P 08:37:56 post health=200/0.013414 file=200/0.012679 list=200/0.008161
+P 08:37:57 post health=200/0.011619 file=200/0.010903 list=200/0.009001
+P 08:37:58 post health=200/0.015257 file=200/0.008196 list=200/0.009980
+M 08:37:58 post cache_hits_total=304.0 cache_misses_total=151.0 cache_errors_total=43.0 queue_waiting_tasks=NaN queue_stats_up=0.0 
+P 08:37:59 post health=200/0.017335 file=200/0.008163 list=200/0.010538
+P 08:38:00 post health=200/0.018987 file=200/0.008419 list=200/0.010848
+P 08:38:01 post health=200/0.017059 file=200/0.008021 list=200/0.010775
+P 08:38:03 post health=200/0.028143 file=200/0.009337 list=200/0.009830
+P 08:38:04 post health=200/0.015945 file=200/0.007166 list=200/0.010074
+U 08:38:04 post 201/0.015797 {"id":"ab5f18f7-fd96-47bf-82a3-e131bf964f56","status":"uploaded"}
+M 08:38:04 post cache_hits_total=309.0 cache_misses_total=151.0 cache_errors_total=43.0 queue_waiting_tasks=0.0 queue_stats_up=1.0 
+A 08:38:04 post RedisUnavailable=firing CacheBypassed=firing
+P 08:38:05 post health=200/0.017875 file=200/0.008120 list=200/0.010968
+P 08:38:06 post health=200/0.019942 file=200/0.010352 list=200/0.016347
+P 08:38:07 post health=200/0.018256 file=200/0.007861 list=200/0.009937
+P 08:38:08 post health=200/0.016387 file=200/0.007324 list=200/0.009292
+P 08:38:09 post health=200/0.024430 file=200/0.009252 list=200/0.011310
+M 08:38:09 post cache_hits_total=314.0 cache_misses_total=151.0 cache_errors_total=43.0 queue_waiting_tasks=0.0 queue_stats_up=1.0 
+P 08:38:11 post health=200/0.010029 file=200/0.006504 list=200/0.009710
+P 08:38:12 post health=200/0.008602 file=200/0.005660 list=200/0.009242
+P 08:38:13 post health=200/0.026972 file=200/0.008107 list=200/0.010271
+P 08:38:14 post health=200/0.014528 file=200/0.007997 list=200/0.009925
+P 08:38:15 post health=200/0.018975 file=200/0.009760 list=200/0.010682
+U 08:38:15 post 201/0.019714 {"id":"d06dec62-a092-4de9-8dde-8b4446256240","status":"uploaded"}
+M 08:38:15 post cache_hits_total=319.0 cache_misses_total=151.0 cache_errors_total=43.0 queue_waiting_tasks=0.0 queue_stats_up=1.0 
+P 08:38:16 post health=200/0.015802 file=200/0.007509 list=200/0.014207
+P 08:38:17 post health=200/0.025819 file=200/0.007728 list=200/0.010181
+P 08:38:18 post health=200/0.016863 file=200/0.008822 list=200/0.010655
+P 08:38:19 post health=200/0.008564 file=200/0.005496 list=200/0.008405
+P 08:38:21 post health=200/0.019199 file=200/0.008558 list=200/0.010539
+M 08:38:21 post cache_hits_total=324.0 cache_misses_total=151.0 cache_errors_total=43.0 queue_waiting_tasks=0.0 queue_stats_up=1.0 
+A 08:38:21 post RedisUnavailable=firing CacheBypassed=firing
+P 08:38:22 post health=200/0.016274 file=200/0.008111 list=200/0.010337
+P 08:38:23 post health=200/0.015653 file=200/0.008198 list=200/0.009744
+P 08:38:24 post health=200/0.015669 file=200/0.007847 list=200/0.009954
+P 08:38:25 post health=200/0.008053 file=200/0.005071 list=200/0.008846
+P 08:38:26 post health=200/0.007559 file=200/0.005115 list=200/0.008298
+U 08:38:26 post 201/0.018812 {"id":"9ff8f864-d37c-4377-861d-cfe93946b78c","status":"uploaded"}
+M 08:38:26 post cache_hits_total=329.0 cache_misses_total=151.0 cache_errors_total=43.0 queue_waiting_tasks=0.0 queue_stats_up=1.0 
+P 08:38:27 post health=200/0.015622 file=200/0.007426 list=200/0.014651
+P 08:38:28 post health=200/0.020058 file=200/0.008313 list=200/0.010109
+P 08:38:30 post health=200/0.016826 file=200/0.008620 list=200/0.010741
+P 08:38:31 post health=200/0.017088 file=200/0.007987 list=200/0.010293
+P 08:38:32 post health=200/0.027061 file=200/0.007836 list=200/0.010158
+M 08:38:32 post cache_hits_total=334.0 cache_misses_total=151.0 cache_errors_total=43.0 queue_waiting_tasks=0.0 queue_stats_up=1.0 
+P 08:38:33 post health=200/0.008264 file=200/0.005890 list=200/0.008789
+P 08:38:34 post health=200/0.012617 file=200/0.007282 list=200/0.009263
+P 08:38:35 post health=200/0.017249 file=200/0.007878 list=200/0.010476
+P 08:38:36 post health=200/0.019130 file=200/0.008215 list=200/0.010749
+P 08:38:37 post health=200/0.013157 file=200/0.006675 list=200/0.009641
+U 08:38:37 post 201/0.015213 {"id":"d6e1d684-f580-46ea-a290-10d0b20e5098","status":"uploaded"}
+M 08:38:37 post cache_hits_total=339.0 cache_misses_total=151.0 cache_errors_total=43.0 queue_waiting_tasks=0.0 queue_stats_up=1.0 
+A 08:38:37 post RedisUnavailable=firing CacheBypassed=firing
+P 08:38:39 post health=200/0.025898 file=200/0.007549 list=200/0.010210
+P 08:38:40 post health=200/0.010648 file=200/0.005894 list=200/0.009083
+P 08:38:41 post health=200/0.015030 file=200/0.007798 list=200/0.009562
+P 08:38:42 post health=200/0.007877 file=200/0.004921 list=200/0.008634
+P 08:38:43 post health=200/0.015549 file=200/0.008257 list=200/0.009934
+M 08:38:43 post cache_hits_total=344.0 cache_misses_total=151.0 cache_errors_total=43.0 queue_waiting_tasks=0.0 queue_stats_up=1.0 
+P 08:38:44 post health=200/0.021992 file=200/0.008064 list=200/0.010373
+P 08:38:45 post health=200/0.016854 file=200/0.007520 list=200/0.010115
+P 08:38:46 post health=200/0.017955 file=200/0.014088 list=200/0.009935
+P 08:38:47 post health=200/0.015045 file=200/0.007735 list=200/0.009556
+P 08:38:48 post health=200/0.016910 file=200/0.007871 list=200/0.010712
+U 08:38:48 post 201/0.018097 {"id":"7b7fbec8-2f9a-43db-b070-cd14c9b3b00e","status":"uploaded"}
+M 08:38:48 post cache_hits_total=349.0 cache_misses_total=151.0 cache_errors_total=43.0 queue_waiting_tasks=0.0 queue_stats_up=1.0 
+P 08:38:50 post health=200/0.022285 file=200/0.006851 list=200/0.009800
+P 08:38:51 post health=200/0.015558 file=200/0.007933 list=200/0.010445
+P 08:38:52 post health=200/0.017056 file=200/0.007740 list=200/0.010172
+P 08:38:53 post health=200/0.017532 file=200/0.006341 list=200/0.009374
+P 08:38:54 post health=200/0.022667 file=200/0.006793 list=200/0.009969
+M 08:38:54 post cache_hits_total=354.0 cache_misses_total=151.0 cache_errors_total=43.0 queue_waiting_tasks=0.0 queue_stats_up=1.0 
+A 08:38:54 post CacheBypassed=firing
+P 08:38:55 post health=200/0.015161 file=200/0.007361 list=200/0.010728
+P 08:38:56 post health=200/0.016540 file=200/0.005586 list=200/0.009024
+P 08:38:57 post health=200/0.019539 file=200/0.010033 list=200/0.013015
+P 08:38:58 post health=200/0.015342 file=200/0.008045 list=200/0.010035
+P 08:39:00 post health=200/0.013647 file=200/0.010447 list=200/0.009323
+U 08:39:00 post 201/0.016019 {"id":"71438c7e-1858-45aa-9ea3-a1c29e147014","status":"uploaded"}
+M 08:39:00 post cache_hits_total=358.0 cache_misses_total=152.0 cache_errors_total=43.0 queue_waiting_tasks=0.0 queue_stats_up=1.0 
+P 08:39:01 post health=200/0.015727 file=200/0.007689 list=200/0.014369
+P 08:39:02 post health=200/0.015768 file=200/0.007831 list=200/0.010363
+P 08:39:03 post health=200/0.029171 file=200/0.007211 list=200/0.013947
+P 08:39:04 post health=200/0.015971 file=200/0.013420 list=200/0.010048
+P 08:39:05 post health=200/0.014843 file=200/0.007471 list=200/0.010094
+M 08:39:05 post cache_hits_total=363.0 cache_misses_total=152.0 cache_errors_total=43.0 queue_waiting_tasks=0.0 queue_stats_up=1.0 
+P 08:39:06 post health=200/0.016752 file=200/0.007490 list=200/0.009321
+P 08:39:08 post health=200/0.018144 file=200/0.007612 list=200/0.009864
+P 08:39:09 post health=200/0.013970 file=200/0.008335 list=200/0.011198
+P 08:39:10 post health=200/0.017122 file=200/0.007749 list=200/0.010151
+P 08:39:11 post health=200/0.032558 file=200/0.006374 list=200/0.009390
+U 08:39:11 post 201/0.020111 {"id":"67adec89-fee3-4ec0-8b32-619c4ca359da","status":"uploaded"}
+M 08:39:11 post cache_hits_total=368.0 cache_misses_total=152.0 cache_errors_total=43.0 queue_waiting_tasks=0.0 queue_stats_up=1.0 
+A 08:39:11 post CacheBypassed=firing
+P 08:39:12 post health=200/0.009420 file=200/0.005827 list=200/0.009700
+P 08:39:13 post health=200/0.019111 file=200/0.007979 list=200/0.010144
+P 08:39:14 post health=200/0.017728 file=200/0.008636 list=200/0.010619
+P 08:39:15 post health=200/0.019760 file=200/0.008010 list=200/0.009722
+P 08:39:16 post health=200/0.014135 file=200/0.007721 list=200/0.010369
+M 08:39:16 post cache_hits_total=373.0 cache_misses_total=152.0 cache_errors_total=43.0 queue_waiting_tasks=0.0 queue_stats_up=1.0 
+P 08:39:18 post health=200/0.018090 file=200/0.008513 list=200/0.013787
+P 08:39:19 post health=200/0.019909 file=200/0.007664 list=200/0.010617
+P 08:39:20 post health=200/0.013480 file=200/0.007356 list=200/0.009731
+P 08:39:21 post health=200/0.017308 file=200/0.007954 list=200/0.015161
+P 08:39:22 post health=200/0.025137 file=200/0.008357 list=200/0.009902
+U 08:39:22 post 201/0.017262 {"id":"37269d2a-4dd8-41fc-99be-99ee9026f189","status":"uploaded"}
+M 08:39:22 post cache_hits_total=378.0 cache_misses_total=152.0 cache_errors_total=43.0 queue_waiting_tasks=0.0 queue_stats_up=1.0 
+P 08:39:23 post health=200/0.013421 file=200/0.007643 list=200/0.010189
+P 08:39:24 post health=200/0.022698 file=200/0.006876 list=200/0.009906
+P 08:39:25 post health=200/0.019692 file=200/0.009642 list=200/0.011090
+P 08:39:27 post health=200/0.020593 file=200/0.008733 list=200/0.016375
+P 08:39:28 post health=200/0.027090 file=200/0.010019 list=200/0.011414
+M 08:39:28 post cache_hits_total=383.0 cache_misses_total=152.0 cache_errors_total=43.0 queue_waiting_tasks=0.0 queue_stats_up=1.0 
+A 08:39:28 post CacheBypassed=firing
+P 08:39:29 post health=200/0.020702 file=200/0.008778 list=200/0.010520
+P 08:39:30 post health=200/0.019396 file=200/0.008388 list=200/0.015691
+P 08:39:31 post health=200/0.013404 file=200/0.007941 list=200/0.013996
+P 08:39:32 post health=200/0.018474 file=200/0.009420 list=200/0.011263
+P 08:39:33 post health=200/0.009539 file=200/0.005519 list=200/0.010788
+U 08:39:33 post 201/0.021178 {"id":"0c74fbaf-b9ae-4aff-bccd-5b35626f3dad","status":"uploaded"}
+M 08:39:33 post cache_hits_total=388.0 cache_misses_total=152.0 cache_errors_total=43.0 queue_waiting_tasks=0.0 queue_stats_up=1.0 
+P 08:39:35 post health=200/0.014559 file=200/0.008373 list=200/0.011070
+P 08:39:36 post health=200/0.016673 file=200/0.007803 list=200/0.009887
+P 08:39:37 post health=200/0.009978 file=200/0.005554 list=200/0.014004
+P 08:39:38 post health=200/0.021028 file=200/0.007680 list=200/0.010345
+P 08:39:39 post health=200/0.013733 file=200/0.006766 list=200/0.009531
+M 08:39:39 post cache_hits_total=393.0 cache_misses_total=152.0 cache_errors_total=43.0 queue_waiting_tasks=0.0 queue_stats_up=1.0 
+P 08:39:40 post health=200/0.016356 file=200/0.008415 list=200/0.010637
+P 08:39:41 post health=200/0.009642 file=200/0.007560 list=200/0.013576
+P 08:39:42 post health=200/0.011573 file=200/0.007009 list=200/0.011168
+P 08:39:43 post health=200/0.016847 file=200/0.008498 list=200/0.010634
+P 08:39:44 post health=200/0.016209 file=200/0.008229 list=200/0.014991
+U 08:39:44 post 201/0.015927 {"id":"8cb66059-ba63-4a40-a823-f101b09dae31","status":"uploaded"}
+M 08:39:44 post cache_hits_total=398.0 cache_misses_total=152.0 cache_errors_total=43.0 queue_waiting_tasks=0.0 queue_stats_up=1.0 
+A 08:39:45 post CacheBypassed=firing
+P 08:39:46 post health=200/0.014788 file=200/0.007493 list=200/0.010662
+P 08:39:47 post health=200/0.018652 file=200/0.008688 list=200/0.010447
+P 08:39:48 post health=200/0.016427 file=200/0.007462 list=200/0.010898
+P 08:39:49 post health=200/0.019398 file=200/0.008858 list=200/0.011450
+P 08:39:50 post health=200/0.029314 file=200/0.007477 list=200/0.009832
+M 08:39:50 post cache_hits_total=403.0 cache_misses_total=152.0 cache_errors_total=43.0 queue_waiting_tasks=0.0 queue_stats_up=1.0 
+P 08:39:51 post health=200/0.017704 file=200/0.008058 list=200/0.011282
+P 08:39:52 post health=200/0.018173 file=200/0.008913 list=200/0.011829
+P 08:39:54 post health=200/0.013298 file=200/0.007122 list=200/0.009955
+P 08:39:55 post health=200/0.016655 file=200/0.008729 list=200/0.010203
+P 08:39:56 post health=200/0.013929 file=200/0.007094 list=200/0.012751
+U 08:39:56 post 201/0.023101 {"id":"b8009629-4cf7-4da2-a580-c735c5da71fc","status":"uploaded"}
+M 08:39:56 post cache_hits_total=408.0 cache_misses_total=152.0 cache_errors_total=43.0 queue_waiting_tasks=0.0 queue_stats_up=1.0 
+P 08:39:57 post health=200/0.012135 file=200/0.005983 list=200/0.010086
+P 08:39:58 post health=200/0.013135 file=200/0.007130 list=200/0.009922
+P 08:39:59 post health=200/0.021516 file=200/0.009564 list=200/0.010738
+P 08:40:00 post health=200/0.019997 file=200/0.008158 list=200/0.010311
+P 08:40:01 post health=200/0.011290 file=200/0.005953 list=200/0.009124
+M 08:40:01 post cache_hits_total=413.0 cache_misses_total=152.0 cache_errors_total=43.0 queue_waiting_tasks=0.0 queue_stats_up=1.0 
+A 08:40:01 post CacheBypassed=firing
+P 08:40:03 post health=200/0.017015 file=200/0.008147 list=200/0.069299
+P 08:40:04 post health=200/0.007640 file=200/0.005166 list=200/0.009025
+P 08:40:05 post health=200/0.014676 file=200/0.007228 list=200/0.011068
+P 08:40:06 post health=200/0.018519 file=200/0.008672 list=200/0.011418
+P 08:40:07 post health=200/0.017208 file=200/0.007770 list=200/0.009638
+U 08:40:07 post 201/0.017649 {"id":"c3e171b4-c0dc-4da8-8062-0d1424476bbf","status":"uploaded"}
+M 08:40:07 post cache_hits_total=418.0 cache_misses_total=152.0 cache_errors_total=43.0 queue_waiting_tasks=0.0 queue_stats_up=1.0 
+P 08:40:08 post health=200/0.014746 file=200/0.006975 list=200/0.012489
+P 08:40:09 post health=200/0.016678 file=200/0.009095 list=200/0.011527
+P 08:40:10 post health=200/0.015776 file=200/0.007913 list=200/0.010606
+P 08:40:11 post health=200/0.017764 file=200/0.007058 list=200/0.010517
+P 08:40:13 post health=200/0.020568 file=200/0.011822 list=200/0.009780
+M 08:40:13 post cache_hits_total=422.0 cache_misses_total=153.0 cache_errors_total=43.0 queue_waiting_tasks=0.0 queue_stats_up=1.0 
+P 08:40:14 post health=200/0.017457 file=200/0.007721 list=200/0.010980
+P 08:40:15 post health=200/0.020142 file=200/0.009377 list=200/0.011414
+P 08:40:16 post health=200/0.017152 file=200/0.007369 list=200/0.010349
+P 08:40:17 post health=200/0.017382 file=200/0.007603 list=200/0.016036
+P 08:40:18 post health=200/0.008220 file=200/0.010824 list=200/0.008894
+U 08:40:18 post 201/0.017015 {"id":"14dedcab-4901-408f-beb1-269c3b731cba","status":"uploaded"}
+M 08:40:18 post cache_hits_total=427.0 cache_misses_total=153.0 cache_errors_total=43.0 queue_waiting_tasks=0.0 queue_stats_up=1.0 
+A 08:40:18 post CacheBypassed=firing
+P 08:40:19 post health=200/0.012120 file=200/0.005845 list=200/0.009550
+P 08:40:21 post health=200/0.019071 file=200/0.009067 list=200/0.010880
+P 08:40:22 post health=200/0.021827 file=200/0.008631 list=200/0.010860
+E 08:40:23 опрос закончен, жду обработки задач (до 240 с)
+S 08:40:23 done=37
+E 08:40:23 готово
