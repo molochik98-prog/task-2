@@ -5,6 +5,7 @@ import time
 import uuid
 from contextlib import asynccontextmanager
 
+import psycopg2
 from psycopg2.errors import QueryCanceled
 from fastapi import FastAPI, File, Header, HTTPException, Query, Response, UploadFile
 from fastapi.responses import JSONResponse
@@ -62,6 +63,22 @@ async def query_timeout_handler(request, exc):
         content={"detail": "database timeout, try again later"},
         headers={"Retry-After": "1"},
     )
+
+
+async def db_unavailable_handler(request, exc):
+    # База недоступна (остановлена, рестарт, обрыв сети): 503 с Retry-After вместо 500.
+    # QueryCanceled (statement_timeout) - подкласс OperationalError, у него свой обработчик выше.
+    first = (str(exc).strip().splitlines() or [""])[0]
+    log.error("database unavailable: %s: %s", type(exc).__name__, first)
+    return JSONResponse(
+        status_code=503,
+        content={"detail": "database unavailable, try again later"},
+        headers={"Retry-After": "5"},
+    )
+
+
+app.add_exception_handler(psycopg2.OperationalError, db_unavailable_handler)
+app.add_exception_handler(psycopg2.InterfaceError, db_unavailable_handler)
 
 
 @app.get("/live")
