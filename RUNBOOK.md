@@ -1,7 +1,7 @@
 # RUNBOOK: восстановление Postgres, MinIO и Redis из бэкапов
 
 Документ для случая, когда данные одного, двух или всех трёх хранилищ потеряны (том пуст или удалён, база не стартует), а сами ВМ, Docker, репозиторий, `.env`, `~/certs` и systemd-таймеры целы.
-Шаги проверены на учении (раздел «Результаты учения»). Пометка `(не проверено)` означает шаг, который на учении не выполнялся.
+Шаги проверены на учении 2026-10-12 – 2026-10-14 (раздел «Результаты учения»). Пометка `(не проверено)` означает шаг или утверждение, которые на учении не выполнялись.
 
 ## 0. Что где лежит
 
@@ -26,7 +26,7 @@
 
 ## 2. Подготовка к учению (не нужна при настоящей аварии)
 
-Автоматика остаётся включённой, но при учении она опасна: бэкап по таймеру, запущенный на пустом хранилище, снимет пустую копию и сдвинет ротацию.
+Автоматику при учении нужно отключить (`disable --now`), а не просто остановить: ВМ при учении выключаются, а `stop` действует только до перезагрузки. После включения ВМ таймеры стартуют снова (они `enabled`), бэкап пустого хранилища снимет пустую копию и опубликует пустой `latest`, а `vm1-pull` заберёт его и сдвинет ротацию. Обратно таймеры включаются шагом 5 раздела 6 командой `enable --now`.
 
 VM-1:
 
@@ -34,7 +34,7 @@ VM-1:
 sudo -v
 ```
 ```
-sudo systemctl stop redis-backup.timer minio-backup.timer reconcile.timer
+sudo systemctl disable --now redis-backup.timer minio-backup.timer reconcile.timer
 systemctl list-timers --all --no-legend | grep -E 'redis-backup|minio-backup|reconcile' || echo "таймеры остановлены"
 ```
 
@@ -44,7 +44,7 @@ VM-2:
 sudo -v
 ```
 ```
-sudo systemctl stop pg-backup.timer vm1-pull.timer
+sudo systemctl disable --now pg-backup.timer vm1-pull.timer
 systemctl list-timers --all --no-legend | grep -E 'pg-backup|vm1-pull' || echo "таймеры остановлены"
 ```
 
@@ -111,7 +111,7 @@ sudo mv /var/lib/postgresql/18/main /var/lib/postgresql/18/main.lost
 
 Каталог переименован, а не удалён: так можно откатиться, если восстановление не получится. `main.lost` удаляется в конце.
 
-### 3.2 Создать пустой кластер (не проверено)
+### 3.2 Создать пустой кластер
 
 Конфигурация (`postgresql.conf`, `pg_hba.conf`, TLS) лежит в `/etc/postgresql/18/main` и от потери данных не страдает, поэтому кластер не пересоздаётся командой `pg_createcluster`, которая её перезапишет.
 
@@ -129,21 +129,44 @@ pg_lsclusters
 sudo -u postgres createdb -T template0 --locale=en_US.UTF-8 --encoding=UTF8 appdb
 ```
 
-### 3.4 Роль `appuser` (не проверено)
+### 3.4 Роль `appuser` (проверено частично)
 
-Роли хранятся на уровне кластера, `pg_dump appdb` их не включает. Пароль должен совпасть с паролем в `DATABASE_URL` из `.env.backend` на VM-1. Вводится в терминале, без эха, в чат и в историю не попадает.
+Роли хранятся на уровне кластера, `pg_dump appdb` их не включает. Роль нужна до восстановления данных (шаг 3.5): права из дампа применяются к уже существующей роли. Пароль должен совпасть с паролем в `DATABASE_URL` из `.env.backend` на VM-1. Знает его только этот файл, поэтому пароль не вводят по памяти: он едет файлом через Mac и не печатается на экран. `CREATE ROLE` выполнялся на учении; передача файлом через Mac, `ALTER ROLE` из stdin и сверка пароля в `.env.backend` проверены 2026-10-15 (раздел 9), а связка из этого шага целиком не прогонялась.
+
+VM-2:
 
 ```
 sudo -u postgres psql -c "CREATE ROLE appuser LOGIN"
-sudo -u postgres psql
 ```
 
-В открывшейся консоли `psql`:
+Ожидается `CREATE ROLE`.
+
+VM-1 (пароль из `.env.backend` в файл с правами 600, на экран ничего не выводится):
 
 ```
-\password appuser
-\q
+( umask 077; grep '^DATABASE_URL=' ~/devops-backend/.env.backend | sed -E 's#.*://[^:]+:([^@]+)@.*#\1#' > ~/appuser.pw )
+wc -c ~/appuser.pw
 ```
+
+Ожидается число символов пароля плюс один (перевод строки), не 0 и не 1.
+
+Терминал Mac:
+
+```
+scp -3 jahongir@192.168.64.3:appuser.pw jaha_task_3@192.168.64.5:appuser.pw
+```
+
+VM-2 (если `log_statement` не `none`, Postgres записал бы пароль в свой журнал, поэтому смена идёт только при `none`):
+
+```
+chmod 600 ~/appuser.pw
+LS=$(sudo -u postgres psql -Atc "show log_statement")
+echo "log_statement=$LS"
+[ "$LS" = none ] && printf "ALTER ROLE appuser PASSWORD '%s';\n" "$(cat ~/appuser.pw)" | sudo -u postgres psql -d appdb -v ON_ERROR_STOP=1
+rm -f ~/appuser.pw
+```
+
+Ожидается `log_statement=none` и `ALTER ROLE`. Затем на VM-1: `rm -f ~/appuser.pw`.
 
 ### 3.5 Восстановить данные
 
@@ -186,11 +209,23 @@ VM-2:
 sudo sh -c 'D=$(ls -1d /var/backups/vm1/minio/[0-9]*-[0-9]* | sort | tail -1); echo "копия: $D"; rm -rf /home/jaha_task_3/restore-minio; cp -a "$D" /home/jaha_task_3/restore-minio; chown -R jaha_task_3: /home/jaha_task_3/restore-minio'
 ```
 
-VM-1 (пароль пользователя `jaha_task_3` вводится вручную):
+Копия идёт через Mac: у VM-1 намеренно нет доступа к VM-2 (бэкапы по pull-модели: VM-2 забирает копии с VM-1 ограниченным ключом), и прямой `scp` с VM-1 на VM-2 заканчивается `Permission denied (publickey)`. Это не поломка.
+
+VM-1:
 
 ```
 rm -rf ~/restore-minio
-scp -r jaha_task_3@192.168.64.5:restore-minio ~/restore-minio
+```
+
+Терминал Mac (не ВМ; `-3` означает «копировать через локальную машину»):
+
+```
+scp -3 -r jaha_task_3@192.168.64.5:restore-minio jahongir@192.168.64.3:restore-minio
+```
+
+VM-1:
+
+```
 cd ~/restore-minio
 sha256sum -c --quiet SHA256SUMS && echo "SHA-256: все файлы совпали"
 echo "файлов в data: $(find data -type f | wc -l), строк в SHA256SUMS: $(wc -l < SHA256SUMS)"
@@ -244,12 +279,14 @@ unset K S MC_HOST_app
 
 Тем же способом, что и скрипт бэкапа: одноразовый контейнер из образа MinIO с `mc`, без прав, только для чтения копии.
 
+Контейнер запускается от пользователя, которому принадлежит копия (`--user "$(id -u):$(id -g)"`), а не от root: при `--cap-drop ALL` у root нет прав читать файлы копии с правами 600 и 700.
+
 ```
 cd ~/devops-backend
 envval() { grep -E "^$1=" .env | cut -d= -f2-; }
 IMAGE=$(docker inspect minio --format '{{.Config.Image}}')
 export MC_HOST_exp="http://$(envval MINIO_ROOT_USER):$(envval MINIO_ROOT_PASSWORD)@minio:9000"
-docker run --rm --network app-net --user 0:0 --read-only --tmpfs /tmp \
+docker run --rm --network app-net --user "$(id -u):$(id -g)" --read-only --tmpfs /tmp \
   --cap-drop ALL --security-opt no-new-privileges:true \
   -e MC_HOST_exp -e MC_CONFIG_DIR=/tmp/.mc \
   -v "$HOME/restore-minio/data:/import:ro" \
@@ -294,7 +331,17 @@ VM-1:
 
 ```
 rm -rf ~/restore-redis
-scp -r jaha_task_3@192.168.64.5:restore-redis ~/restore-redis
+```
+
+Терминал Mac (так же, как в 4.1: прямого доступа с VM-1 на VM-2 нет):
+
+```
+scp -3 -r jaha_task_3@192.168.64.5:restore-redis jahongir@192.168.64.3:restore-redis
+```
+
+VM-1:
+
+```
 cd ~/restore-redis && sha256sum -c --quiet SHA256SUMS && echo "SHA-256: совпало" && ls -la
 ```
 
@@ -311,7 +358,7 @@ docker volume inspect redis-data --format '{{.Name}} {{.Mountpoint}}'
 
 `docker compose create` заново создаёт том с метками Compose и контейнер без запуска.
 
-### 5.3 Положить снимок в пустой том (не проверено)
+### 5.3 Положить снимок в пустой том
 
 ```
 IMAGE=$(docker inspect redis --format '{{.Config.Image}}')
@@ -321,7 +368,7 @@ docker run --rm --user 0:0 --entrypoint sh -v redis-data:/data -v "$HOME/restore
 
 Ожидается: `dump.rdb` с владельцем `redis redis` и правами `-rw-------`.
 
-### 5.4 Временный экземпляр без AOF (не проверено)
+### 5.4 Временный экземпляр без AOF
 
 ```
 IMAGE=$(docker inspect redis --format '{{.Config.Image}}')
@@ -364,7 +411,7 @@ unset REDISCLI_AUTH
 docker logs --since 3m worker 2>&1 | tail -5
 ```
 
-Ожидается: в журнале Redis загрузка из AOF, прежние `DBSIZE` и `XLEN`, worker без повторяющихся ошибок. Если worker пишет ошибку про отсутствующую группу или поток, перезапустить его командой `docker compose restart worker` (не проверено).
+Ожидается: в журнале Redis загрузка из AOF (на учении `DB loaded from base file appendonly.aof.1.base.rdb`, `keys loaded: 5`), прежние `DBSIZE` и `XLEN`, worker без повторяющихся ошибок. Пока контейнер `redis` не запущен, worker пишет `Error -3 connecting to redis:6379. Temporary failure in name resolution` каждые 2 с (на учении последняя запись в 05:51:31) и после запуска Redis перезапуска не потребовал. Если worker пишет ошибку про отсутствующую группу или поток, перезапустить его командой `docker compose restart worker` (не проверено).
 
 ## 6. Проверка согласованности и возврат автоматики
 
@@ -376,30 +423,100 @@ sudo systemctl start reconcile.service
 journalctl -u reconcile -n 20 --no-pager
 ```
 
-Ожидается: ни `ORPHAN_OBJECT`, ни `MISSING_OBJECT`.
+Ожидается: ни `ORPHAN_OBJECT`, ни `MISSING_OBJECT`. Код выхода 10 (`systemctl` при этом пишет `failed`, в журнале `status=10/n/a`) означает «найден рассинхрон», а не поломку самой сверки; четыре известных `STUCK_PENDING` описаны в разделе 7.
 
-3. Сквозная проверка (не проверено: команды загрузки и скачивания взять из README): загрузить новый файл, скачать по ссылке, сверить SHA-256.
-4. `https://app.local/health` и `/health/deps` — все зависимости `ok`; в Prometheus аварийные алерты снялись.
-5. Вернуть автоматику.
+3. Сквозная проверка (VM-1): загрузка файла, обработка worker-ом (`"status":"done"` и поле `sha256`), ссылка на скачивание, скачивание по ней, сверка SHA-256 с ответом API, удаление и `404` после него. Скачивание по ссылке заодно доказывает, что приложение входит в MinIO под восстановленным пользователем, а presigned-ссылка работает через nginx. Команды выполнены 2026-10-15 на восстановленной системе после учения.
+
+```
+C="curl -sS --cacert $HOME/certs/ca.crt"
+printf 'e2e check\n' > /tmp/e2e.txt
+$C -F file=@/tmp/e2e.txt https://app.local/api/files > /tmp/e2e-up.json
+ID=$(grep -oE '"id":"[^"]+"' /tmp/e2e-up.json | cut -d'"' -f4)
+echo "ID=$ID"
+sleep 6
+$C https://app.local/api/files/$ID > /tmp/e2e-meta.json
+grep -oE '"(status|sha256)":"[^"]*"' /tmp/e2e-meta.json
+$C https://app.local/api/files/$ID/link > /tmp/e2e-link.json
+URL=$(grep -oE '"url":"[^"]+"' /tmp/e2e-link.json | cut -d'"' -f4)
+$C -o /tmp/e2e-dl.txt -w 'скачивание по ссылке: %{http_code}\n' "$URL"
+API=$(grep -oE '"sha256":"[^"]+"' /tmp/e2e-meta.json | cut -d'"' -f4)
+GOT=$(sha256sum /tmp/e2e-dl.txt | cut -d' ' -f1)
+$C -X DELETE https://app.local/api/files/$ID
+$C -o /dev/null -w 'после DELETE: %{http_code}\n' https://app.local/api/files/$ID
+rm -f /tmp/e2e.txt /tmp/e2e-*.json /tmp/e2e-dl.txt
+[ -n "$API" ] && [ "$API" = "$GOT" ] && echo "СКВОЗНОЙ ТЕСТ: OK" || { echo "СКВОЗНОЙ ТЕСТ: НЕ ПРОШЁЛ"; exit 1; }
+```
+
+Ожидается: `"status":"done"`, `скачивание по ссылке: 200`, `после DELETE: 404` и последняя строка `СКВОЗНОЙ ТЕСТ: OK`.
+
+4. `https://app.local/health` и `/health/deps`: все зависимости `ok`. Аварийные алерты (`/health` 503, `RedisUnavailable`, `CacheBypassed`) снимаются; `ReconcileMismatch` остаётся, пока сверка находит расхождения (раздел 7).
+5. Вернуть автоматику на VM-1. После `enable --now` бэкапы и сверка стартуют сразу (на учении в 08:57:14), то есть снимают то состояние, которое есть в эту минуту, поэтому включать только после пунктов 1–4. Именно `enable --now`, а не `start`: `start` не включает автозапуск, и после перезагрузки ВМ бэкапы молча перестали бы идти.
 
 VM-1:
 
 ```
-sudo systemctl start redis-backup.timer minio-backup.timer reconcile.timer
+sudo systemctl enable --now redis-backup.timer minio-backup.timer reconcile.timer
 ```
+
+6. Убедиться, что свежие бэкапы VM-1 не пусты, до включения VM-2. `vm1-pull` забирает то, что VM-1 опубликовала как `latest`, а ротация удаляет самые старые копии. Пустая копия проходит сверку по `SHA256SUMS` (она совпадает со своей же пустой суммой), поэтому проверять нужно источник.
+
+VM-1:
+
+```
+journalctl -u redis-backup -n 12 --no-pager
+journalctl -u minio-backup -n 5 --no-pager
+sudo du -shL /var/backups/redis/latest /var/backups/minio/latest
+```
+
+Ожидается: у Redis «5 keys read» и «Бэкап проверен восстановлением», у MinIO «Выгрузка вне тома MinIO сверена ... (172 объектов)» и «Бэкап сверен по списку и размерам», размеры около 16K и 226M, не нули.
+
+7. Вернуть автоматику на VM-2, снять свежий дамп и забрать копии с VM-1.
 
 VM-2:
 
 ```
-sudo systemctl start pg-backup.timer vm1-pull.timer
+sudo systemctl enable --now pg-backup.timer vm1-pull.timer
+sudo systemctl start pg-backup.service
+sudo systemctl start vm1-pull.service
+journalctl -u pg-backup -u vm1-pull -n 25 --no-pager
 ```
 
-6. Снять новые бэкапы восстановленного состояния (шаг 2.2) и убедиться, что `.last-success` обновились.
-7. Убрать временное: `~/restore-minio`, `~/restore-redis` на VM-1; `/home/jaha_task_3/restore-minio`, `/home/jaha_task_3/restore-redis`, `/var/lib/postgresql/18/main.lost` на VM-2.
+Ожидается: «Бэкап проверен восстановлением» для дампа (строки `files` и `items` как в эталоне) и «сохранена копия ... сверена по SHA256SUMS» для Redis и MinIO.
+
+8. Убрать временное: `~/restore-minio`, `~/restore-redis` на VM-1; `/home/jaha_task_3/restore-minio`, `/home/jaha_task_3/restore-redis`, `/var/lib/postgresql/18/main.lost` на VM-2. Перед `rm -rf` выведите `du -sh` по тем же путям и убедитесь, что удаляется именно это.
 
 ## 7. Результаты учения
 
-ЗАПОЛНИТЬ ПОСЛЕ УЧЕНИЯ
+Учение шло с перерывами 2026-10-12 – 2026-10-14 (разрушение 2026-10-12 11:57 UTC). Общее время не измерялось; время отдельных этапов (UTC):
+
+| Этап | Что выполнено | Время |
+|---|---|---|
+| Postgres (VM-2) | `initdb` 12:36:41, кластер и `appdb` 12:36:44, `pg_restore` 12:44:03 | 7 мин 22 с от `initdb` до `pg_restore`; сам `pg_restore` 1 с, почти всё время ушло на ручной ввод пароля роли (шаг 3.4 до переписывания) |
+| MinIO (VM-1) | перенос копии проверен 05:17:49; пустой MinIO запущен 05:20:04, `healthy` 05:23:29; `mc mirror` 05:36:45 → 05:36:47 (225 MiB) | запуск с паузами между командами (чистое время не измерялось); `mirror` 2 с |
+| Redis (VM-1) | снимок в том и временный экземпляр без AOF (5.3–5.4) 05:44:59 → 05:45:00; включение AOF и штатный запуск (5.5–5.6) 05:51:30 → 05:51:32 | 1 с и 2 с |
+
+Сверка с эталоном (шаг 2.1):
+
+- Postgres: `files` done 167, failed 32, pending 4 (всего 203), `items` 2, права `appuser=arwd/postgres`.
+- MinIO: 172 объекта, 235931768 байт, `sha256sum -c` без расхождений. Сверка видит 171 (`objects=171 rows=203`), потому что считает только префикс `files/`; 172-й объект это `test/hello.txt`.
+- Redis: `DBSIZE` 5, `XLEN queue:files:dead` 0; в журнале Redis при старте загрузка из `appendonly.aof.1.base.rdb`, `keys loaded: 5`.
+- Сверка после учения (2026-10-14 06:18:44): `orphan_objects=0 missing_objects=0 stale_pending=0 stuck_pending=4`, код выхода 10. Те же четыре `STUCK_PENDING` (те же `id` и `updated_at`) были до учения (запуск 2026-10-12 11:54:02): из дампа они вернулись без изменений.
+- Четыре `STUCK_PENDING` (`cb973de7`, `e4449724`, `ed412c14`, `caed995b`): строки `pending` с пустым `size_bytes`, созданные 2026-10-12 с 10:21:44 по 10:26:18 UTC; их объекты (по 7 байт) лежат в MinIO, то есть объект записан, а строка в `uploaded` не переведена. Сверка и `ReconcileMismatch` показывают их каждые 30 минут. Причина не выяснена: по времени совпадает с опытом 7 (`CHAOS.md`), но дата опыта не сверена.
+- `/health` 200, `/health/deps`: `postgres`, `redis`, `minio` в состоянии `ok`.
+
+Что оказалось неточным в черновике (исправлено в тексте разделов 2–6):
+
+1. 4.1 и 5.1: копию нельзя перенести напрямую с VM-2 на VM-1. У VM-1 намеренно нет доступа к VM-2 (бэкапы по pull-модели), `scp` с VM-1 на VM-2 заканчивается `Permission denied (publickey)`. Теперь копия идёт через Mac: `scp -3`.
+2. 4.4: контейнер `mc` с `--user 0:0` и `--cap-drop ALL` не читает файлы копии с правами 600 и 700. Теперь контейнер запускается от пользователя, которому принадлежит копия.
+3. 3.4: пароль роли нельзя было ввести, не показав его (знает его только `.env.backend`). Шаг переписан: пароль едет файлом через Mac и не печатается. Во время учения этот шаг один раз был пропущен (роль осталась без пароля).
+4. Раздел 2: `stop` у таймеров заменён на `disable --now`, потому что при выключении ВМ `stop` не действует.
+5. Раздел 6: `start` у таймеров заменён на `enable --now`; добавлен порядок: сначала VM-1 и проверка `latest`, потом VM-2.
+
+Другие находки:
+
+- Бэкап пустого источника публикует пустой `latest` (раздел 8).
+- Пароль роли `appuser` попал в чат; заменён 2026-10-15 по процедуре раздела 9.
+- После `enable --now` на VM-1 бэкапы и сверка стартовали сразу (2026-10-15 08:57:14). Причину (`Persistent=true`) для таймеров бэкапов не проверяли.
 
 ## 8. Что восстановление не покрывает
 
@@ -410,3 +527,77 @@ sudo systemctl start pg-backup.timer vm1-pull.timer
 - Дампы Postgres лежат только на VM-2. Потеря VM-2 вместе с базой уничтожает и дампы.
 - Потеря Mac уничтожает обе ВМ.
 - RPO равен возрасту последней копии: бэкап запускается раз за включение ВМ (README, «Когда бэкапы запускаются на самом деле»).
+- Бэкап пустого или разрушенного источника публикует пустой `latest`, и `vm1-pull` забирает его как свежую копию; со временем ротация вытеснит им хорошие. Поэтому при учении таймеры отключены (раздел 2). Команды 4.1 и 5.1 берут последнюю копию (`sort | tail -1`): это верно, только пока автоматика отключена, иначе выбирайте каталог копии по имени (метка времени до разрушения).
+- Код выхода сверки 10 означает «найден рассинхрон», а не «сверка сломалась»; не смогла отработать сверка с кодом 2 (README, «Сверка»).
+
+## 9. Замена пароля `appuser`
+
+Когда: пароль мог попасть в чат, историю команд, журнал или к постороннему (на учении так и было). Процедура выполнена 2026-10-15.
+
+Порядок и почему. Postgres проверяет пароль только при открытии нового соединения: соединения пула, уже открытые, после `ALTER ROLE` продолжают работать, ошибки начинаются, когда приложению нужно новое соединение (пул заменил мёртвое, перезапустился worker). Поэтому сначала меняется роль, сразу после этого `.env.backend` и `./deploy.sh`; шаги 3 и 4 делаются подряд. Обратный порядок не годится: новая версия с новым паролем не пройдёт `/health`, и деплой не переключится (по логике `deploy.sh`, не проверялось).
+
+Пароль не печатается и не попадает в аргументы команд: он генерируется в файл с правами 600, едет на VM-2 через Mac и попадает в `psql` через stdin.
+
+Шаг 1, VM-1:
+
+```
+cd ~/devops-backend
+( umask 077; openssl rand -hex 24 > ~/newpw )
+wc -c ~/newpw
+```
+
+Ожидается `49`.
+
+Шаг 2, терминал Mac:
+
+```
+scp -3 jahongir@192.168.64.3:newpw jaha_task_3@192.168.64.5:newpw
+```
+
+Шаг 3, VM-2 (`sudo -v` отдельной командой перед блоком):
+
+```
+chmod 600 ~/newpw
+LS=$(sudo -u postgres psql -Atc "show log_statement")
+echo "log_statement=$LS"
+[ "$LS" = none ] && printf "ALTER ROLE appuser PASSWORD '%s';\n" "$(cat ~/newpw)" | sudo -u postgres psql -d appdb -v ON_ERROR_STOP=1
+```
+
+Ожидается `log_statement=none` и `ALTER ROLE`. Если `log_statement` не `none`, Postgres записал бы пароль в свой журнал: дальше не идти.
+
+Шаг 4, VM-1, сразу после шага 3:
+
+```
+cd ~/devops-backend
+install -m 600 .env.backend ~/env.backend.old
+grep -c '^DATABASE_URL=' .env.backend
+sed -E -i "s#^(DATABASE_URL=[^:]+://[^:/]+:)[^@]+(@)#\1$(cat ~/newpw)\2#" .env.backend
+[ "$(grep '^DATABASE_URL=' .env.backend | sed -E 's#.*://[^:]+:([^@]+)@.*#\1#')" = "$(cat ~/newpw)" ] && echo "env: совпал" || echo "env: НЕ совпал"
+grep '^DATABASE_URL=' .env.backend | sed -E 's#(://[^:]+:)[^@]+@#\1***@#'
+./deploy.sh
+```
+
+Ожидается `1`, `env: совпал`, строка `DATABASE_URL` с `***` вместо пароля и «Деплой завершён успешно». Если `НЕ совпал`, `./deploy.sh` не запускать.
+
+Шаг 5, VM-1:
+
+```
+curl -sS --cacert ~/certs/ca.crt -o /dev/null -w 'health: %{http_code}\n' https://app.local/health
+curl -sS --cacert ~/certs/ca.crt https://app.local/health/deps; echo
+docker compose ps
+docker compose logs --tail 15 worker
+```
+
+Ожидается `200`, три `ok`, все контейнеры `Up`, в логе worker нет `password authentication failed`. Затем сквозная проверка из раздела 6, пункт 3.
+
+Шаг 6, когда проверка прошла: удалить файлы с паролем. VM-1: `rm -f ~/newpw ~/env.backend.old`. VM-2: `rm -f /home/jaha_task_3/newpw`, затем `hostname` и `ls -l /home/jaha_task_3/newpw` (ожидается `task3test` и «No such file»). 2026-10-15 команду удаления для VM-2 по ошибке выполнили на VM-1, и файл с паролем на VM-2 остался до проверки.
+
+Осторожно: `docker compose up` без `-d` привязывает терминал к логам, и `Ctrl+C` останавливает все контейнеры проекта (случай 2026-10-15, `CHAOS.md`). Статус смотрят командой `docker compose ps`. Если остановка всё же случилась, политика `unless-stopped` сама не поднимет вручную остановленные контейнеры. Нужно удалить пересозданный лишний неактивный цвет (`docker rm backend-blue`) и запустить по порядку, nginx последним:
+
+```
+docker start redis minio
+docker start backend-green worker
+docker start nginx
+```
+
+`backend-green` это активный цвет на 2026-10-15; активный цвет печатает `./deploy.sh`.
