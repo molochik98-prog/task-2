@@ -245,7 +245,7 @@ sudo ls -ld /srv/minio/data
 Ожидается: каталог пуст, владелец `10001 10001`, права `drwxr-x---`. Compose требует, чтобы каталог существовал (`create_host_path: false`).
 Если потерян сам том (диск): создать файловую систему и смонтировать по UUID из `/etc/fstab`, затем `sudo install -d -o 10001 -g 10001 -m 750 /srv/minio/data` (не проверено).
 
-### 4.3 Запустить пустой MinIO, создать бакет, политику и пользователя (не проверено)
+### 4.3 Запустить пустой MinIO, создать бакет, политику и пользователя
 
 ```
 cd ~/devops-backend
@@ -254,26 +254,36 @@ for i in $(seq 1 30); do [ "$(docker inspect -f '{{.State.Health.Status}}' minio
 docker inspect -f 'minio: {{.State.Health.Status}}' minio
 ```
 
-Ожидается: `healthy` (около 30 с).
+Ожидается: `healthy`. На учении от запуска (05:20:04) до `healthy` (05:23:29) прошло 3 мин 25 с, но между командами были паузы, чистое время запуска не измерялось. Цикл выше ждёт не дольше 60 с: если он закончился раньше, чем контейнер стал `healthy`, повторите только последнюю строку блока.
+
+Имя root-пользователя и ключи приложения могут попасть на экран в выводе `mc` (например, `mc admin user add` печатает ключ). Функция `hide` заменяет их метками; значения она берёт из переменных окружения, а не из командной строки.
 
 ```
 cd ~/devops-backend
 envval() { grep -E "^$1=" .env | cut -d= -f2-; }
 export MC_HOST_app="http://$(envval MINIO_ROOT_USER):$(envval MINIO_ROOT_PASSWORD)@localhost:9000"
-export K="$(envval S3_ACCESS_KEY)" S="$(envval S3_SECRET_KEY)"
+export K="$(envval S3_ACCESS_KEY)" S="$(envval S3_SECRET_KEY)" H1="$(envval MINIO_ROOT_USER)"
 mc() { docker exec -e MC_CONFIG_DIR=/tmp/.mc -e MC_HOST_app minio mc "$@"; }
-mc mb app/uploads
+hide() { python3 -I -c 'import os,sys
+t=sys.stdin.read()
+for k,n in (("H1","<ROOT_USER>"),("K","<S3_ACCESS_KEY>"),("S","<S3_SECRET_KEY>")):
+    v=os.environ.get(k)
+    if v: t=t.replace(v,n)
+sys.stdout.write(t)'; }
+mc mb app/uploads 2>&1 | hide
 docker exec -i minio sh -c 'cat > /tmp/uploads-rw.json' <<'JSON'
 {"Version":"2012-10-17","Statement":[{"Effect":"Allow","Action":["s3:ListBucket"],"Resource":["arn:aws:s3:::uploads"]},{"Effect":"Allow","Action":["s3:DeleteObject","s3:GetObject","s3:PutObject"],"Resource":["arn:aws:s3:::uploads/*"]}]}
 JSON
-mc admin policy create app uploads-rw /tmp/uploads-rw.json
-docker exec -e MC_CONFIG_DIR=/tmp/.mc -e MC_HOST_app -e K -e S minio sh -c 'mc admin user add app "$K" "$S"'
-docker exec -e MC_CONFIG_DIR=/tmp/.mc -e MC_HOST_app -e K minio sh -c 'mc admin policy attach app uploads-rw --user "$K"'
-mc anonymous get app/uploads
-unset K S MC_HOST_app
+mc admin policy create app uploads-rw /tmp/uploads-rw.json 2>&1 | hide
+docker exec -e MC_CONFIG_DIR=/tmp/.mc -e MC_HOST_app -e K -e S minio sh -c 'mc admin user add app "$K" "$S"' 2>&1 | hide
+docker exec -e MC_CONFIG_DIR=/tmp/.mc -e MC_HOST_app -e K minio sh -c 'mc admin policy attach app uploads-rw --user "$K"' 2>&1 | hide
+echo "--- проверка"
+mc anonymous get app/uploads 2>&1 | hide
+mc admin user list app 2>&1 | hide
+unset K S H1 MC_HOST_app
 ```
 
-Ожидается: `Access permission for 'app/uploads' is 'private'`. Ключи приложения берутся из `.env` и не попадают в командную строку хоста: в `docker exec` передаются только имена переменных. Политика `uploads-rw` дословно повторяет действующую: `ListBucket` на бакет, `GetObject`, `PutObject`, `DeleteObject` на объекты бакета.
+Ожидается: `Access permission for 'app/uploads' is 'private'` и одна учётная запись в `mc admin user list` (её ключ скрыт под `<S3_ACCESS_KEY>`). Ключи приложения берутся из `.env` и не попадают в командную строку хоста: в `docker exec` передаются только имена переменных. Политика `uploads-rw` дословно повторяет действующую: `ListBucket` на бакет, `GetObject`, `PutObject`, `DeleteObject` на объекты бакета.
 
 ### 4.4 Загрузить объекты из копии
 
@@ -296,6 +306,8 @@ unset MC_HOST_exp
 
 ### 4.5 Проверка
 
+Два этапа: число объектов и байт сравниваются с эталоном (шаг 2.1), затем все объекты выгружаются из MinIO обратно в чистый каталог и сверяются по `SHA256SUMS` копии. Контрольный образец доказывал бы только самого себя. `sha256sum -c` проверяет файлы из списка, но не заметит лишних объектов, поэтому число файлов в выгрузке сравнивается отдельно.
+
 ```
 cd ~/devops-backend
 envval() { grep -E "^$1=" .env | cut -d= -f2-; }
@@ -303,15 +315,33 @@ export MC_HOST_app="http://$(envval MINIO_ROOT_USER):$(envval MINIO_ROOT_PASSWOR
 mc() { docker exec -e MC_CONFIG_DIR=/tmp/.mc -e MC_HOST_app minio mc "$@"; }
 echo "объектов в uploads: $(mc ls --recursive app/uploads | wc -l)"
 mc ls --recursive --json app/uploads | python3 -I -c 'import sys,json;print("байт в uploads:", sum(json.loads(l)["size"] for l in sys.stdin if l.strip() and json.loads(l).get("type")=="file"))'
-read -r SUM P < ~/restore-minio/SHA256SUMS
-KEY=${P#./data/}
-echo "образец: $KEY"
-echo "в копии: $SUM"
-echo "в MinIO: $(mc cat "app/uploads/$KEY" | sha256sum | cut -d' ' -f1)"
 unset MC_HOST_app
 ```
 
-Ожидается: число объектов и байт как в эталоне, SHA-256 образца совпадает.
+Выгрузка обратно (нужно около 225 МиБ свободного места в `~`):
+
+```
+cd ~/devops-backend
+envval() { grep -E "^$1=" .env | cut -d= -f2-; }
+df -h ~ | tail -1
+IMAGE=$(docker inspect minio --format '{{.Config.Image}}')
+export MC_HOST_exp="http://$(envval MINIO_ROOT_USER):$(envval MINIO_ROOT_PASSWORD)@minio:9000"
+rm -rf ~/verify-minio; mkdir -p ~/verify-minio/data
+docker run --rm --network app-net --user "$(id -u):$(id -g)" --read-only --tmpfs /tmp \
+  --cap-drop ALL --security-opt no-new-privileges:true \
+  -e MC_HOST_exp -e MC_CONFIG_DIR=/tmp/.mc \
+  -v "$HOME/verify-minio/data:/export" \
+  --entrypoint mc "$IMAGE" mirror --quiet exp/uploads /export
+unset MC_HOST_exp
+cd ~/verify-minio && sha256sum -c --quiet ~/restore-minio/SHA256SUMS && echo "ВСЕ объекты совпали побайтно"
+echo "файлов в выгрузке: $(find data -type f | wc -l)"
+```
+
+Ожидается: `объектов в uploads: 172` и `байт в uploads: 235931768` (эталон из шага 2.1), `ВСЕ объекты совпали побайтно`, `файлов в выгрузке: 172`. На учении (2026-10-14) выгрузка дала 172 файла и `sha256sum -c` прошёл без расхождений. Затем убрать выгрузку:
+
+```
+rm -rf ~/verify-minio
+```
 
 ## 5. Redis (VM-1)
 
@@ -423,7 +453,7 @@ sudo systemctl start reconcile.service
 journalctl -u reconcile -n 20 --no-pager
 ```
 
-Ожидается: ни `ORPHAN_OBJECT`, ни `MISSING_OBJECT`. Код выхода 10 (`systemctl` при этом пишет `failed`, в журнале `status=10/n/a`) означает «найден рассинхрон», а не поломку самой сверки; четыре известных `STUCK_PENDING` описаны в разделе 7.
+Ожидается: ни `ORPHAN_OBJECT`, ни `MISSING_OBJECT`. Код выхода 10 (`systemctl` при этом пишет `failed`, в журнале `status=10/n/a`) означает «найден рассинхрон», а не поломку самой сверки; расхождения разбирают по разделу 10, а четыре `STUCK_PENDING`, найденные на учении, исправлены 2026-10-15 (раздел 7).
 
 3. Сквозная проверка (VM-1): загрузка файла, обработка worker-ом (`"status":"done"` и поле `sha256`), ссылка на скачивание, скачивание по ней, сверка SHA-256 с ответом API, удаление и `404` после него. Скачивание по ссылке заодно доказывает, что приложение входит в MinIO под восстановленным пользователем, а presigned-ссылка работает через nginx. Команды выполнены 2026-10-15 на восстановленной системе после учения.
 
@@ -501,7 +531,7 @@ journalctl -u pg-backup -u vm1-pull -n 25 --no-pager
 - MinIO: 172 объекта, 235931768 байт, `sha256sum -c` без расхождений. Сверка видит 171 (`objects=171 rows=203`), потому что считает только префикс `files/`; 172-й объект это `test/hello.txt`.
 - Redis: `DBSIZE` 5, `XLEN queue:files:dead` 0; в журнале Redis при старте загрузка из `appendonly.aof.1.base.rdb`, `keys loaded: 5`.
 - Сверка после учения (2026-10-14 06:18:44): `orphan_objects=0 missing_objects=0 stale_pending=0 stuck_pending=4`, код выхода 10. Те же четыре `STUCK_PENDING` (те же `id` и `updated_at`) были до учения (запуск 2026-10-12 11:54:02): из дампа они вернулись без изменений.
-- Четыре `STUCK_PENDING` (`cb973de7`, `e4449724`, `ed412c14`, `caed995b`): строки `pending` с пустым `size_bytes`, созданные 2026-10-12 с 10:21:44 по 10:26:18 UTC; их объекты (по 7 байт) лежат в MinIO, то есть объект записан, а строка в `uploaded` не переведена. Сверка и `ReconcileMismatch` показывают их каждые 30 минут. Причина не выяснена: по времени совпадает с опытом 7 (`CHAOS.md`), но дата опыта не сверена.
+- Четыре `STUCK_PENDING` (`cb973de7`, `e4449724`, `ed412c14`, `caed995b`): строки `pending` с пустым `size_bytes` от 2026-10-12 (10:21:44–10:26:18 UTC), объекты по 7 байт лежат в MinIO. По именам (`chaos7-1791800364-N.txt`), содержимому (`chaos7`) и скрипту `scripts/chaos-latency.sh` это пробные загрузки опыта 7 (время запуска скрипта 2026-10-12 10:19:24 UTC). Механизм по коду: `PUT` прошёл, а перевод в `uploaded` не выполнился; воспроизведением не подтверждался. Исправлено 2026-10-15 по разделу 10: после перевода в `uploaded` sweeper поставил задачи в очередь (10:57:15 UTC), worker довёл строки до `done`, сверка показала `stuck_pending=0`. Итог по статусам: `done` 171, `failed` 32, `pending` 0 (всего 203).
 - `/health` 200, `/health/deps`: `postgres`, `redis`, `minio` в состоянии `ok`.
 
 Что оказалось неточным в черновике (исправлено в тексте разделов 2–6):
@@ -601,3 +631,64 @@ docker start nginx
 ```
 
 `backend-green` это активный цвет на 2026-10-15; активный цвет печатает `./deploy.sh`.
+
+## 10. Найден рассинхрон (сверка)
+
+Сверка (`backend/reconcile.py`, запускается `reconcile.timer` каждые 30 минут) находит четыре вида расхождений и сообщает о них в Telegram и метрикой `reconcile_last_mismatches` (алерт `ReconcileMismatch`). Данные она не правит: автоправка спрятала бы ошибку, которая рассинхрон породила. Код выхода 10 означает «найдено расхождение», код 2 «сама сверка не отработала» (README, «Сверка»). Перед блоками с `sudo` выполняйте `sudo -v` отдельной командой.
+
+| Вид | Что значит | Что видит клиент | Что делать |
+|---|---|---|---|
+| `ORPHAN_OBJECT` | объект без строки: удаление оборвалось или объект залит мимо приложения | ничего, платим за место | выяснить происхождение; если это мусор, удалить объект (не проверено) |
+| `MISSING_OBJECT` | строка `uploaded`, `processing` или `done` без объекта | `/link` ведёт в пустоту: худший случай | восстановить объект из копии (раздел 4) или пометить строку `failed` (не проверено) |
+| `STALE_PENDING` | строка `pending` без объекта: загрузка оборвалась | 409, файл «ещё грузится» | клиент повторяет загрузку; строку можно перевести в `failed` (не проверено) |
+| `STUCK_PENDING` | объект есть, а строка осталась `pending` | 409, файл «ещё грузится» | перевести в `uploaded` (подраздел 10.1, выполнено 2026-10-15) |
+
+### 10.1 `STUCK_PENDING`: перевести строки в `uploaded`
+
+Откуда берётся: загрузка кладёт объект в MinIO, а потом переводит строку из `pending` в `uploaded`. Если второй шаг не выполнился (например, Postgres не ответил), объект есть, а строка остаётся `pending`. Самолечение есть только у клиента, который повторит загрузку с тем же `Idempotency-Key`: через 10 минут строка перехватывается. Без повтора строка остаётся `pending` навсегда, и алерт приходит каждые 30 минут. Клиенту это не вредит: ссылку на `pending` приложение не выдаёт.
+
+1. Взять `id` из отчёта сверки (VM-1):
+
+```
+journalctl -u reconcile -n 30 --no-pager | grep STUCK_PENDING | cut -c1-200
+```
+
+2. Убедиться, что строки понятны, и посмотреть их (VM-2). 2026-10-15 это были пробные загрузки опыта 7 (`chaos7-1791800364-N.txt`, содержимое `chaos7`). Если имя и время не объясняют строку, не чинить, а искать причину в логах backend:
+
+```
+sudo -u postgres psql -d appdb -c "select id, original_name, content_type, size_bytes, status from files where status = 'pending' order by created_at"
+```
+
+3. Страховка: последний дамп проверен восстановлением (VM-2):
+
+```
+sudo ls -lh /var/backups/postgresql-appdb/ | tail -2
+```
+
+4. Перевод в `uploaded` (VM-2). Команда выполнена 2026-10-15, результат `UPDATE 4`. Условие `status = 'pending'` обязательно: без него повторный запуск вернёт в `uploaded` уже готовые строки, и worker обработает их заново (по коду, не проверялось). Для другого случая замените условия по имени и `id` на `id` из отчёта сверки:
+
+```
+sudo -u postgres psql -d appdb -v ON_ERROR_STOP=1 -c "UPDATE files SET status = 'uploaded' WHERE status = 'pending' AND original_name LIKE 'chaos7-%' AND left(id::text,8) IN ('cb973de7','e4449724','ed412c14','caed995b')"
+```
+
+`updated_at` не трогать. Sweeper (`db.list_stale`) берёт `uploaded` старше 2 минут по этому полю. У строк от 12 октября оно было старым, и они подошли сразу. Строку со свежим `updated_at` он подберёт через 2 минуты.
+
+5. Подождать около 100 секунд и проверить статусы (VM-2). Ожидается: `pending` нет. 2026-10-15: `done` 171, `failed` 32.
+
+```
+sleep 100
+sudo -u postgres psql -d appdb -c "select status, count(*) from files group by status order by 1"
+```
+
+6. Убедиться, что sweeper и worker довели задачи (VM-1). Ожидается по строке `sweeper re-enqueued` и `processed ok` на каждый `id`:
+
+```
+docker logs --since 20m worker 2>&1 | grep -E 'sweeper re-enqueued|processed ok' | cut -c1-200
+```
+
+7. Запустить сверку (VM-1). Ожидается `stuck_pending=0` и `Finished`; алерт `ReconcileMismatch` гаснет, в Telegram приходит «СНЯТ ReconcileMismatch»:
+
+```
+sudo systemctl start reconcile.service
+journalctl -u reconcile --since '3 min ago' --no-pager | grep -E 'objects=|RESULT|Finished|Failed'
+```
