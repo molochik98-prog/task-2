@@ -692,3 +692,99 @@ docker logs --since 20m worker 2>&1 | grep -E 'sweeper re-enqueued|processed ok'
 sudo systemctl start reconcile.service
 journalctl -u reconcile --since '3 min ago' --no-pager | grep -E 'objects=|RESULT|Finished|Failed'
 ```
+
+## 11. Деплой и откат
+
+Деплой один: `./deploy.sh` на VM-1. Его запускает вручную оператор или раннер GitHub Actions при `push` в ветку `main` (`git pull origin main`, затем `./deploy.sh`; README, «Как запускается деплой»). Push в другие ветки (например `task4-wip`) деплой не запускает.
+
+### 11.1 Что делает `./deploy.sh` (по тексту скрипта)
+
+1. Определяет активный цвет по `nginx/nginx.conf`: источник правды именно он.
+2. Собирает `backend-<новый цвет>` и `worker`, поднимает новый backend рядом со старым (`up -d --no-deps`).
+3. Проверяет новый: до 10 попыток по 3 с, `curl -f -m 5 http://<IP>:8000/health`.
+4. Если проверка не прошла: останавливает и удаляет только новый контейнер, старый не тронут, код выхода 1.
+5. Если прошла: подключает новый к сети мониторинга, переписывает цели Prometheus, меняет цвет в `nginx.conf` на месте (`cat >`, а не `sed -i`: иначе bind-mount «слепнет»), выполняет `nginx -t` и `nginx -s reload`, ждёт слива старых процессов nginx и только потом останавливает и удаляет старый backend.
+6. По выводу деплоя 2026-10-15 в конце пересоздаётся `worker`, и скрипт печатает «Деплой завершён успешно: активен backend-<цвет>». Строки скрипта после сотой не читались, этот пункт взят из вывода.
+
+### 11.2 Проверка после деплоя
+
+```
+cd ~/devops-backend
+curl -sS --cacert ~/certs/ca.crt -o /dev/null -w 'health: %{http_code}\n' https://app.local/health
+curl -sS --cacert ~/certs/ca.crt https://app.local/health/deps; echo
+docker compose ps
+docker compose logs --tail 15 worker
+```
+
+Ожидается: `200`, `postgres`, `redis`, `minio` в состоянии `ok`, все контейнеры `Up`, в логе worker нет ошибок. Команду `docker compose up` без `-d` не использовать: `Ctrl+C` останавливает все контейнеры проекта (раздел 9).
+
+### 11.3 Деплой не прошёл
+
+Новый контейнер удалён, прежний цвет остаётся активным и обслуживает клиентов; скрипт выходит с кодом 1. Так было при остановленном Postgres (CHAOS 3 и README: `rc=1` за 58 с, 10 попыток, откат). Логов удалённого контейнера нет, причину ищут в выводе `deploy.sh` (в CI в логе job) и в `/health/deps` активного цвета. Устранить причину и запустить `./deploy.sh` снова.
+
+### 11.4 Откат после успешного деплоя (не проверено)
+
+Старый контейнер при успешном деплое удаляется, поэтому переключиться на него нельзя. Откат это деплой прежней версии кода: `git revert <коммит>` и push в `main` (раннер выполнит `./deploy.sh`) или приведение рабочей копии на VM-1 к прежнему коммиту и ручной `./deploy.sh`. Этот путь выведен из текста скрипта, в этой работе откат выполненного деплоя не проверялся. Изменения схемы БД скрипт не откатывает.
+
+## 12. Очередь не разгребается или растёт
+
+Сигналы (README, «Алертинг»): `QueueNotDraining` (возраст самой старой задачи больше 300 с, 2 мин) и `DeadLetterNotEmpty` (в мёртвой очереди больше 0 задач, 1 мин).
+
+### 12.1 Состояние очереди (VM-1)
+
+```
+cd ~/devops-backend
+bash scripts/queue-stats.sh
+```
+
+Вывод вида `queue: waiting=0 in_flight=0 oldest_age_s=0.0 dead=0 naive_list=0` (так было 2026-10-15). `waiting`: задачи, ещё не выданные worker-у; `in_flight`: выданные, но не подтверждённые; `oldest_age_s`: возраст самой старой невыполненной задачи (важнее длины); `dead`: размер мёртвой очереди.
+
+### 12.2 Диагностика по порядку
+
+1. Жив ли worker (VM-1):
+
+```
+docker ps --format 'table {{.Names}}\t{{.Status}}' | grep worker
+docker logs --tail 30 worker
+```
+
+Если остановлен: `docker start worker`. Docker сам не перезапускает вручную остановленный контейнер (`unless-stopped`). После случайной остановки 2026-10-15 `docker start backend-green worker` вернул worker в работу (в логе `worker mode=streams`).
+
+2. Доступен ли Redis: раздел 13.
+3. Доступен ли Postgres: `/health/deps`. Пока он лежит, sweeper пишет `sweeper failed` примерно раз в минуту и продолжает сам после запуска Postgres (CHAOS 3).
+4. Задача зависла у worker-а: она возвращается через `MIN_IDLE_S` (60 с по умолчанию) и выполняется повторно, обработчик идемпотентен. После трёх доставок без подтверждения она уходит в `queue:files:dead`, а файл получает статус `failed` (README, «Redis как очередь»; проверено `scripts/stage4-proof.sh`).
+5. Обработка дольше `MIN_IDLE_S`: живой, но медленный worker получит дубль своей задачи. Данные это не портит, но работа делается дважды; значение `MIN_IDLE_S` должно быть больше самой долгой обработки.
+
+### 12.3 Мёртвая очередь
+
+```
+cd ~/devops-backend
+export REDISCLI_AUTH="$(grep -E '^REDIS_PASSWORD=' .env | cut -d= -f2-)"
+docker exec -e REDISCLI_AUTH redis redis-cli --no-auth-warning XRANGE queue:files:dead - +
+```
+
+В записи поля `file_id`, `orig_id` и `reason` (README). Команда стандартная, но на непустой мёртвой очереди этой системы не выполнялась (не проверено). Причину ищут по строке `DEAD LETTER` в логе worker. Процедуры возврата задач из мёртвой очереди в системе нет. Файл остаётся `failed`; повторная загрузка с тем же `Idempotency-Key` забирает `failed` заново (по коду `db.reclaim`, не проверялось).
+
+## 13. Недоступен Redis
+
+Что видит клиент (CHAOS 1): API работает, чтение идёт из Postgres (кеш отключается circuit breaker: таймаут сокета 0,3 с, пауза 5 с), загрузка отвечает `201`, но задача не ставится в очередь, файл остаётся `uploaded`. `/health` из-за Redis не падает, `/health/deps` показывает `redis: degraded`. Приходят алерты `RedisUnavailable` и `CacheBypassed` (примерно через 2 минуты). Пока контейнера `redis` нет, worker пишет `Error -3 connecting to redis:6379. Temporary failure in name resolution` каждые 2 с и сам подключается после запуска Redis (наблюдалось 2026-10-15).
+
+Что делать (VM-1):
+
+```
+cd ~/devops-backend
+docker ps -a --format 'table {{.Names}}\t{{.Status}}' | grep redis
+```
+
+1. Контейнер остановлен: `docker start redis`. Контейнера нет: `docker compose up -d redis` (обязательно с `-d`).
+2. Убедиться, что данные вернулись из AOF:
+
+```
+docker logs redis 2>&1 | grep -iE 'append only file|DB loaded|Ready to accept' | tail -4
+export REDISCLI_AUTH="$(grep -E '^REDIS_PASSWORD=' .env | cut -d= -f2-)"
+docker exec -e REDISCLI_AUTH redis redis-cli --no-auth-warning DBSIZE
+```
+
+3. Том потерян или пуст: восстановление по разделу 5.
+4. Подождать 1–2 минуты: sweeper раз в минуту ставит в очередь файлы `uploaded` старше 2 минут (в опыте 1 все 22 загрузки). Проверить: `bash scripts/queue-stats.sh`.
+5. Кеш после запуска пуст и наполняется заново: он не источник правды.
